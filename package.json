@@ -1,0 +1,47 @@
+{
+  "name": "revius-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "build:analyze": "ANALYZE=true next build",
+    "build:production": "NODE_ENV=production next build",
+    "test:production": "npm run build:production && npm run start",
+    "preview": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.11.0",
+    "@mantine/hooks": "^7.11.0",
+    "@tanstack/react-query": "^5.51.0",
+    "@tanstack/react-query-devtools": "^5.51.0",
+    "framer-motion": "^11.3.0",
+    "i18next": "^23.0.0",
+    "lucide-react": "^0.541.0",
+    "next": "^15.0.0",
+    "next-pwa": "^5.6.0",
+    "next-themes": "^0.3.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-i18next": "^14.0.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0",
+    "postcss": "^8.4.0",
+    "prettier": "^3.3.0",
+    "prettier-plugin-tailwindcss": "^0.6.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.5.0"
+  }
+}
