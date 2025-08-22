@@ -26,7 +26,7 @@ interface UIState {
   // Search
   searchQuery: string
   searchFilters: {
-    category: 'all' | 'movies' | 'books' | 'games' | 'tv'
+    category: 'all' | 'movie' | 'book' | 'game' | 'tv'
     genre: string[]
     year: [number, number]
     rating: [number, number]
