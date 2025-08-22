@@ -1,7 +1,5 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { PlayIcon, BookOpenIcon, GamepadIcon, TvIcon } from 'lucide-react'
 import { StaggerContainer, StaggerItem } from '@/components/ui/stagger-container'
 
@@ -66,7 +64,7 @@ export function CategoryGrid() {
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category, index) => (
             <StaggerItem key={category.id} index={index}>
-              <Link href={category.href}>
+              <Link to={category.href}>
                 <motion.div
                   whileHover={{ y: -5, scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}

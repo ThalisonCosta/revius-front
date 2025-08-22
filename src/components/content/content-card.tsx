@@ -1,8 +1,5 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { StarIcon, HeartIcon, BookmarkIcon, PlayIcon } from 'lucide-react'
 import { Content, ContentCategory } from '@/types/content'
 import { cardHover, moviePosterHover } from '@/lib/animations'
@@ -74,17 +71,17 @@ export function ContentCard({
       whileTap="pressed"
       className="group cursor-pointer"
     >
-      <Link href={`/${content.category}/${content.id}`}>
+      <Link to={`/${content.category}/${content.id}`}>
         <div className="relative overflow-hidden rounded-xl bg-white dark:bg-dark-800 shadow-lg hover:shadow-cinema transition-all duration-300">
-          {/* Image Container */}
+          {/* img Container */}
           <motion.div 
             variants={moviePosterHover}
             className={`relative ${sizeClasses[size]} overflow-hidden`}
           >
-            <Image
+            <img
               src={content.imageUrl}
               alt={content.title}
-              fill
+              style={{objectFit: 'cover', width: '100%', height: '100%'}}
               className="object-cover transition-transform duration-500 group-hover:scale-110"
               sizes={`(max-width: 768px) 100vw, ${size === 'sm' ? '200px' : size === 'md' ? '300px' : '400px'}`}
             />
@@ -102,7 +99,7 @@ export function ContentCard({
             
             {/* Rating Badge */}
             <div className="absolute top-3 right-3 bg-black/70 text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-              <StarIcon className="w-3 h-3 fill-cinema-gold text-cinema-gold" />
+              <StarIcon className="w-3 h-3 style={{objectFit: 'cover', width: '100%', height: '100%'}}-cinema-gold text-cinema-gold" />
               4.2
             </div>
             
@@ -142,7 +139,7 @@ export function ContentCard({
             <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
               <span>{formatDate(content.releaseDate)}</span>
               <div className="flex items-center gap-1">
-                <StarIcon className="w-3 h-3 fill-current text-cinema-gold" />
+                <StarIcon className="w-3 h-3 style={{objectFit: 'cover', width: '100%', height: '100%'}}-current text-cinema-gold" />
                 <span className="font-medium">4.2</span>
                 <span className="text-xs">(234)</span>
               </div>

@@ -1,9 +1,7 @@
-'use client'
-
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
-import { useTheme } from 'next-themes'
+import { Link } from 'react-router-dom'
+import { useTheme } from '@/components/theme-provider'
 import { 
   SearchIcon, 
   MenuIcon, 
@@ -49,7 +47,7 @@ export function Header() {
         <nav className="container mx-auto px-4">
           <div className="flex items-center h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
+            <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="text-2xl font-display font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent"
@@ -66,7 +64,7 @@ export function Header() {
                   {navigation.map((item) => (
                     <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium whitespace-nowrap"
                     >
                       {item.name}
@@ -215,7 +213,7 @@ export function Header() {
                       transition={{ delay: index * 0.1 }}
                     >
                       <Link
-                        href={item.href}
+                        to={item.href}
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800 transition-colors font-medium"
                       >

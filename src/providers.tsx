@@ -1,17 +1,13 @@
-'use client'
-
+import React, { useState } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from '@/components/theme-provider'
-import { useState } from 'react'
-import dynamic from 'next/dynamic'
 
 // Only load ReactQueryDevtools in development
-const ReactQueryDevtools = dynamic(
-  () => import('@tanstack/react-query-devtools').then(mod => ({ 
-    default: mod.ReactQueryDevtools 
-  })),
-  { ssr: false }
-)
+const ReactQueryDevtools = import.meta.env.DEV 
+  ? React.lazy(() => import('@tanstack/react-query-devtools').then(mod => ({ 
+      default: mod.ReactQueryDevtools 
+    })))
+  : null
 
 interface ProvidersProps {
   children: React.ReactNode
@@ -63,8 +59,10 @@ export function Providers({ children }: ProvidersProps) {
         {children}
       </ThemeProvider>
       {/* Only render ReactQueryDevtools in development */}
-      {process.env.NODE_ENV === 'development' && (
-        <ReactQueryDevtools initialIsOpen={false} />
+      {import.meta.env.DEV && ReactQueryDevtools && (
+        <React.Suspense fallback={null}>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </React.Suspense>
       )}
     </QueryClientProvider>
   )

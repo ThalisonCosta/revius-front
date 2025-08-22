@@ -1,7 +1,4 @@
-'use client'
-
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import { MessageSquareIcon, HeartIcon, TrendingUpIcon, UsersIcon } from 'lucide-react'
 import { StaggerContainer, StaggerItem } from '@/components/ui/stagger-container'
 
@@ -129,7 +126,7 @@ export function CommunityHighlights() {
             >
               {/* Header */}
               <div className="flex items-center gap-4 mb-4">
-                <Image
+                <img
                   src={review.user.avatar}
                   alt={review.user.name}
                   width={48}
