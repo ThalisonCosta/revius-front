@@ -1,207 +1,117 @@
-'use client'
+import * as React from "react"
+import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
-import { motion } from 'framer-motion'
-import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from 'lucide-react'
+import { cn } from "@/lib/utils"
+import { ButtonProps, buttonVariants } from "@/components/ui/button"
 
-interface PaginationProps {
-  /** Current page number (1-based) */
-  currentPage: number
-  /** Total number of pages */
-  totalPages: number
-  /** Whether there is a next page */
-  hasNext?: boolean
-  /** Whether there is a previous page */
-  hasPrev?: boolean
-  /** Callback when page changes */
-  onPageChange: (page: number) => void
-  /** Show page numbers around current page */
-  siblingCount?: number
-  /** Custom class name */
-  className?: string
-}
+const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
+  <nav
+    role="navigation"
+    aria-label="pagination"
+    className={cn("mx-auto flex w-full justify-center", className)}
+    {...props}
+  />
+)
+Pagination.displayName = "Pagination"
 
-/**
- * Pagination component with page numbers and navigation
- */
-export function Pagination({
-  currentPage,
-  totalPages,
-  hasNext,
-  hasPrev,
-  onPageChange,
-  siblingCount = 1,
-  className = '',
-}: PaginationProps) {
-  // Calculate which page numbers to show
-  const getPageNumbers = () => {
-    const delta = siblingCount
-    const range = []
-    const rangeWithDots = []
+const PaginationContent = React.forwardRef<
+  HTMLUListElement,
+  React.ComponentProps<"ul">
+>(({ className, ...props }, ref) => (
+  <ul
+    ref={ref}
+    className={cn("flex flex-row items-center gap-1", className)}
+    {...props}
+  />
+))
+PaginationContent.displayName = "PaginationContent"
 
-    // Always show first page
-    range.push(1)
+const PaginationItem = React.forwardRef<
+  HTMLLIElement,
+  React.ComponentProps<"li">
+>(({ className, ...props }, ref) => (
+  <li ref={ref} className={cn("", className)} {...props} />
+))
+PaginationItem.displayName = "PaginationItem"
 
-    // Calculate range around current page
-    for (let i = Math.max(2, currentPage - delta); i <= Math.min(totalPages - 1, currentPage + delta); i++) {
-      range.push(i)
-    }
+type PaginationLinkProps = {
+  isActive?: boolean
+} & Pick<ButtonProps, "size"> &
+  React.ComponentProps<"a">
 
-    // Always show last page if there's more than one page
-    if (totalPages > 1) {
-      range.push(totalPages)
-    }
+const PaginationLink = ({
+  className,
+  isActive,
+  size = "icon",
+  ...props
+}: PaginationLinkProps) => (
+  <a
+    aria-current={isActive ? "page" : undefined}
+    className={cn(
+      buttonVariants({
+        variant: isActive ? "outline" : "ghost",
+        size,
+      }),
+      className
+    )}
+    {...props}
+  />
+)
+PaginationLink.displayName = "PaginationLink"
 
-    // Remove duplicates and sort
-    const uniqueRange = [...new Set(range)].sort((a, b) => a - b)
+const PaginationPrevious = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to previous page"
+    size="default"
+    className={cn("gap-1 pl-2.5", className)}
+    {...props}
+  >
+    <ChevronLeft className="h-4 w-4" />
+    <span>Previous</span>
+  </PaginationLink>
+)
+PaginationPrevious.displayName = "PaginationPrevious"
 
-    // Add dots where there are gaps
-    let l = 0
-    for (const i of uniqueRange) {
-      if (l) {
-        if (i - l === 2) {
-          rangeWithDots.push(l + 1)
-        } else if (i - l !== 1) {
-          rangeWithDots.push('...')
-        }
-      }
-      rangeWithDots.push(i)
-      l = i
-    }
+const PaginationNext = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => (
+  <PaginationLink
+    aria-label="Go to next page"
+    size="default"
+    className={cn("gap-1 pr-2.5", className)}
+    {...props}
+  >
+    <span>Next</span>
+    <ChevronRight className="h-4 w-4" />
+  </PaginationLink>
+)
+PaginationNext.displayName = "PaginationNext"
 
-    return rangeWithDots
-  }
+const PaginationEllipsis = ({
+  className,
+  ...props
+}: React.ComponentProps<"span">) => (
+  <span
+    aria-hidden
+    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    {...props}
+  >
+    <MoreHorizontal className="h-4 w-4" />
+    <span className="sr-only">More pages</span>
+  </span>
+)
+PaginationEllipsis.displayName = "PaginationEllipsis"
 
-  if (totalPages <= 1) {
-    return null
-  }
-
-  const pageNumbers = getPageNumbers()
-
-  return (
-    <nav
-      className={`flex items-center justify-center space-x-1 ${className}`}
-      aria-label="Pagination"
-    >
-      {/* Previous button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={!hasPrev && currentPage <= 1}
-        className="flex items-center justify-center w-10 h-10 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-700 hover:text-gray-700 dark:hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-dark-800 disabled:hover:text-gray-500 dark:disabled:hover:text-gray-400 transition-colors"
-        aria-label="Previous page"
-      >
-        <ChevronLeftIcon className="w-4 h-4" />
-      </motion.button>
-
-      {/* Page numbers */}
-      {pageNumbers.map((pageNumber, index) => {
-        if (pageNumber === '...') {
-          return (
-            <span
-              key={`ellipsis-${index}`}
-              className="flex items-center justify-center w-10 h-10 text-gray-500 dark:text-gray-400"
-            >
-              <MoreHorizontalIcon className="w-4 h-4" />
-            </span>
-          )
-        }
-
-        const isCurrentPage = pageNumber === currentPage
-        
-        return (
-          <motion.button
-            key={pageNumber}
-            whileHover={{ scale: isCurrentPage ? 1 : 1.05 }}
-            whileTap={{ scale: isCurrentPage ? 1 : 0.95 }}
-            onClick={() => onPageChange(pageNumber as number)}
-            disabled={isCurrentPage}
-            className={`flex items-center justify-center w-10 h-10 text-sm font-medium rounded-lg transition-colors ${
-              isCurrentPage
-                ? 'bg-primary-600 text-white shadow-sm cursor-default'
-                : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 hover:bg-gray-50 dark:hover:bg-dark-700 hover:text-gray-900 dark:hover:text-white'
-            }`}
-            aria-label={`Go to page ${pageNumber}`}
-            aria-current={isCurrentPage ? 'page' : undefined}
-          >
-            {pageNumber}
-          </motion.button>
-        )
-      })}
-
-      {/* Next button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={!hasNext && currentPage >= totalPages}
-        className="flex items-center justify-center w-10 h-10 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-700 hover:text-gray-700 dark:hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white dark:disabled:hover:bg-dark-800 disabled:hover:text-gray-500 dark:disabled:hover:text-gray-400 transition-colors"
-        aria-label="Next page"
-      >
-        <ChevronRightIcon className="w-4 h-4" />
-      </motion.button>
-    </nav>
-  )
-}
-
-interface SimplePaginationProps {
-  /** Whether there is a next page */
-  hasNext: boolean
-  /** Whether there is a previous page */
-  hasPrev: boolean
-  /** Current page number for display */
-  currentPage: number
-  /** Total pages for display */
-  totalPages?: number
-  /** Callback for previous page */
-  onPrevious: () => void
-  /** Callback for next page */
-  onNext: () => void
-  /** Custom class name */
-  className?: string
-}
-
-/**
- * Simple pagination with just previous/next buttons
- */
-export function SimplePagination({
-  hasNext,
-  hasPrev,
-  currentPage,
-  totalPages,
-  onPrevious,
-  onNext,
-  className = '',
-}: SimplePaginationProps) {
-  return (
-    <div className={`flex items-center justify-between ${className}`}>
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onPrevious}
-        disabled={!hasPrev}
-        className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-      >
-        <ChevronLeftIcon className="w-4 h-4 mr-2" />
-        Previous
-      </motion.button>
-
-      {totalPages && (
-        <span className="text-sm text-gray-600 dark:text-gray-400">
-          Page {currentPage} of {totalPages}
-        </span>
-      )}
-
-      <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onNext}
-        disabled={!hasNext}
-        className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-dark-800 border border-gray-300 dark:border-dark-600 rounded-lg hover:bg-gray-50 dark:hover:bg-dark-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-      >
-        Next
-        <ChevronRightIcon className="w-4 h-4 ml-2" />
-      </motion.button>
-    </div>
-  )
+export {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 }
