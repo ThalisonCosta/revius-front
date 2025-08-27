@@ -115,7 +115,7 @@ export function Navbar() {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 rounded-full p-0">
+                <Button variant="ghost" className="h-8 w-8 rounded-full p-0" data-testid="user-menu">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src="" />
                     <AvatarFallback className="bg-primary text-primary-foreground">

@@ -82,7 +82,7 @@ const Profile = () => {
     following_count: 0
   });
   const [loading, setLoading] = useState(true);
-  const [profileFetched, setProfileFetched] = useState(false);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -112,12 +112,31 @@ const Profile = () => {
   });
 
   useEffect(() => {
-    if (user && !profileFetched) {
-      setProfileFetched(true);
-      fetchProfile();
-      fetchStats();
+    if (!user) {
+      setProfile(null);
+      setCurrentUserId(null);
+      setLoading(false);
+      return;
     }
-  }, [user?.id, profileFetched]); // Only fetch once per user
+
+    // Only fetch if user has changed
+    if (user.id !== currentUserId) {
+      setCurrentUserId(user.id);
+      
+      const loadUserData = async () => {
+        setLoading(true);
+        try {
+          await Promise.all([fetchProfile(), fetchStats()]);
+        } catch (error) {
+          console.error('Error loading user data:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+      loadUserData();
+    }
+  }, [user?.id, currentUserId]); // Controlled dependencies
 
   const fetchProfile = async () => {
     if (!user) return;
@@ -160,9 +179,8 @@ const Profile = () => {
       });
     } catch (error) {
       console.error('Error fetching stats:', error);
-    } finally {
-      setLoading(false);
     }
+    // Loading state is managed by the main useEffect now
   };
 
   const handleSave = async () => {

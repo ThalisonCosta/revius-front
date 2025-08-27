@@ -10,6 +10,8 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const { user, loading } = useAuth();
   const location = useLocation();
 
+  // Show loading only during initial authentication check
+  // This prevents flickering during session restoration
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -18,6 +20,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     );
   }
 
+  // Once loading is complete, either show content or redirect
   if (!user) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
