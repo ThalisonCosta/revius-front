@@ -1,11 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Star, Plus, BookOpen, Eye } from "lucide-react";
+import { Star, BookOpen, Film, Tv, Gamepad2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { AddReviewModal } from "@/components/AddReviewModal";
-import { MediaDetailsModal } from "@/components/MediaDetailsModal";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 interface MediaCardProps {
   title: string;
@@ -45,20 +43,26 @@ export function MediaCard({
   externalUrl
 }: MediaCardProps) {
   const TypeIcon = typeIcons[type] || Film;
-  const [showDetails, setShowDetails] = useState(false);
+  const navigate = useNavigate();
   
   const mediaId = id || `${type}-${title.replace(/\s+/g, '-').toLowerCase()}`;
 
-  const handleOpenDetails = (e?: React.MouseEvent) => {
+  const handleNavigateToDetails = useCallback((e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    console.log('Opening details for:', { title, type, mediaId });
-    setShowDetails(true);
-  };
-
-  const handleModalChange = (open: boolean) => {
-    console.log('Modal state change for:', { title, type, mediaId, open });
-    setShowDetails(open);
-  };
+    
+    const params = new URLSearchParams();
+    params.set('title', encodeURIComponent(title));
+    if (poster) params.set('poster', poster);
+    if (year) params.set('year', year.toString());
+    if (rating) params.set('rating', rating.toString());
+    if (genre.length > 0) params.set('genres', genre.join(','));
+    if (synopsis) params.set('synopsis', encodeURIComponent(synopsis));
+    if (runtime) params.set('runtime', runtime.toString());
+    if (cast && cast.length > 0) params.set('cast', cast.join(','));
+    if (externalUrl) params.set('externalUrl', externalUrl);
+    
+    navigate(`/media/${type}/${encodeURIComponent(mediaId)}?${params.toString()}`);
+  }, [navigate, type, mediaId, title, poster, year, rating, genre, synopsis, runtime, cast, externalUrl]);
 
   return (
     <Card 
@@ -67,7 +71,7 @@ export function MediaCard({
         "bg-card/50 border-border/50 hover:border-primary/20",
         className
       )}
-      onClick={handleOpenDetails}
+      onClick={handleNavigateToDetails}
     >
       <CardContent className="p-0">
         {/* Poster */}
@@ -114,28 +118,7 @@ export function MediaCard({
           </div>
         </div>
       </CardContent>
-
-      {/* Media Details Modal */}
-      <MediaDetailsModal
-        isOpen={showDetails}
-        onClose={handleModalChange}
-        media={{
-          id: mediaId,
-          title,
-          type,
-          poster,
-          year,
-          rating,
-          genres: genre,
-          synopsis,
-          runtime,
-          cast,
-          externalUrl,
-        }}
-      />
     </Card>
   );
 }
 
-// Import missing icons
-import { Film, Tv, Gamepad2 } from "lucide-react";

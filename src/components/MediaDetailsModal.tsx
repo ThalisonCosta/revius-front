@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -30,9 +30,9 @@ export function MediaDetailsModal({ isOpen, onClose, media }: MediaDetailsModalP
   const { user } = useAuth();
   const [reviewsKey, setReviewsKey] = useState(0);
 
-  const handleReviewCreated = () => {
+  const handleReviewCreated = useCallback(() => {
     setReviewsKey(prev => prev + 1);
-  };
+  }, []);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
