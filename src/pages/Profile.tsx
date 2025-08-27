@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { ProfilePictureUpload } from '@/components/ProfilePictureUpload';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Switch } from '@/components/ui/switch';
@@ -119,7 +120,7 @@ const Profile = () => {
       return;
     }
 
-    // Only fetch if user has changed
+    // Only fetch if user has changed - fix infinite loop
     if (user.id !== currentUserId) {
       setCurrentUserId(user.id);
       
@@ -136,7 +137,7 @@ const Profile = () => {
       
       loadUserData();
     }
-  }, [user?.id, currentUserId]); // Controlled dependencies
+  }, [user?.id]); // Remove currentUserId from dependencies to prevent loop
 
   const fetchProfile = async () => {
     if (!user) return;
@@ -302,12 +303,10 @@ const Profile = () => {
             <Card className="border-border shadow-card">
               <CardHeader className="text-center">
                 <div className="relative inline-block">
-                  <Avatar className="h-24 w-24 mx-auto mb-4">
-                    <AvatarImage src="" />
-                    <AvatarFallback className="bg-primary text-primary-foreground text-2xl">
-                      {profile.username.charAt(0).toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
+                  <ProfilePictureUpload 
+                    currentPictureUrl={(profile as any)?.avatar_url}
+                    username={profile.username}
+                  />
                   {profile.is_verified && (
                     <div className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full p-1">
                       <Shield className="h-4 w-4" />

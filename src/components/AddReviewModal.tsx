@@ -16,9 +16,21 @@ interface AddReviewModalProps {
   mediaTitle?: string;
   mediaType?: string;
   children?: React.ReactNode;
+  onReviewCreated?: () => void;
 }
 
-export function AddReviewModal({ mediaId, mediaTitle, mediaType, children }: AddReviewModalProps) {
+// Map frontend types to database types
+const mapMediaType = (type: string): 'movie' | 'novela' | 'book' | 'tv_series' | 'game' | 'anime' | 'dorama' => {
+  switch (type) {
+    case 'tv': return 'tv_series';
+    case 'manga': return 'book';
+    case 'movie': return 'movie';
+    case 'anime': return 'anime';
+    default: return 'movie';
+  }
+};
+
+export function AddReviewModal({ mediaId, mediaTitle, mediaType, children, onReviewCreated }: AddReviewModalProps) {
   const [open, setOpen] = useState(false);
   const [rating, setRating] = useState(0);
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -79,26 +91,51 @@ export function AddReviewModal({ mediaId, mediaTitle, mediaType, children }: Add
       
       if (!mediaId) {
         // Create media entry for custom reviews
+        const mediaUUID = crypto.randomUUID();
         const mediaSlug = `${customMediaType}-${customMediaTitle.replace(/\s+/g, '-').toLowerCase()}`;
-        finalMediaId = mediaSlug;
+        finalMediaId = mediaUUID;
         
-        console.log("Creating media entry with ID:", finalMediaId);
+        console.log("Creating media entry with UUID:", finalMediaId);
         
-        // Insert media entry
-        const { error: mediaError } = await supabase
+        const { data: newMedia, error: mediaError } = await supabase
           .from('media')
-          .upsert({
-            id: finalMediaId,
+          .insert({
             title: customMediaTitle,
-            type: customMediaType as any,
+            type: mapMediaType(customMediaType),
             slug: mediaSlug,
             added_by: user.id,
-          }, { onConflict: 'id' });
+          })
+          .select('id')
+          .single();
           
         if (mediaError) {
           console.error('Error creating media:', mediaError);
           throw mediaError;
         }
+        
+        finalMediaId = newMedia.id;
+      } else {
+        // For existing media with external IDs, create new media entry
+        const mediaSlug = `${mediaType}-${mediaTitle?.replace(/\s+/g, '-').toLowerCase() || 'unknown'}`;
+        
+        const { data: newMedia, error: mediaError } = await supabase
+          .from('media')
+          .insert({
+            title: mediaTitle || 'Unknown Title',
+            type: mapMediaType(mediaType || 'movie'),
+            slug: mediaSlug,
+            external_id: mediaId,
+            added_by: user.id,
+          })
+          .select('id')
+          .single();
+          
+        if (mediaError) {
+          console.error('Error creating media:', mediaError);
+          throw mediaError;
+        }
+        
+        finalMediaId = newMedia.id;
       }
       
       console.log("Creating review with final media ID:", finalMediaId);
@@ -117,6 +154,11 @@ export function AddReviewModal({ mediaId, mediaTitle, mediaType, children }: Add
       setCustomMediaTitle("");
       setCustomMediaType("movie");
       setOpen(false);
+
+      // Notify parent component to refresh reviews
+      if (onReviewCreated) {
+        onReviewCreated();
+      }
 
     } catch (error) {
       console.error("Failed to create review:", error);

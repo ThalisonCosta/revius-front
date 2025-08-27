@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Star, MessageSquare, ThumbsUp, ExternalLink } from "lucide-react";
-import { useUserReviews } from "@/hooks/useUserReviews";
+import { useMediaReviews } from "@/hooks/useMediaReviews";
 import { useExternalReviews, ExternalReview } from "@/hooks/useExternalReviews";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -18,12 +18,9 @@ interface ReviewsListProps {
 export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps) {
   const [editingReview, setEditingReview] = useState<string | null>(null);
   
-  const { reviews: userReviews, loading: userLoading, deleteReview } = useUserReviews();
+  const { reviews: mediaReviews, loading: reviewsLoading, refetch } = useMediaReviews(mediaId);
   const { reviews: externalReviews, loading: externalLoading, fetchExternalReviews } = useExternalReviews();
   const { user } = useAuth();
-
-  // Filter user reviews for this media
-  const mediaUserReviews = userReviews.filter(review => review.media_id === mediaId);
   
   useEffect(() => {
     fetchExternalReviews(mediaId, mediaType);
@@ -35,7 +32,8 @@ export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps
 
   const handleDelete = async (reviewId: string) => {
     try {
-      await deleteReview(reviewId);
+      // Delete review functionality will be handled by the ReviewCard component
+      refetch(); // Refresh reviews after deletion
     } catch (error) {
       console.error("Failed to delete review:", error);
     }
@@ -106,24 +104,49 @@ export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps
         <div className="flex items-center gap-2 mb-4">
           <MessageSquare className="h-5 w-5 text-primary" />
           <h3 className="text-lg font-semibold">Revius Reviews</h3>
-          <Badge variant="secondary" className="text-xs">
-            {mediaUserReviews.length}
+        <Badge variant="secondary" className="text-xs">
+            {mediaReviews.length}
           </Badge>
         </div>
 
-        {userLoading ? (
+        {reviewsLoading ? (
           <div className="flex items-center justify-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
           </div>
-        ) : mediaUserReviews.length > 0 ? (
+        ) : mediaReviews.length > 0 ? (
           <div className="space-y-4">
-            {mediaUserReviews.map((review) => (
-              <ReviewCard
-                key={review.id}
-                {...review}
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-              />
+            {mediaReviews.map((review) => (
+              <Card key={review.id} className="border-border shadow-card">
+                <CardContent className="pt-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-sm">{review.user.username}</span>
+                      {review.user.is_verified && (
+                        <div className="bg-primary text-primary-foreground rounded-full p-0.5">
+                          <Star className="h-3 w-3" />
+                        </div>
+                      )}
+                      <div className="flex items-center gap-1">
+                        <Star className="h-4 w-4 fill-primary text-primary" />
+                        <span className="text-sm font-medium">{review.rating}/5</span>
+                      </div>
+                    </div>
+                    <span className="text-xs text-muted-foreground">
+                      {review.created_at && new Date(review.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                  {review.review_text && (
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+                      {review.review_text}
+                    </p>
+                  )}
+                  {review.contains_spoilers && (
+                    <Badge variant="outline" className="text-xs">
+                      Contains Spoilers
+                    </Badge>
+                  )}
+                </CardContent>
+              </Card>
             ))}
           </div>
         ) : (

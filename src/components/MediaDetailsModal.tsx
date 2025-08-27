@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, ExternalLink, Calendar, Users, Clock } from "lucide-react";
+import { Star, ExternalLink, Calendar, Users, Clock, Plus } from "lucide-react";
 import { ReviewsList } from "./ReviewsList";
 import { AddReviewModal } from "./AddReviewModal";
+import { AddToListModal } from "./AddToListModal";
 import { useAuth } from "@/contexts/AuthContext";
 
 interface MediaDetailsModalProps {
@@ -26,6 +28,11 @@ interface MediaDetailsModalProps {
 
 export function MediaDetailsModal({ isOpen, onClose, media }: MediaDetailsModalProps) {
   const { user } = useAuth();
+  const [reviewsKey, setReviewsKey] = useState(0);
+
+  const handleReviewCreated = () => {
+    setReviewsKey(prev => prev + 1);
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -128,16 +135,30 @@ export function MediaDetailsModal({ isOpen, onClose, media }: MediaDetailsModalP
             {/* Action buttons */}
             <div className="flex gap-3">
               {user && (
-                <AddReviewModal 
-                  mediaId={media.id} 
-                  mediaTitle={media.title} 
-                  mediaType={media.type}
-                >
-                  <Button className="shadow-primary">
-                    <Star className="h-4 w-4 mr-2" />
-                    Write Review
-                  </Button>
-                </AddReviewModal>
+                <>
+                  <AddReviewModal 
+                    mediaId={media.id} 
+                    mediaTitle={media.title} 
+                    mediaType={media.type}
+                    onReviewCreated={handleReviewCreated}
+                  >
+                    <Button className="shadow-primary">
+                      <Star className="h-4 w-4 mr-2" />
+                      Write Review
+                    </Button>
+                  </AddReviewModal>
+                  <AddToListModal
+                    mediaId={media.id}
+                    mediaTitle={media.title}
+                    mediaType={media.type}
+                    mediaPoster={media.poster}
+                  >
+                    <Button variant="outline">
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add to List
+                    </Button>
+                  </AddToListModal>
+                </>
               )}
               {media.externalUrl && (
                 <Button 
@@ -156,6 +177,7 @@ export function MediaDetailsModal({ isOpen, onClose, media }: MediaDetailsModalP
         {/* Reviews Section */}
         <div className="mt-8">
           <ReviewsList 
+            key={`reviews-${media.id}-${reviewsKey}`}
             mediaId={media.id}
             mediaType={media.type}
             mediaTitle={media.title}
