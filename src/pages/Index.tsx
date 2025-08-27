@@ -285,7 +285,7 @@ const Index = () => {
 
         {/* Google Ads */}
         <GoogleAds 
-          slot="1234567890" 
+          slot="9001623473" 
           className="mb-16"
           style={{ display: 'block', height: '300px' }}
         />

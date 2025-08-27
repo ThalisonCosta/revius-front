@@ -21,7 +21,6 @@ import { ListDetailsModal } from '@/components/ListDetailsModal';
 import { ConfirmDeleteModal } from '@/components/ConfirmDeleteModal';
 import UpgradeButton from '@/components/UpgradeButton';
 import ManageSubscriptionButton from '@/components/ManageSubscriptionButton';
-import GoogleAds from '@/components/GoogleAds';
 import { 
   User, 
   Settings, 
