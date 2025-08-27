@@ -4,7 +4,7 @@ import { MediaCard } from "@/components/MediaCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, TrendingUp, Calendar, Star } from "lucide-react";
+import { Search, Filter, TrendingUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/useDebounce";
 
@@ -232,6 +232,7 @@ export default function Movies() {
           {movies.map((movie) => (
             <MediaCard
               key={movie.imdbID}
+              id={movie.imdbID}
               title={movie.Title}
               poster={movie.Poster}
               year={parseInt(movie.Year)}
@@ -241,6 +242,7 @@ export default function Movies() {
               synopsis={movie.Plot}
               runtime={movie.Runtime ? parseInt(movie.Runtime) : undefined}
               cast={movie.Actors?.split(", ")}
+              externalUrl={`https://www.imdb.com/title/${movie.imdbID}/`}
             />
           ))}
         </div>

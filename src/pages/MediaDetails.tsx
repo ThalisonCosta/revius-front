@@ -1,13 +1,15 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState, useCallback, useEffect } from "react";
 import { Navbar } from "@/components/ui/navbar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, ExternalLink, Calendar, Users, Clock, Plus, ArrowLeft } from "lucide-react";
+import { Star, ExternalLink, Calendar, Clock, Plus, ArrowLeft, ChevronRight, Home } from "lucide-react";
 import { ReviewsList } from "@/components/ReviewsList";
 import { AddReviewModal } from "@/components/AddReviewModal";
 import { AddToListModal } from "@/components/AddToListModal";
 import { useAuth } from "@/contexts/AuthContext";
+import { useMediaResolver } from "@/hooks/useMediaResolver";
+import { useToast } from "@/hooks/use-toast";
 
 interface MediaData {
   id: string;
@@ -27,7 +29,10 @@ export default function MediaDetails() {
   const { type, id } = useParams<{ type: string; id: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { resolveMediaId } = useMediaResolver();
+  const { toast } = useToast();
   const [media, setMedia] = useState<MediaData | null>(null);
+  const [resolvedMediaId, setResolvedMediaId] = useState<string | null>(null);
   const [reviewsKey, setReviewsKey] = useState(0);
 
   const handleReviewCreated = useCallback(() => {
@@ -38,29 +43,85 @@ export default function MediaDetails() {
     navigate(-1);
   };
 
+  const handleUnauthenticatedAction = (action: string) => {
+    toast({
+      title: "Create an Account",
+      description: `Please create an account to ${action}`,
+      variant: "default",
+    });
+  };
+
+  // Helper function to get the route path based on media type
+  const getMediaRoutePath = (mediaType: string) => {
+    switch (mediaType) {
+      case 'movie':
+        return '/movies';
+      case 'tv':
+        return '/tv-shows';
+      case 'anime':
+      case 'manga':
+        return '/anime';
+      default:
+        return '/';
+    }
+  };
+
+  // Helper function to get the page name based on media type
+  const getPageName = (mediaType: string) => {
+    switch (mediaType) {
+      case 'movie':
+        return 'Movies';
+      case 'tv':
+        return 'TV Shows';
+      case 'anime':
+        return 'Anime';
+      case 'manga':
+        return 'Manga';
+      default:
+        return 'Home';
+    }
+  };
+
   useEffect(() => {
     if (!type || !id) return;
 
-    // Parse media data from URL parameters or state
-    // For now, we'll use a placeholder. In a real app, you'd fetch from API
-    const searchParams = new URLSearchParams(window.location.search);
-    
-    const mediaData: MediaData = {
-      id: id,
-      title: decodeURIComponent(searchParams.get('title') || 'Unknown Title'),
-      type: type,
-      poster: searchParams.get('poster') || undefined,
-      year: searchParams.get('year') ? parseInt(searchParams.get('year')!) : undefined,
-      rating: searchParams.get('rating') ? parseFloat(searchParams.get('rating')!) : undefined,
-      genres: searchParams.get('genres') ? searchParams.get('genres')!.split(',') : undefined,
-      synopsis: searchParams.get('synopsis') ? decodeURIComponent(searchParams.get('synopsis')!) : undefined,
-      runtime: searchParams.get('runtime') ? parseInt(searchParams.get('runtime')!) : undefined,
-      cast: searchParams.get('cast') ? searchParams.get('cast')!.split(',') : undefined,
-      externalUrl: searchParams.get('externalUrl') || undefined
+    const initializeMedia = async () => {
+      // Parse media data from URL parameters
+      const searchParams = new URLSearchParams(window.location.search);
+      
+      const mediaInfo = {
+        title: decodeURIComponent(searchParams.get('title') || 'Unknown Title'),
+        type: type,
+        poster: searchParams.get('poster') || undefined,
+        year: searchParams.get('year') ? parseInt(searchParams.get('year')!) : undefined,
+        rating: searchParams.get('rating') ? parseFloat(searchParams.get('rating')!) : undefined,
+        genres: searchParams.get('genres') ? searchParams.get('genres')!.split(',') : undefined,
+        synopsis: searchParams.get('synopsis') ? decodeURIComponent(searchParams.get('synopsis')!) : undefined,
+        runtime: searchParams.get('runtime') ? parseInt(searchParams.get('runtime')!) : undefined,
+        cast: searchParams.get('cast') ? searchParams.get('cast')!.split(',') : undefined,
+        externalUrl: searchParams.get('externalUrl') || undefined
+      };
+
+      // Set the media data for display
+      const mediaData: MediaData = {
+        id: id,
+        ...mediaInfo
+      };
+      setMedia(mediaData);
+
+      // Resolve the media ID for database operations
+      try {
+        const resolved = await resolveMediaId(id, mediaInfo);
+        if (resolved) {
+          setResolvedMediaId(resolved.id);
+        }
+      } catch (error) {
+        console.error('Failed to resolve media ID:', error);
+      }
     };
 
-    setMedia(mediaData);
-  }, [type, id]);
+    initializeMedia();
+  }, [type, id, resolveMediaId]);
 
   if (!media) {
     return (
@@ -84,36 +145,56 @@ export default function MediaDetails() {
         <Button
           variant="ghost"
           onClick={handleGoBack}
-          className="mb-6 hover:bg-muted"
+          className="mb-4 hover:bg-muted"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back
         </Button>
 
+        {/* Breadcrumb Navigation */}
+        <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-6">
+          <Link to="/" className="hover:text-primary transition-colors">
+            <Home className="h-4 w-4" />
+          </Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link 
+            to={getMediaRoutePath(media?.type || '')} 
+            className="hover:text-primary transition-colors"
+          >
+            {getPageName(media?.type || '')}
+          </Link>
+          <ChevronRight className="h-3 w-3" />
+          <span className="text-foreground font-medium truncate max-w-xs">
+            {media?.title || 'Loading...'}
+          </span>
+        </nav>
+
         {/* Media Details */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
           {/* Poster */}
-          <div className="md:col-span-1">
-            {media.poster ? (
-              <img
-                src={media.poster}
-                alt={media.title}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            ) : (
-              <div className="w-full h-96 bg-muted rounded-lg flex items-center justify-center">
-                <span className="text-muted-foreground">No poster available</span>
-              </div>
-            )}
+          <div className="lg:col-span-1">
+            <div className="mx-auto max-w-sm lg:max-w-none">
+              {media.poster ? (
+                <img
+                  src={media.poster}
+                  alt={media.title}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                />
+              ) : (
+                <div className="w-full aspect-[2/3] bg-muted rounded-lg flex items-center justify-center">
+                  <span className="text-muted-foreground">No poster available</span>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Details */}
-          <div className="md:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-4 lg:space-y-6">
             <div>
-              <h1 className="text-4xl font-bold mb-4">{media.title}</h1>
+              <h1 className="text-2xl lg:text-4xl font-bold mb-4">{media.title}</h1>
               
               {/* Meta info */}
-              <div className="flex flex-wrap items-center gap-4 mb-6">
+              <div className="flex flex-wrap items-center gap-3 lg:gap-4 mb-4 lg:mb-6">
                 <Badge variant="secondary" className="capitalize">
                   {media.type}
                 </Badge>
@@ -179,8 +260,8 @@ export default function MediaDetails() {
             )}
 
             {/* Action buttons */}
-            <div className="flex gap-3">
-              {user && (
+            <div className="flex flex-wrap gap-3">
+              {user ? (
                 <>
                   <AddReviewModal 
                     mediaId={media.id} 
@@ -205,6 +286,23 @@ export default function MediaDetails() {
                     </Button>
                   </AddToListModal>
                 </>
+              ) : (
+                <>
+                  <Button 
+                    className="shadow-primary"
+                    onClick={() => handleUnauthenticatedAction("write reviews")}
+                  >
+                    <Star className="h-4 w-4 mr-2" />
+                    Write Review
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => handleUnauthenticatedAction("add media to lists")}
+                  >
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add to List
+                  </Button>
+                </>
               )}
               {media.externalUrl && (
                 <Button 
@@ -221,12 +319,18 @@ export default function MediaDetails() {
 
         {/* Reviews Section */}
         <div className="mt-12">
-          <ReviewsList 
-            key={`reviews-${media.id}-${reviewsKey}`}
-            mediaId={media.id}
-            mediaType={media.type}
-            mediaTitle={media.title}
-          />
+          {resolvedMediaId ? (
+            <ReviewsList 
+              key={`reviews-${resolvedMediaId}-${reviewsKey}`}
+              mediaId={resolvedMediaId}
+              mediaType={media.type}
+              mediaTitle={media.title}
+            />
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-muted-foreground">Loading reviews...</p>
+            </div>
+          )}
         </div>
       </main>
     </div>

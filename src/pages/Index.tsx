@@ -5,7 +5,7 @@ import { MediaCard } from "@/components/MediaCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { TrendingUp, Star, Users, Film, Tv, BookOpen } from "lucide-react";
+import { TrendingUp, Film, Tv, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import GoogleAds from "@/components/GoogleAds";
@@ -282,13 +282,6 @@ const Index = () => {
             </Link>
           </div>
         </section>
-
-        {/* Google Ads */}
-        <GoogleAds 
-          slot="9001623473" 
-          className="mb-16"
-          style={{ display: 'block', height: '300px' }}
-        />
 
         {/* Stats */}
         <section className="bg-card/30 rounded-2xl p-8 border border-border/50">

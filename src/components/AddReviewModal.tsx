@@ -9,7 +9,7 @@ import { Star, Plus } from "lucide-react";
 import { useUserReviews } from "@/hooks/useUserReviews";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { useMediaResolver } from "@/hooks/useMediaResolver";
 
 interface AddReviewModalProps {
   mediaId?: string;
@@ -19,16 +19,6 @@ interface AddReviewModalProps {
   onReviewCreated?: () => void;
 }
 
-// Map frontend types to database types
-const mapMediaType = (type: string): 'movie' | 'novela' | 'book' | 'tv_series' | 'game' | 'anime' | 'dorama' => {
-  switch (type) {
-    case 'tv': return 'tv_series';
-    case 'manga': return 'book';
-    case 'movie': return 'movie';
-    case 'anime': return 'anime';
-    default: return 'movie';
-  }
-};
 
 export function AddReviewModal({ mediaId, mediaTitle, mediaType, children, onReviewCreated }: AddReviewModalProps) {
   const [open, setOpen] = useState(false);
@@ -43,6 +33,7 @@ export function AddReviewModal({ mediaId, mediaTitle, mediaType, children, onRev
   const { createReview } = useUserReviews();
   const { user } = useAuth();
   const { toast } = useToast();
+  const { resolveMediaId } = useMediaResolver();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,62 +77,41 @@ export function AddReviewModal({ mediaId, mediaTitle, mediaType, children, onRev
     }
 
     try {
-      // First, ensure media exists in the database
-      let finalMediaId = mediaId;
+      let resolvedMediaId: string;
       
       if (!mediaId) {
-        // Create media entry for custom reviews
-        const mediaUUID = crypto.randomUUID();
-        const mediaSlug = `${customMediaType}-${customMediaTitle.replace(/\s+/g, '-').toLowerCase()}`;
-        finalMediaId = mediaUUID;
-        
-        console.log("Creating media entry with UUID:", finalMediaId);
-        
-        const { data: newMedia, error: mediaError } = await supabase
-          .from('media')
-          .insert({
+        // For custom media (user manually adding new content)
+        const resolvedMedia = await resolveMediaId(
+          `custom-${Date.now()}`, // Generate unique external ID for custom media
+          {
             title: customMediaTitle,
-            type: mapMediaType(customMediaType),
-            slug: mediaSlug,
-            added_by: user.id,
-          })
-          .select('id')
-          .single();
-          
-        if (mediaError) {
-          console.error('Error creating media:', mediaError);
-          throw mediaError;
+            type: customMediaType,
+          }
+        );
+        
+        if (!resolvedMedia) {
+          throw new Error('Failed to create media entry');
         }
         
-        finalMediaId = newMedia.id;
+        resolvedMediaId = resolvedMedia.id;
       } else {
-        // For existing media with external IDs, create new media entry
-        const mediaSlug = `${mediaType}-${mediaTitle?.replace(/\s+/g, '-').toLowerCase() || 'unknown'}`;
+        // For media from external APIs (movies, TV shows, anime)
+        const resolvedMedia = await resolveMediaId(mediaId, {
+          title: mediaTitle || 'Unknown Title',
+          type: mediaType || 'movie',
+        });
         
-        const { data: newMedia, error: mediaError } = await supabase
-          .from('media')
-          .insert({
-            title: mediaTitle || 'Unknown Title',
-            type: mapMediaType(mediaType || 'movie'),
-            slug: mediaSlug,
-            external_id: mediaId,
-            added_by: user.id,
-          })
-          .select('id')
-          .single();
-          
-        if (mediaError) {
-          console.error('Error creating media:', mediaError);
-          throw mediaError;
+        if (!resolvedMedia) {
+          throw new Error('Failed to resolve media');
         }
         
-        finalMediaId = newMedia.id;
+        resolvedMediaId = resolvedMedia.id;
       }
       
-      console.log("Creating review with final media ID:", finalMediaId);
+      console.log("Creating review with resolved media ID:", resolvedMediaId);
       
       await createReview({
-        media_id: finalMediaId,
+        media_id: resolvedMediaId,
         rating,
         review_text: reviewText.trim() || null,
         contains_spoilers: containsSpoilers,

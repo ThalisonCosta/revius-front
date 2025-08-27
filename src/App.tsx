@@ -17,11 +17,13 @@ import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import MediaDetails from "./pages/MediaDetails";
 import NotFound from "./pages/NotFound";
+import AdSense from "./components/GoogleAds";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <AdSense id="9929888811411344" />
     <TooltipProvider>
       <Toaster />
       <Sonner />

@@ -4,7 +4,7 @@ import { MediaCard } from "@/components/MediaCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Search, Filter, TrendingUp, Calendar, Star } from "lucide-react";
+import { Search, Filter, TrendingUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/useDebounce";
 
@@ -145,6 +145,12 @@ export default function TVShows() {
     searchShows(searchQuery, 0);
   };
 
+  const handleFilterClick = (filterQuery: string) => {
+    setSearchQuery(filterQuery);
+    setCurrentPage(0);
+    searchShows(filterQuery, 0);
+  };
+
   const getYear = (premiered?: string) => {
     return premiered ? new Date(premiered).getFullYear() : undefined;
   };
@@ -194,7 +200,7 @@ export default function TVShows() {
             <Badge 
               variant="outline" 
               className="cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-smooth"
-              onClick={() => { setSearchQuery("drama"); handleSearch; }}
+              onClick={() => handleFilterClick("drama")}
             >
               <Filter className="h-3 w-3 mr-1" />
               Drama
@@ -202,7 +208,7 @@ export default function TVShows() {
             <Badge 
               variant="outline" 
               className="cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-smooth"
-              onClick={() => { setSearchQuery("comedy"); handleSearch; }}
+              onClick={() => handleFilterClick("comedy")}
             >
               <Filter className="h-3 w-3 mr-1" />
               Comedy
@@ -210,7 +216,7 @@ export default function TVShows() {
             <Badge 
               variant="outline" 
               className="cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-smooth"
-              onClick={() => { setSearchQuery("action"); handleSearch; }}
+              onClick={() => handleFilterClick("action")}
             >
               <Filter className="h-3 w-3 mr-1" />
               Action
@@ -223,13 +229,15 @@ export default function TVShows() {
           {shows.map((show) => (
             <MediaCard
               key={show.id}
+              id={show.id.toString()}
               title={show.name}
               poster={show.image?.medium}
               year={getYear(show.premiered)}
               rating={show.rating?.average}
               genre={show.genres}
               type="tv"
-              synopsis={show.summary?.replace(/<[^>]*>/g, '')} // Remove HTML tags from summary
+              synopsis={show.summary?.replace(/<[^>]*>/g, '')}
+              externalUrl={`https://www.tvmaze.com/shows/${show.id}`}
             />
           ))}
         </div>

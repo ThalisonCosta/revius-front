@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/ui/navbar";
-import { BlurredMediaCard } from "@/components/BlurredMediaCard";
+import { MediaCard } from "@/components/MediaCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Search, Filter, TrendingUp, Calendar, Star } from "lucide-react";
+import { Search, Filter, TrendingUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/useDebounce";
-import { useContentFilter } from "@/hooks/useContentFilter";
 
 interface JikanItem {
   mal_id: number;
@@ -36,7 +35,6 @@ export default function Anime() {
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState("anime");
   const { toast } = useToast();
-  const { isAdultContent, shouldBlurContent } = useContentFilter();
   
   // Debounce search query for 3 seconds
   const debouncedSearchQuery = useDebounce(searchQuery, 3000);
@@ -194,6 +192,12 @@ export default function Anime() {
     fetchData(activeTab as "anime" | "manga", searchQuery, 1);
   };
 
+  const handleFilterClick = (filterQuery: string) => {
+    setSearchQuery(filterQuery);
+    setCurrentPage(1);
+    fetchData(activeTab as "anime" | "manga", filterQuery, 1);
+  };
+
   const handleTabChange = (value: string) => {
     setActiveTab(value);
     setCurrentPage(1);
@@ -255,7 +259,7 @@ export default function Anime() {
                 <Badge 
                   variant="outline" 
                   className="cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-smooth"
-                  onClick={() => { setSearchQuery("action"); handleSearch; }}
+                  onClick={() => handleFilterClick("action")}
                 >
                   <Filter className="h-3 w-3 mr-1" />
                   Action
@@ -263,7 +267,7 @@ export default function Anime() {
                 <Badge 
                   variant="outline" 
                   className="cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-smooth"
-                  onClick={() => { setSearchQuery("romance"); handleSearch; }}
+                  onClick={() => handleFilterClick("romance")}
                 >
                   <Filter className="h-3 w-3 mr-1" />
                   Romance
@@ -271,7 +275,7 @@ export default function Anime() {
                 <Badge 
                   variant="outline" 
                   className="cursor-pointer hover:bg-primary hover:text-primary-foreground hover:border-primary transition-smooth"
-                  onClick={() => { setSearchQuery("comedy"); handleSearch; }}
+                  onClick={() => handleFilterClick("comedy")}
                 >
                   <Filter className="h-3 w-3 mr-1" />
                   Comedy
@@ -282,17 +286,17 @@ export default function Anime() {
             {/* Content Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {currentList.map((item) => (
-                <BlurredMediaCard
+                <MediaCard
                   key={item.mal_id}
+                  id={item.mal_id.toString()}
                   title={item.title}
                   poster={item.images.jpg.image_url}
                   year={item.year}
                   rating={item.score}
                   genre={item.genres.map(g => g.name)}
                   type={activeTab as "anime" | "manga"}
-                  isAdult={isAdultContent(item)}
-                  isBlurred={shouldBlurContent(item)}
                   synopsis={item.synopsis}
+                  externalUrl={`https://myanimelist.net/${activeTab}/${item.mal_id}`}
                 />
               ))}
             </div>

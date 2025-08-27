@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { ReviewCard } from "@/components/ReviewCard";
+import { useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Star, MessageSquare, ThumbsUp, ExternalLink } from "lucide-react";
 import { useMediaReviews } from "@/hooks/useMediaReviews";
 import { useExternalReviews, ExternalReview } from "@/hooks/useExternalReviews";
 import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface ReviewsListProps {
   mediaId: string;
@@ -16,27 +16,23 @@ interface ReviewsListProps {
 }
 
 export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps) {
-  const [editingReview, setEditingReview] = useState<string | null>(null);
   
-  const { reviews: mediaReviews, loading: reviewsLoading, refetch } = useMediaReviews(mediaId);
+  const { reviews: mediaReviews, loading: reviewsLoading } = useMediaReviews(mediaId, mediaTitle);
   const { reviews: externalReviews, loading: externalLoading, fetchExternalReviews } = useExternalReviews();
   const { user } = useAuth();
+  const { toast } = useToast();
   
   useEffect(() => {
     fetchExternalReviews(mediaId, mediaType);
   }, [mediaId, mediaType, fetchExternalReviews]);
 
-  const handleEdit = (reviewId: string) => {
-    setEditingReview(reviewId);
-  };
 
-  const handleDelete = async (reviewId: string) => {
-    try {
-      // Delete review functionality will be handled by the ReviewCard component
-      refetch(); // Refresh reviews after deletion
-    } catch (error) {
-      console.error("Failed to delete review:", error);
-    }
+  const handleUnauthenticatedReview = () => {
+    toast({
+      title: "Create an Account",
+      description: "Please create an account to write reviews",
+      variant: "default",
+    });
   };
 
   const ExternalReviewCard = ({ review }: { review: ExternalReview }) => (
@@ -153,15 +149,26 @@ export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps
           <Card className="border-dashed border-border">
             <CardContent className="flex flex-col items-center justify-center py-8 text-center">
               <MessageSquare className="h-12 w-12 text-muted-foreground mb-4" />
-              <h4 className="font-medium mb-2">No Revius reviews yet</h4>
+              <h4 className="font-medium mb-2">No one has reviewed this yet!</h4>
               <p className="text-sm text-muted-foreground mb-4">
-                Be the first to review "{mediaTitle}"
+                Be the first to share your thoughts about "{mediaTitle}" and help others discover it.
               </p>
-              {user && (
-                <Button variant="outline" size="sm">
-                  Write a Review
-                </Button>
+              {user ? (
+                <p className="text-xs text-muted-foreground mb-4">
+                  Your review could be the one that helps someone decide what to watch next!
+                </p>
+              ) : (
+                <p className="text-xs text-muted-foreground mb-4">
+                  Create an account to write reviews and join our community of media enthusiasts.
+                </p>
               )}
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={user ? undefined : handleUnauthenticatedReview}
+              >
+                {user ? "Write the First Review" : "Create Account & Review"}
+              </Button>
             </CardContent>
           </Card>
         )}
