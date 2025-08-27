@@ -1,73 +1,121 @@
-# Welcome to your Lovable project
+# 🎬 Revius - Plataforma Social de Entretenimento
 
-## Project info
+> **A rede social definitiva para fãs de filmes, séries, anime e entretenimento**
 
-**URL**: https://lovable.dev/projects/eb58368f-cabe-4637-bc11-0cefe093ab37
+## 🌟 Sobre o Revius
 
-## How can I edit this code?
+O **Revius** é uma plataforma social completa desenvolvida especialmente para entusiastas do entretenimento. Aqui você pode descobrir, avaliar, compartilhar e discutir seus conteúdos favoritos em uma comunidade vibrante e engajada.
 
-There are several ways of editing your application.
+### ✨ O que você pode fazer no Revius:
 
-**Use Lovable**
+- **🔍 Descobrir Conteúdo**: Explore milhões de filmes, séries de TV, anime e manga
+- **⭐ Avaliar e Resenhar**: Compartilhe suas opiniões com reviews detalhadas e sistema de estrelas
+- **📝 Criar Listas**: Monte suas watchlists, listas de favoritos e coleções personalizadas
+- **👥 Conectar-se**: Siga outros usuários e descubra novos conteúdos através da comunidade
+- **📊 Acompanhar Tendências**: Veja o que está em alta e populares no momento
+- **🎯 Recomendações Personalizadas**: Receba sugestões baseadas no seu perfil e preferências
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/eb58368f-cabe-4637-bc11-0cefe093ab37) and start prompting.
+### 🎯 Público-Alvo
 
-Changes made via Lovable will be committed automatically to this repo.
+O Revius foi criado para:
+- **Cinéfilos** que adoram descobrir e discutir filmes
+- **Fãs de Séries** que acompanham múltiplas produções simultaneamente
+- **Otakus** apaixonados por anime e manga
+- **Entusiastas de Entretenimento** em geral que querem uma experiência social rica
 
-**Use your preferred IDE**
+### 💡 Diferenciais
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **🌐 Multiplataforma**: Suporte a filmes, TV shows, anime e manga em um só lugar
+- **🤝 Social por Natureza**: Sistema completo de seguir, comentários e interações
+- **📱 Experiência Moderna**: Interface elegante com design responsivo
+- **🔗 Integração Completa**: APIs de fontes confiáveis como OMDB, Jikan e TVMaze
+- **🏆 Gamificação**: Sistema de conquistas e estatísticas pessoais
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🛠️ Como desenvolver localmente
+
+### Pré-requisitos
+- Node.js e npm instalados - [instalar com nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+### Passos para configuração:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# 1. Clone o repositório
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
+# 2. Navegue até o diretório do projeto
 cd <YOUR_PROJECT_NAME>
 
-# Step 3: Install the necessary dependencies.
+# 3. Instale as dependências
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 4. Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🚀 Tecnologias Utilizadas
 
-**Use GitHub Codespaces**
+Este projeto foi desenvolvido com tecnologias modernas:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Frontend
+- **⚡ Vite** - Build tool rápido e moderno
+- **📘 TypeScript** - Tipagem estática para JavaScript
+- **⚛️ React** - Biblioteca para interfaces de usuário
+- **🎨 shadcn/ui** - Componentes UI modernos e acessíveis
+- **🎭 Tailwind CSS** - Framework CSS utility-first
 
-## What technologies are used for this project?
+### Backend & Integrações
+- **🗃️ Supabase** - Backend-as-a-Service para autenticação e banco de dados
+- **🎬 APIs Externas**: 
+  - OMDB API (filmes)
+  - Jikan API (anime/manga)
+  - TVMaze API (séries)
 
-This project is built with:
+### Funcionalidades
+- **🔐 Autenticação** - Sistema completo de login/registro
+- **👤 Perfis de Usuário** - Gerenciamento de contas e preferências
+- **📊 Reviews e Ratings** - Sistema de avaliações e comentários
+- **📋 Listas Personalizadas** - Watchlists e coleções
+- **🔍 Busca Avançada** - Pesquisa em múltiplas APIs
+- **📱 Design Responsivo** - Adaptado para todos os dispositivos
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 📁 Estrutura do Projeto
 
-Simply open [Lovable](https://lovable.dev/projects/eb58368f-cabe-4637-bc11-0cefe093ab37) and click on Share -> Publish.
+```
+src/
+├── components/          # Componentes reutilizáveis
+├── pages/              # Páginas da aplicação
+├── hooks/              # Custom hooks
+├── contexts/           # Contextos React
+├── integrations/       # Integrações externas
+└── assets/            # Imagens e recursos
+```
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 🤝 Como Contribuir
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
+3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
+4. Push para a branch (`git push origin feature/nova-funcionalidade`)
+5. Abra um Pull Request
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+---
+
+## 📞 Contato
+
+Para dúvidas, sugestões ou colaborações, entre em contato através das issues do GitHub.
+
+**Feito com 💜 para a comunidade de entretenimento**

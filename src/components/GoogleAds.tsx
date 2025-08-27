@@ -31,16 +31,7 @@ const GoogleAds: React.FC<GoogleAdsProps> = ({
     if (!shouldShowAds) return;
 
     try {
-      // Load AdSense script if not already loaded
-      if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9929888811411344';
-        script.crossOrigin = 'anonymous';
-        document.head.appendChild(script);
-      }
-
-      // Initialize adsbygoogle if available
+      // Initialize adsbygoogle since script is now loaded globally
       setTimeout(() => {
         try {
           if (window.adsbygoogle) {
@@ -51,7 +42,7 @@ const GoogleAds: React.FC<GoogleAdsProps> = ({
         }
       }, 100);
     } catch (error) {
-      console.error('Error loading Google Ads:', error);
+      console.error('Error initializing Google Ads:', error);
     }
   }, [shouldShowAds]);
 
