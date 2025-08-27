@@ -212,6 +212,7 @@ export type Database = {
           source_platform: string | null
           updated_at: string | null
           user_id: string
+          media_name: string
         }
         Insert: {
           contains_spoilers?: boolean | null

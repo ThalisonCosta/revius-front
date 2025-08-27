@@ -43,7 +43,7 @@ export function useMediaReviews(mediaId: string) {
             is_verified
           )
         `)
-        .eq('media_id', mediaId)
+        .eq('media_name', mediaId)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
