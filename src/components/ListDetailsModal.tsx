@@ -95,18 +95,27 @@ export const ListDetailsModal = ({
                         </div>
                       )}
 
-                      <div className="flex-1 space-y-2">
-                        <div className="flex items-start justify-between">
-                          <h4 className="font-medium line-clamp-2">{item.media_title}</h4>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleRemoveItem(item.id)}
-                            className="text-destructive hover:text-destructive"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
+                       <div className="flex-1 space-y-2">
+                         <div className="flex items-start justify-between">
+                           <h4 
+                             className="font-medium line-clamp-2 cursor-pointer hover:text-primary"
+                             onClick={() => {
+                               const mediaType = item.media_type as "movie" | "tv" | "anime";
+                               const url = `/media/${mediaType}/${item.media_id}?title=${encodeURIComponent(item.media_title)}&year=${item.media_year || ''}`;
+                               window.open(url, '_blank');
+                             }}
+                           >
+                             {item.media_title}
+                           </h4>
+                           <Button
+                             variant="ghost"
+                             size="sm"
+                             onClick={() => handleRemoveItem(item.id)}
+                             className="text-destructive hover:text-destructive"
+                           >
+                             <Trash2 className="h-4 w-4" />
+                           </Button>
+                         </div>
 
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Badge 

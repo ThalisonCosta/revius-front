@@ -597,18 +597,24 @@ const Profile = () => {
                 ) : reviews.length > 0 ? (
                   <div className="space-y-4">
                     {reviews.map((review) => (
-                      <ReviewCard
-                        key={review.id}
-                        id={review.id}
-                        rating={review.rating}
-                        review_text={review.review_text}
-                        contains_spoilers={review.contains_spoilers}
-                        created_at={review.created_at}
-                        helpful_votes={review.helpful_votes}
-                        media_name={review.media_name}
-                        onEdit={handleEditReview}
-                        onDelete={handleDeleteReview}
-                      />
+                      <div key={review.id} className="cursor-pointer" onClick={() => {
+                        // Determine media type from media_id or use default
+                        const mediaType = review.media_id?.startsWith('tt') ? 'movie' : 'tv';
+                        const url = `/media/${mediaType}/${review.media_id}?highlightReview=${review.id}`;
+                        window.open(url, '_blank');
+                      }}>
+                        <ReviewCard
+                          id={review.id}
+                          rating={review.rating}
+                          review_text={review.review_text}
+                          contains_spoilers={review.contains_spoilers}
+                          created_at={review.created_at}
+                          helpful_votes={review.helpful_votes}
+                          media_name={review.media_name}
+                          onEdit={handleEditReview}
+                          onDelete={handleDeleteReview}
+                        />
+                      </div>
                     ))}
                   </div>
                 ) : (

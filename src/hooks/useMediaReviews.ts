@@ -42,7 +42,7 @@ export function useMediaReviews(mediaId: string, mediaTitle?: string) {
         .from('reviews')
         .select(`
           *,
-          user:users!user_id (
+          user:users (
             username,
             is_verified,
             avatar_url

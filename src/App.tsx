@@ -14,6 +14,7 @@ import Anime from "./pages/Anime";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import UserProfile from "./pages/UserProfile";
 import ForgotPassword from "./pages/ForgotPassword";
 import MediaDetails from "./pages/MediaDetails";
 import NotFound from "./pages/NotFound";
@@ -46,6 +47,7 @@ const App = () => (
                 </ProtectedRoute>
               } 
             />
+            <Route path="/user/:userId" element={<UserProfile />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

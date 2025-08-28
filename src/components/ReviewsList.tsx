@@ -9,6 +9,7 @@ import { useMediaReviews } from "@/hooks/useMediaReviews";
 import { useExternalReviews, ExternalReview } from "@/hooks/useExternalReviews";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
+import { useSearchParams } from "react-router-dom";
 
 interface ReviewsListProps {
   mediaId: string;
@@ -17,11 +18,22 @@ interface ReviewsListProps {
 }
 
 export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps) {
+  const [searchParams] = useSearchParams();
+  const highlightReviewId = searchParams.get('highlightReview');
   
   const { reviews: mediaReviews, loading: reviewsLoading } = useMediaReviews(mediaId, mediaTitle);
   const { reviews: externalReviews, loading: externalLoading, fetchExternalReviews } = useExternalReviews();
   const { user } = useAuth();
   const { toast } = useToast();
+
+  // Sort reviews to prioritize highlighted review
+  const sortedReviews = highlightReviewId 
+    ? mediaReviews.sort((a, b) => {
+        if (a.id === highlightReviewId) return -1;
+        if (b.id === highlightReviewId) return 1;
+        return new Date(b.created_at || '').getTime() - new Date(a.created_at || '').getTime();
+      })
+    : mediaReviews;
   
   useEffect(() => {
     fetchExternalReviews(mediaId, mediaType);
@@ -101,8 +113,8 @@ export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps
         <div className="flex items-center gap-2 mb-4">
           <MessageSquare className="h-5 w-5 text-primary" />
           <h3 className="text-lg font-semibold">Revius Reviews</h3>
-        <Badge variant="secondary" className="text-xs">
-            {mediaReviews.length}
+          <Badge variant="secondary" className="text-xs">
+            {sortedReviews.length}
           </Badge>
         </div>
 
@@ -110,22 +122,23 @@ export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps
           <div className="flex items-center justify-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
           </div>
-        ) : mediaReviews.length > 0 ? (
+        ) : sortedReviews.length > 0 ? (
           <div className="space-y-4">
-            {mediaReviews.map((review) => (
-              <ReviewCard
-                key={review.id}
-                id={review.id}
-                rating={review.rating}
-                review_text={review.review_text}
-                contains_spoilers={review.contains_spoilers}
-                created_at={review.created_at}
-                helpful_votes={review.helpful_votes}
-                user={review.user}
-                showUserInfo={true}
-                onEdit={() => {}}
-                onDelete={() => {}}
-              />
+            {sortedReviews.map((review) => (
+              <div key={review.id} className={highlightReviewId === review.id ? 'ring-2 ring-primary rounded-lg' : ''}>
+                <ReviewCard
+                  id={review.id}
+                  rating={review.rating}
+                  review_text={review.review_text}
+                  contains_spoilers={review.contains_spoilers}
+                  created_at={review.created_at}
+                  helpful_votes={review.helpful_votes}
+                  user={review.user}
+                  showUserInfo={true}
+                  onEdit={() => {}}
+                  onDelete={() => {}}
+                />
+              </div>
             ))}
           </div>
         ) : (

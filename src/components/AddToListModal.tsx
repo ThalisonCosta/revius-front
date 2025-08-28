@@ -94,6 +94,8 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, me
       // Add to newly selected lists
       const toAdd = selectedLists.filter(listId => !currentListItems.includes(listId));
       if (toAdd.length > 0) {
+        console.log('Adding items with data:', { mediaTitle, mediaPoster, mediaType, mediaYear, mediaSynopsis });
+        
         const items = toAdd.map(listId => ({
           list_id: listId,
           media_id: mediaId,
@@ -104,6 +106,8 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, me
           media_synopsis: mediaSynopsis || null,
           position: 1, // Default position
         }));
+
+        console.log('Inserting items:', items);
 
         const { error: addError } = await supabase
           .from('user_list_items')

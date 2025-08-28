@@ -44,14 +44,31 @@ export function ReviewCard({
         <div className="flex-1">
           {showUserInfo && user && (
             <div className="flex items-center gap-2 mb-3">
-              <Avatar className="h-8 w-8">
+              <Avatar 
+                className="h-8 w-8 cursor-pointer hover:opacity-80"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const url = `/user/${user.username}`;
+                  window.open(url, '_blank');
+                }}
+              >
                 <AvatarImage src={user.avatar_url || undefined} />
                 <AvatarFallback>
                   {user.username?.charAt(0)?.toUpperCase() || 'U'}
                 </AvatarFallback>
               </Avatar>
               <div className="flex items-center gap-1">
-                <span className="font-medium text-sm">{user.username}</span>
+                <span 
+                  className="font-medium text-sm hover:text-primary cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Extract user ID from context or pass it as prop
+                    const url = `/user/${user.username}`;
+                    window.open(url, '_blank');
+                  }}
+                >
+                  {user.username}
+                </span>
                 {user.is_verified && (
                   <Badge variant="secondary" className="text-xs">
                     Verified
@@ -83,7 +100,14 @@ export function ReviewCard({
           </div>
           {media_name && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{media_name}</span>
+              <span className="font-medium text-foreground hover:text-primary cursor-pointer" onClick={(e) => {
+                e.stopPropagation();
+                // Extract media type and id from media_name or use defaults
+                const mediaType = 'movie'; // This would need proper detection
+                window.open(`/media/${mediaType}/${media_name}`, '_blank');
+              }}>
+                {media_name}
+              </span>
             </div>
           )}
         </div>
