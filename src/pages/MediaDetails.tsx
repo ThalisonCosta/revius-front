@@ -8,7 +8,6 @@ import { ReviewsList } from "@/components/ReviewsList";
 import { AddReviewModal } from "@/components/AddReviewModal";
 import { AddToListModal } from "@/components/AddToListModal";
 import { useAuth } from "@/contexts/AuthContext";
-import { useMediaResolver } from "@/hooks/useMediaResolver";
 import { useToast } from "@/hooks/use-toast";
 
 interface MediaData {
@@ -29,10 +28,8 @@ export default function MediaDetails() {
   const { type, id } = useParams<{ type: string; id: string }>();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { resolveMediaId } = useMediaResolver();
   const { toast } = useToast();
   const [media, setMedia] = useState<MediaData | null>(null);
-  const [resolvedMediaId, setResolvedMediaId] = useState<string | null>(null);
   const [reviewsKey, setReviewsKey] = useState(0);
 
   const handleReviewCreated = useCallback(() => {
@@ -108,20 +105,10 @@ export default function MediaDetails() {
         ...mediaInfo
       };
       setMedia(mediaData);
-
-      // Resolve the media ID for database operations
-      try {
-        const resolved = await resolveMediaId(id, mediaInfo);
-        if (resolved) {
-          setResolvedMediaId(resolved.id);
-        }
-      } catch (error) {
-        console.error('Failed to resolve media ID:', error);
-      }
     };
 
     initializeMedia();
-  }, [type, id, resolveMediaId]);
+  }, [type, id]);
 
   if (!media) {
     return (
@@ -319,18 +306,12 @@ export default function MediaDetails() {
 
         {/* Reviews Section */}
         <div className="mt-12">
-          {resolvedMediaId ? (
-            <ReviewsList 
-              key={`reviews-${resolvedMediaId}-${reviewsKey}`}
-              mediaId={resolvedMediaId}
-              mediaType={media.type}
-              mediaTitle={media.title}
-            />
-          ) : (
-            <div className="text-center py-8">
-              <p className="text-muted-foreground">Loading reviews...</p>
-            </div>
-          )}
+          <ReviewsList 
+            key={`reviews-${media.id}-${reviewsKey}`}
+            mediaId={media.id}
+            mediaType={media.type}
+            mediaTitle={media.title}
+          />
         </div>
       </main>
     </div>

@@ -9,7 +9,6 @@ import { Star, Plus } from "lucide-react";
 import { useUserReviews } from "@/hooks/useUserReviews";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { useMediaResolver } from "@/hooks/useMediaResolver";
 
 interface AddReviewModalProps {
   mediaId?: string;
@@ -33,7 +32,6 @@ export function AddReviewModal({ mediaId, mediaTitle, mediaType, children, onRev
   const { createReview } = useUserReviews();
   const { user } = useAuth();
   const { toast } = useToast();
-  const { resolveMediaId } = useMediaResolver();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,44 +75,17 @@ export function AddReviewModal({ mediaId, mediaTitle, mediaType, children, onRev
     }
 
     try {
-      let resolvedMediaId: string;
+      console.log("Creating review with media ID:", mediaId || `custom-${customMediaTitle}`);
       
-      if (!mediaId) {
-        // For custom media (user manually adding new content)
-        const resolvedMedia = await resolveMediaId(
-          `custom-${Date.now()}`, // Generate unique external ID for custom media
-          {
-            title: customMediaTitle,
-            type: customMediaType,
-          }
-        );
-        
-        if (!resolvedMedia) {
-          throw new Error('Failed to create media entry');
-        }
-        
-        resolvedMediaId = resolvedMedia.id;
-      } else {
-        // For media from external APIs (movies, TV shows, anime)
-        const resolvedMedia = await resolveMediaId(mediaId, {
-          title: mediaTitle || 'Unknown Title',
-          type: mediaType || 'movie',
-        });
-        
-        if (!resolvedMedia) {
-          throw new Error('Failed to resolve media');
-        }
-        
-        resolvedMediaId = resolvedMedia.id;
-      }
-      
-      console.log("Creating review with resolved media ID:", resolvedMediaId);
+      const reviewMediaId = mediaId || `custom-${customMediaTitle.replace(/\s+/g, '-').toLowerCase()}`;
+      const reviewMediaName = mediaId ? (mediaTitle || 'Unknown Title') : customMediaTitle;
       
       await createReview({
-        media_id: resolvedMediaId,
+        media_id: reviewMediaId,
         rating,
         review_text: reviewText.trim() || null,
         contains_spoilers: containsSpoilers,
+        media_name: reviewMediaName,
       });
 
       // Reset form

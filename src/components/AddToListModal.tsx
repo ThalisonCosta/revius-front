@@ -9,7 +9,6 @@ import { useUserLists } from "@/hooks/useUserLists";
 import { useListItems } from "@/hooks/useListItems";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { useMediaResolver } from "@/hooks/useMediaResolver";
 import { supabase } from "@/integrations/supabase/client";
 import { useSystemLists } from "@/hooks/useSystemLists";
 
@@ -31,30 +30,16 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, ch
   const { lists } = useUserLists();
   const { user } = useAuth();
   const { toast } = useToast();
-  const { resolveMediaId } = useMediaResolver();
   const { systemLists } = useSystemLists();
 
   const fetchCurrentListItems = useCallback(async () => {
     if (!user) return;
 
     try {
-      // Resolve media to get internal UUID
-      const resolvedMedia = await resolveMediaId(mediaId, {
-        title: mediaTitle,
-        type: mediaType,
-        poster: mediaPoster,
-      });
-
-      if (!resolvedMedia) {
-        console.log('Media not found, no existing list items');
-        return;
-      }
-
       const { data, error } = await supabase
         .from('user_list_items')
         .select('list_id')
-        .eq('media_id', resolvedMedia.id)
-        .eq('user_id', user.id);
+        .eq('media_id', mediaId) as any;
 
       if (error) throw error;
 
@@ -64,7 +49,7 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, ch
     } catch (error) {
       console.error('Error fetching current list items:', error);
     }
-  }, [user, resolveMediaId, mediaId, mediaTitle, mediaType, mediaPoster]);
+  }, [user, mediaId]);
 
   useEffect(() => {
     if (open && mediaId) {
@@ -92,19 +77,6 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, ch
 
     setLoading(true);
     try {
-      // Resolve media to get internal UUID
-      const resolvedMedia = await resolveMediaId(mediaId, {
-        title: mediaTitle,
-        type: mediaType,
-        poster: mediaPoster,
-      });
-
-      if (!resolvedMedia) {
-        throw new Error('Failed to resolve media');
-      }
-
-      const actualMediaId = resolvedMedia.id;
-
       // Remove from lists that were deselected
       const toRemove = currentListItems.filter(listId => !selectedLists.includes(listId));
       if (toRemove.length > 0) {
@@ -112,8 +84,7 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, ch
           .from('user_list_items')
           .delete()
           .in('list_id', toRemove)
-          .eq('media_id', actualMediaId)
-          .eq('user_id', user.id);
+          .eq('media_id', mediaId) as any;
 
         if (removeError) throw removeError;
       }
@@ -123,13 +94,13 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, ch
       if (toAdd.length > 0) {
         const items = toAdd.map(listId => ({
           list_id: listId,
-          media_id: actualMediaId,
+          media_id: mediaId,
           user_id: user.id,
         }));
 
         const { error: addError } = await supabase
           .from('user_list_items')
-          .insert(items);
+          .insert(items) as any;
 
         if (addError) throw addError;
       }

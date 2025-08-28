@@ -14,12 +14,7 @@ interface UserReview {
   user_id: string;
   helpful_votes: number | null;
   is_verified: boolean | null;
-  media?: {
-    title: string;
-    type: string;
-    thumbnail: string | null;
-    year: number | null;
-  };
+  media_name?: string;
 }
 
 interface CreateReviewData {
@@ -27,6 +22,7 @@ interface CreateReviewData {
   rating: number;
   review_text?: string;
   contains_spoilers?: boolean;
+  media_name?: string;
 }
 
 export function useUserReviews() {
@@ -47,15 +43,7 @@ export function useUserReviews() {
     try {
       const { data, error } = await supabase
         .from('reviews')
-        .select(`
-          *,
-          media:media_id (
-            title,
-            type,
-            thumbnail,
-            year
-          )
-        `)
+        .select('*')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
@@ -88,6 +76,7 @@ export function useUserReviews() {
         ...reviewData,
         user_id: user.id,
         id: crypto.randomUUID(),
+        media_name: reviewData.media_name || 'Unknown Title',
       };
       
       console.log('Review payload:', reviewPayload);
@@ -95,15 +84,7 @@ export function useUserReviews() {
       const { data, error } = await supabase
         .from('reviews')
         .insert(reviewPayload)
-        .select(`
-          *,
-          media:media_id (
-            title,
-            type,
-            thumbnail,
-            year
-          )
-        `)
+        .select('*')
         .single();
 
       console.log('Supabase response:', { data, error });
@@ -142,15 +123,7 @@ export function useUserReviews() {
         })
         .eq('id', reviewId)
         .eq('user_id', user.id)
-        .select(`
-          *,
-          media:media_id (
-            title,
-            type,
-            thumbnail,
-            year
-          )
-        `)
+        .select('*')
         .single();
 
       if (error) throw error;

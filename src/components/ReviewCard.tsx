@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Star, MoreVertical, Edit, Trash2, Calendar, AlertTriangle, ThumbsUp } from "lucide-react";
 
@@ -11,12 +12,13 @@ interface ReviewCardProps {
   contains_spoilers: boolean | null;
   created_at: string | null;
   helpful_votes: number | null;
-  media?: {
-    title: string;
-    type: string;
-    thumbnail: string | null;
-    year: number | null;
+  media_name?: string;
+  user?: {
+    username: string;
+    is_verified?: boolean;
+    avatar_url?: string | null;
   };
+  showUserInfo?: boolean;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
 }
@@ -28,7 +30,9 @@ export function ReviewCard({
   contains_spoilers,
   created_at,
   helpful_votes,
-  media,
+  media_name,
+  user,
+  showUserInfo = false,
   onEdit,
   onDelete,
 }: ReviewCardProps) {
@@ -36,6 +40,24 @@ export function ReviewCard({
     <Card className="border-border shadow-card">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
         <div className="flex-1">
+          {showUserInfo && user && (
+            <div className="flex items-center gap-2 mb-3">
+              <Avatar className="h-8 w-8">
+                <AvatarImage src={user.avatar_url || undefined} />
+                <AvatarFallback>
+                  {user.username?.charAt(0)?.toUpperCase() || 'U'}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex items-center gap-1">
+                <span className="font-medium text-sm">{user.username}</span>
+                {user.is_verified && (
+                  <Badge variant="secondary" className="text-xs">
+                    Verified
+                  </Badge>
+                )}
+              </div>
+            </div>
+          )}
           <div className="flex items-center gap-2 mb-2">
             <div className="flex items-center">
               {Array.from({ length: 5 }).map((_, i) => (
@@ -57,13 +79,9 @@ export function ReviewCard({
               </Badge>
             )}
           </div>
-          {media && (
+          {media_name && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">{media.title}</span>
-              <Badge variant="outline" className="text-xs">
-                {media.type}
-              </Badge>
-              {media.year && <span>({media.year})</span>}
+              <span className="font-medium text-foreground">{media_name}</span>
             </div>
           )}
         </div>

@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { ReviewCard } from "@/components/ReviewCard";
 import { Star, MessageSquare, ThumbsUp, ExternalLink } from "lucide-react";
 import { useMediaReviews } from "@/hooks/useMediaReviews";
 import { useExternalReviews, ExternalReview } from "@/hooks/useExternalReviews";
@@ -112,37 +113,19 @@ export function ReviewsList({ mediaId, mediaType, mediaTitle }: ReviewsListProps
         ) : mediaReviews.length > 0 ? (
           <div className="space-y-4">
             {mediaReviews.map((review) => (
-              <Card key={review.id} className="border-border shadow-card">
-                <CardContent className="pt-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium text-sm">{review.user.username}</span>
-                      {review.user.is_verified && (
-                        <div className="bg-primary text-primary-foreground rounded-full p-0.5">
-                          <Star className="h-3 w-3" />
-                        </div>
-                      )}
-                      <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 fill-primary text-primary" />
-                        <span className="text-sm font-medium">{review.rating}/5</span>
-                      </div>
-                    </div>
-                    <span className="text-xs text-muted-foreground">
-                      {review.created_at && new Date(review.created_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                  {review.review_text && (
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                      {review.review_text}
-                    </p>
-                  )}
-                  {review.contains_spoilers && (
-                    <Badge variant="outline" className="text-xs">
-                      Contains Spoilers
-                    </Badge>
-                  )}
-                </CardContent>
-              </Card>
+              <ReviewCard
+                key={review.id}
+                id={review.id}
+                rating={review.rating}
+                review_text={review.review_text}
+                contains_spoilers={review.contains_spoilers}
+                created_at={review.created_at}
+                helpful_votes={review.helpful_votes}
+                user={review.user}
+                showUserInfo={true}
+                onEdit={() => {}}
+                onDelete={() => {}}
+              />
             ))}
           </div>
         ) : (

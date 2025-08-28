@@ -16,6 +16,7 @@ interface MediaReview {
   user: {
     username: string;
     is_verified: boolean | null;
+    avatar_url: string | null;
   };
 }
 
@@ -34,14 +35,15 @@ export function useMediaReviews(mediaId: string, mediaTitle?: string) {
     if (!mediaId) return;
 
     try {
-      // First, try to fetch by media_id
+      // Fetch reviews by media_id
       const { data: reviewsByMediaId, error: mediaIdError } = await supabase
         .from('reviews')
         .select(`
           *,
-          user:users (
+          user:users!user_id (
             username,
-            is_verified
+            is_verified,
+            avatar_url
           )
         `)
         .eq('media_id', mediaId)
@@ -49,33 +51,16 @@ export function useMediaReviews(mediaId: string, mediaTitle?: string) {
 
       if (mediaIdError) throw mediaIdError;
 
-      // If we have reviews by media_id, use them
-      if (reviewsByMediaId && reviewsByMediaId.length > 0) {
-        setReviews(reviewsByMediaId);
-        return;
-      }
-
-      // If no reviews by media_id and we have a media title, try searching by media_name
-      if (mediaTitle) {
-        const { data: reviewsByMediaName, error: mediaNameError } = await supabase
-          .from('reviews')
-          .select(`
-            *,
-            user:users (
-              username,
-              is_verified
-            )
-          `)
-          .eq('media_name', mediaTitle)
-          .order('created_at', { ascending: false });
-
-        if (mediaNameError) throw mediaNameError;
-
-        setReviews(reviewsByMediaName || []);
-      } else {
-        // No media title provided, set empty reviews
-        setReviews([]);
-      }
+      // Type the response properly
+      const typedReviews = (reviewsByMediaId || []) as any[];
+      setReviews(typedReviews.map(review => ({
+        ...review,
+        user: review.user || {
+          username: 'Unknown User',
+          is_verified: false,
+          avatar_url: null
+        }
+      })));
     } catch (error) {
       console.error('Error fetching media reviews:', error);
       toast({

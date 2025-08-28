@@ -236,7 +236,7 @@ const Profile = () => {
         open: true,
         type: 'review',
         id: reviewId,
-        title: review.media?.title || 'this review'
+        title: review.media_name || 'this review'
       });
     }
   };
@@ -302,6 +302,12 @@ const Profile = () => {
             <Card className="border-border shadow-card">
               <CardHeader className="text-center">
                 <div className="relative inline-block">
+                  <Avatar className="h-24 w-24">
+                    <AvatarImage src={(profile as any)?.avatar_url} alt={profile.username} />
+                    <AvatarFallback className="text-lg">
+                      {profile.username?.charAt(0)?.toUpperCase() || 'U'}
+                    </AvatarFallback>
+                  </Avatar>
                   <ProfilePictureUpload 
                     currentPictureUrl={(profile as any)?.avatar_url}
                     username={profile.username}
@@ -599,7 +605,7 @@ const Profile = () => {
                         contains_spoilers={review.contains_spoilers}
                         created_at={review.created_at}
                         helpful_votes={review.helpful_votes}
-                        media={review.media}
+                        media_name={review.media_name}
                         onEdit={handleEditReview}
                         onDelete={handleDeleteReview}
                       />

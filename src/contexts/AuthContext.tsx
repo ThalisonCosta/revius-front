@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { usePersistedAuth } from '@/hooks/usePersistedAuth';
 
 interface AuthContextType {
   user: User | null;
@@ -19,50 +20,35 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const { user: persistedUser, loading: persistedLoading } = usePersistedAuth();
   const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
   const [subscriptionLoading, setSubscriptionLoading] = useState(false);
   const { toast } = useToast();
 
-  useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
+  // Use the persisted auth state
+  const user = persistedUser;
+  const loading = persistedLoading;
 
-    // Listen for auth changes
+  useEffect(() => {
+    // Get current session when user changes
+    if (user) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        setSession(session);
+      });
+    } else {
+      setSession(null);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    // Listen for auth changes - mainly for session updates
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
 
-      // Only update profile on initial sign in, not on token refresh
+      // Check subscription status after sign in
       if (event === 'SIGNED_IN' && session?.user) {
-        // Check if user profile already exists to avoid unnecessary upserts
-        const { data: existingUser } = await supabase
-          .from('users')
-          .select('id')
-          .eq('id', session.user.id)
-          .single();
-
-        if (!existingUser) {
-          // Only create profile if it doesn't exist
-          await supabase
-            .from('users')
-            .insert({
-              id: session.user.id,
-              email: session.user.email,
-              username: session.user.user_metadata.username || session.user.email?.split('@')[0] || 'user',
-              updated_at: new Date().toISOString(),
-            });
-        }
-        
-        // Check subscription status after sign in
         setTimeout(() => {
           checkSubscription();
         }, 1000);
