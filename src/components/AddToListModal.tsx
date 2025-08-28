@@ -17,11 +17,13 @@ interface AddToListModalProps {
   mediaTitle: string;
   mediaType: string;
   mediaPoster?: string;
+  mediaYear?: number;
+  mediaSynopsis?: string;
   children?: React.ReactNode;
 }
 
 
-export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, children }: AddToListModalProps) {
+export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, mediaYear, mediaSynopsis, children }: AddToListModalProps) {
   const [open, setOpen] = useState(false);
   const [selectedLists, setSelectedLists] = useState<string[]>([]);
   const [currentListItems, setCurrentListItems] = useState<string[]>([]);
@@ -95,7 +97,12 @@ export function AddToListModal({ mediaId, mediaTitle, mediaType, mediaPoster, ch
         const items = toAdd.map(listId => ({
           list_id: listId,
           media_id: mediaId,
-          user_id: user.id,
+          media_title: mediaTitle,
+          media_thumbnail: mediaPoster || null,
+          media_type: mediaType,
+          media_year: mediaYear || null,
+          media_synopsis: mediaSynopsis || null,
+          position: 1, // Default position
         }));
 
         const { error: addError } = await supabase

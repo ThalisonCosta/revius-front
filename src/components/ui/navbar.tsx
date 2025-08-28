@@ -7,6 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { Search, Home, Film, Tv, BookOpen, Menu, X, User, Settings, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
+import { useUserProfile } from "@/hooks/useUserProfile";
 import { SearchModal } from "@/components/SearchModal";
 
 export function Navbar() {
@@ -14,6 +15,7 @@ export function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
+  const { profile } = useUserProfile();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -117,9 +119,10 @@ export function Navbar() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-8 w-8 rounded-full p-0" data-testid="user-menu">
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src="" />
+                    <AvatarImage src={profile?.avatar_url || ""} />
                     <AvatarFallback className="bg-primary text-primary-foreground">
-                      {user.user_metadata?.username?.charAt(0).toUpperCase() || 
+                      {profile?.username?.charAt(0).toUpperCase() || 
+                       user.user_metadata?.username?.charAt(0).toUpperCase() || 
                        user.email?.charAt(0).toUpperCase() || 'U'}
                     </AvatarFallback>
                   </Avatar>

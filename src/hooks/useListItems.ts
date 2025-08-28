@@ -7,16 +7,13 @@ interface ListItem {
   id: string;
   list_id: string;
   media_id: string;
+  media_title: string;
+  media_thumbnail: string | null;
+  media_type: string;
+  media_year: number | null;
+  media_synopsis: string | null;
   position: number | null;
   created_at: string | null;
-  media: {
-    id: string;
-    title: string;
-    thumbnail: string | null;
-    type: string;
-    year: number | null;
-    synopsis: string | null;
-  };
 }
 
 export function useListItems(listId: string) {
@@ -37,23 +34,14 @@ export function useListItems(listId: string) {
     try {
       const { data, error } = await supabase
         .from('user_list_items')
-        .select(`
-          *,
-          media:media_id (
-            id,
-            title,
-            thumbnail,
-            type,
-            year,
-            synopsis
-          )
-        `)
+        .select('*')
         .eq('list_id', listId)
         .order('position', { ascending: true });
 
       if (error) throw error;
 
-      setItems(data || []);
+      // Cast the data to ListItem[] since we're now storing media info directly
+      setItems((data as ListItem[]) || []);
     } catch (error) {
       console.error('Error fetching list items:', error);
       toast({
@@ -66,7 +54,13 @@ export function useListItems(listId: string) {
     }
   };
 
-  const addItem = async (mediaId: string) => {
+  const addItem = async (mediaId: string, mediaData: {
+    title: string;
+    thumbnail?: string;
+    type: string;
+    year?: number;
+    synopsis?: string;
+  }) => {
     if (!listId || !user) return;
 
     try {
@@ -80,24 +74,19 @@ export function useListItems(listId: string) {
         .insert({
           list_id: listId,
           media_id: mediaId,
+          media_title: mediaData.title,
+          media_thumbnail: mediaData.thumbnail || null,
+          media_type: mediaData.type,
+          media_year: mediaData.year || null,
+          media_synopsis: mediaData.synopsis || null,
           position: maxPosition + 1
         })
-        .select(`
-          *,
-          media:media_id (
-            id,
-            title,
-            thumbnail,
-            type,
-            year,
-            synopsis
-          )
-        `)
+        .select('*')
         .single();
 
       if (error) throw error;
 
-      setItems(prev => [...prev, data]);
+      setItems(prev => [...prev, data as ListItem]);
       
       toast({
         title: "Success",

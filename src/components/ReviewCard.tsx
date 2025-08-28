@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Star, MoreVertical, Edit, Trash2, Calendar, AlertTriangle, ThumbsUp } from "lucide-react";
+import { Star, MoreVertical, Edit, Trash2, Calendar, AlertTriangle, ThumbsUp, Eye, EyeOff } from "lucide-react";
 
 interface ReviewCardProps {
   id: string;
@@ -36,6 +37,7 @@ export function ReviewCard({
   onEdit,
   onDelete,
 }: ReviewCardProps) {
+  const [showSpoiler, setShowSpoiler] = useState(false);
   return (
     <Card className="border-border shadow-card">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
@@ -105,9 +107,45 @@ export function ReviewCard({
       </CardHeader>
       <CardContent>
         {review_text && (
-          <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
-            {review_text}
-          </p>
+          <div className="mb-3">
+            {contains_spoilers && !showSpoiler ? (
+              <div className="space-y-3">
+                <div className="relative">
+                  <p className="text-sm text-muted-foreground leading-relaxed blur-sm select-none">
+                    {review_text}
+                  </p>
+                  <div className="absolute inset-0 flex items-center justify-center bg-background/80 rounded">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowSpoiler(true)}
+                      className="text-xs"
+                    >
+                      <Eye className="h-3 w-3 mr-1" />
+                      Show Spoiler
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {review_text}
+                </p>
+                {contains_spoilers && showSpoiler && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowSpoiler(false)}
+                    className="text-xs text-muted-foreground"
+                  >
+                    <EyeOff className="h-3 w-3 mr-1" />
+                    Hide Spoiler
+                  </Button>
+                )}
+              </div>
+            )}
+          </div>
         )}
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           <div className="flex items-center gap-4">

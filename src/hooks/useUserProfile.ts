@@ -8,6 +8,7 @@ interface UserProfile {
   email: string | null;
   bio: string | null;
   location: string | null;
+  avatar_url: string | null;
   subscription_tier: 'free' | 'pro' | 'premium' | 'enterprise';
   is_verified: boolean | null;
   created_at: string | null;
@@ -43,7 +44,10 @@ export function useUserProfile() {
         return;
       }
 
-      setProfile(data);
+      setProfile({
+        ...data,
+        avatar_url: (data as any).avatar_url || null
+      });
     } catch (error) {
       console.error('Error fetching profile:', error);
     } finally {

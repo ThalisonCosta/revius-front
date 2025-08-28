@@ -83,10 +83,10 @@ export const ListDetailsModal = ({
                         <GripVertical className="h-5 w-5" />
                       </div>
                       
-                      {item.media.thumbnail ? (
+                      {item.media_thumbnail ? (
                         <img
-                          src={item.media.thumbnail}
-                          alt={item.media.title}
+                          src={item.media_thumbnail}
+                          alt={item.media_title}
                           className="w-16 h-24 object-cover rounded-md bg-muted"
                         />
                       ) : (
@@ -97,7 +97,7 @@ export const ListDetailsModal = ({
 
                       <div className="flex-1 space-y-2">
                         <div className="flex items-start justify-between">
-                          <h4 className="font-medium line-clamp-2">{item.media.title}</h4>
+                          <h4 className="font-medium line-clamp-2">{item.media_title}</h4>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -111,22 +111,22 @@ export const ListDetailsModal = ({
                         <div className="flex items-center gap-2 text-sm text-muted-foreground">
                           <Badge 
                             variant="outline" 
-                            className={getMediaTypeColor(item.media.type)}
+                            className={getMediaTypeColor(item.media_type)}
                           >
-                            {item.media.type?.toUpperCase()}
+                            {item.media_type?.toUpperCase()}
                           </Badge>
                           
-                          {item.media.year && (
+                          {item.media_year && (
                             <div className="flex items-center gap-1">
                               <Calendar className="h-3 w-3" />
-                              {item.media.year}
+                              {item.media_year}
                             </div>
                           )}
                         </div>
 
-                        {item.media.synopsis && (
+                        {item.media_synopsis && (
                           <p className="text-sm text-muted-foreground line-clamp-2">
-                            {item.media.synopsis}
+                            {item.media_synopsis}
                           </p>
                         )}
                       </div>
