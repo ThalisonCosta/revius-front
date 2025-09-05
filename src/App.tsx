@@ -16,6 +16,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import UserProfile from "./pages/UserProfile";
+import PublicReview from "./pages/PublicReview";
+import PublicList from "./pages/PublicList";
 import ForgotPassword from "./pages/ForgotPassword";
 import MediaDetails from "./pages/MediaDetails";
 import NotFound from "./pages/NotFound";
@@ -50,6 +52,8 @@ const App = () => (
               } 
             />
             <Route path="/user/:userId" element={<UserProfile />} />
+            <Route path="/review/:id" element={<PublicReview />} />
+            <Route path="/list/:id" element={<PublicList />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

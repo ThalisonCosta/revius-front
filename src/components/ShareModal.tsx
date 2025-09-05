@@ -40,7 +40,7 @@ export function ShareModal({ open, onOpenChange, type, data }: ShareModalProps) 
       case 'list':
         return `${baseUrl}/list/${data.id}`;
       case 'profile':
-        return `${baseUrl}/user/${data.username}`;
+        return `${baseUrl}/user/${data.id}`;
       default:
         return baseUrl;
     }

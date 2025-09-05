@@ -201,7 +201,7 @@ export function ReviewCard({
         type="review"
         data={{
           id,
-          title: media_name,
+          title: media_name || 'Review',
           rating,
           review_text,
           user,

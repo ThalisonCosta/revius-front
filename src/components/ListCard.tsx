@@ -100,7 +100,7 @@ export function ListCard({
         type="list"
         data={{
           id,
-          name,
+          title: name,
           description,
           items_count,
         }}

@@ -176,7 +176,7 @@ export const ListDetailsModal = ({
         type="list"
         data={{
           id: list.id,
-          name: list.name,
+          title: list.name,
           description: list.description,
           items,
         }}
