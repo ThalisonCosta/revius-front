@@ -15,6 +15,131 @@ export class NovelParser {
     const $ = cheerio.load(html);
     const novelas = [];
     
+    // Use broadcaster-specific parsing logic
+    switch (sourceInfo.type) {
+      case 'record_page':
+        return this.parseRecordPage($, sourceInfo);
+      case 'globo_page':
+        return this.parseGloboPage($, sourceInfo);
+      case 'band_page':
+        return this.parseBandPage($, sourceInfo);
+      case 'sbt_page':
+        return this.parseSbtPage($, sourceInfo);
+      default:
+        return this.parseGenericPage($, sourceInfo);
+    }
+  }
+
+  /**
+   * Parse Record TV specific page structure
+   */
+  parseRecordPage($, sourceInfo) {
+    const novelas = [];
+    const tables = $('table.wikitable, table.sortable');
+    
+    tables.each((index, table) => {
+      const rows = $(table).find('tr');
+      
+      rows.each((rowIndex, row) => {
+        if (rowIndex === 0) return; // Skip header row
+        
+        const cells = $(row).find('td');
+        if (cells.length < 4) return; // Need at least basic columns
+        
+        const novela = this.parseRecordTableRow($, cells, sourceInfo);
+        if (novela && this.isValidNovela(novela)) {
+          novelas.push(novela);
+        }
+      });
+    });
+    
+    return this.deduplicate(novelas);
+  }
+
+  /**
+   * Parse Globo specific page structure (English Wikipedia)
+   */
+  parseGloboPage($, sourceInfo) {
+    const novelas = [];
+    const tables = $('table.wikitable, table.sortable');
+    
+    tables.each((index, table) => {
+      const rows = $(table).find('tr');
+      
+      rows.each((rowIndex, row) => {
+        if (rowIndex === 0) return; // Skip header row
+        
+        const cells = $(row).find('td');
+        if (cells.length < 4) return; // Need at least basic columns
+        
+        const novela = this.parseGloboTableRow($, cells, sourceInfo);
+        if (novela && this.isValidNovela(novela)) {
+          novelas.push(novela);
+        }
+      });
+    });
+    
+    return this.deduplicate(novelas);
+  }
+
+  /**
+   * Parse Band specific page structure
+   */
+  parseBandPage($, sourceInfo) {
+    const novelas = [];
+    const tables = $('table.wikitable, table.sortable');
+    
+    tables.each((index, table) => {
+      const rows = $(table).find('tr');
+      
+      rows.each((rowIndex, row) => {
+        if (rowIndex === 0) return; // Skip header row
+        
+        const cells = $(row).find('td');
+        if (cells.length < 4) return; // Need at least basic columns
+        
+        const novela = this.parseBandTableRow($, cells, sourceInfo);
+        if (novela && this.isValidNovela(novela)) {
+          novelas.push(novela);
+        }
+      });
+    });
+    
+    return this.deduplicate(novelas);
+  }
+
+  /**
+   * Parse SBT specific page structure
+   */
+  parseSbtPage($, sourceInfo) {
+    const novelas = [];
+    const tables = $('table.wikitable, table.sortable');
+    
+    tables.each((index, table) => {
+      const rows = $(table).find('tr');
+      
+      rows.each((rowIndex, row) => {
+        if (rowIndex === 0) return; // Skip header row
+        
+        const cells = $(row).find('td');
+        if (cells.length < 4) return; // Need at least basic columns
+        
+        const novela = this.parseSbtTableRow($, cells, sourceInfo);
+        if (novela && this.isValidNovela(novela)) {
+          novelas.push(novela);
+        }
+      });
+    });
+    
+    return this.deduplicate(novelas);
+  }
+
+  /**
+   * Generic fallback parser
+   */
+  parseGenericPage($, sourceInfo) {
+    const novelas = [];
+    
     // Different parsing strategies based on Wikipedia page structure
     const tables = $('table.wikitable, table.sortable');
     
@@ -79,7 +204,8 @@ export class NovelParser {
       title = this.cleanText(titleLink.text());
       const href = titleLink.attr('href');
       if (href && href.startsWith('/wiki/')) {
-        wikipediaUrl = 'https://pt.wikipedia.org' + href;
+        const baseUrl = sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org';
+        wikipediaUrl = baseUrl + href;
       }
     } else {
       title = this.cleanText(titleCell.text());
@@ -156,7 +282,7 @@ export class NovelParser {
     
     const href = link.attr('href');
     const wikipediaUrl = href && href.startsWith('/wiki/') 
-      ? 'https://pt.wikipedia.org' + href 
+      ? (sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org') + href 
       : '';
     
     // Extract year from parentheses
@@ -179,6 +305,334 @@ export class NovelParser {
       director: '',
       author: '',
       wikipediaUrl,
+      imageUrl: '',
+      scraped: new Date().toISOString()
+    };
+  }
+
+  /**
+   * Parse Record TV table row
+   * Columns: #, Start Date, End Date, Title, Episodes, Timeslot, Authorship, Direction
+   */
+  parseRecordTableRow($, cells, sourceInfo) {
+    const cellsArray = cells.toArray();
+    if (cellsArray.length < 4) return null;
+    
+    // Typically: column 3 is title, columns 1-2 are dates
+    let title = '';
+    let year = null;
+    let episodes = null;
+    let author = '';
+    let director = '';
+    let wikipediaUrl = '';
+    
+    // Extract title (usually column 3 or first column with a link)
+    for (let i = 0; i < Math.min(4, cellsArray.length); i++) {
+      const cell = $(cellsArray[i]);
+      const link = cell.find('a').first();
+      
+      if (link.length > 0 && !title) {
+        title = this.cleanText(link.text());
+        const href = link.attr('href');
+        if (href && href.startsWith('/wiki/')) {
+          const baseUrl = sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org';
+          wikipediaUrl = baseUrl + href;
+        }
+        break;
+      }
+    }
+    
+    // If no link found, try to extract title from a text cell
+    if (!title && cellsArray.length > 3) {
+      title = this.cleanText($(cellsArray[3]).text());
+    }
+    
+    // Extract dates and year
+    cellsArray.forEach((cell, index) => {
+      const cellText = $(cell).text();
+      
+      // Look for dates and extract year
+      const dateMatch = cellText.match(/(\d{1,2})\s*de\s*\w+\s*de\s*(\d{4})/i);
+      if (dateMatch && !year) {
+        const yearNum = parseInt(dateMatch[2]);
+        year = { start: yearNum, end: null };
+      }
+      
+      // Look for year only
+      if (!year) {
+        const yearMatch = cellText.match(/(\d{4})/);
+        if (yearMatch) {
+          year = { start: parseInt(yearMatch[1]), end: null };
+        }
+      }
+      
+      // Look for episodes
+      const episodeMatch = cellText.match(/(\d+)\s*(cap|ep|episódios?|capítulos?)/i);
+      if (episodeMatch) {
+        episodes = parseInt(episodeMatch[1]);
+      }
+    });
+    
+    // Extract authorship (usually later columns)
+    if (cellsArray.length > 6) {
+      author = this.cleanText($(cellsArray[6]).text());
+    }
+    
+    // Extract direction
+    if (cellsArray.length > 7) {
+      director = this.cleanText($(cellsArray[7]).text());
+    }
+    
+    return {
+      id: this.generateId(title),
+      title,
+      country: sourceInfo.country,
+      broadcaster: sourceInfo.broadcaster,
+      year,
+      genre: ['Drama'],
+      synopsis: `${title} é uma telenovela da ${sourceInfo.broadcaster}.`,
+      cast: [],
+      episodes: episodes || this.estimateEpisodes(sourceInfo.country),
+      director,
+      author,
+      wikipediaUrl: wikipediaUrl || '',
+      imageUrl: '',
+      scraped: new Date().toISOString()
+    };
+  }
+
+  /**
+   * Parse Globo table row (English Wikipedia)
+   * Columns: Title, Episodes, Author(s), First Air Date, Last Air Date
+   */
+  parseGloboTableRow($, cells, sourceInfo) {
+    const cellsArray = cells.toArray();
+    if (cellsArray.length < 3) return null;
+    
+    let title = '';
+    let year = null;
+    let episodes = null;
+    let author = '';
+    let wikipediaUrl = '';
+    
+    // Title is usually first column
+    const titleCell = $(cellsArray[0]);
+    const titleLink = titleCell.find('a').first();
+    
+    if (titleLink.length > 0) {
+      title = this.cleanText(titleLink.text());
+      const href = titleLink.attr('href');
+      if (href && href.startsWith('/wiki/')) {
+        const baseUrl = sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org';
+        wikipediaUrl = baseUrl + href;
+      }
+    } else {
+      title = this.cleanText(titleCell.text());
+    }
+    
+    // Episodes in second column
+    if (cellsArray.length > 1) {
+      const episodeText = $(cellsArray[1]).text();
+      const episodeMatch = episodeText.match(/(\d+)/);
+      if (episodeMatch) {
+        episodes = parseInt(episodeMatch[1]);
+      }
+    }
+    
+    // Author in third column
+    if (cellsArray.length > 2) {
+      author = this.cleanText($(cellsArray[2]).text());
+    }
+    
+    // Extract year from air dates (columns 3 and 4)
+    if (cellsArray.length > 3) {
+      const firstAirDate = $(cellsArray[3]).text();
+      const yearMatch = firstAirDate.match(/(\d{4})/);
+      if (yearMatch) {
+        year = { start: parseInt(yearMatch[1]), end: null };
+        
+        // Check for end year in last air date
+        if (cellsArray.length > 4) {
+          const lastAirDate = $(cellsArray[4]).text();
+          const endYearMatch = lastAirDate.match(/(\d{4})/);
+          if (endYearMatch) {
+            year.end = parseInt(endYearMatch[1]);
+          }
+        }
+      }
+    }
+    
+    return {
+      id: this.generateId(title),
+      title,
+      country: sourceInfo.country,
+      broadcaster: sourceInfo.broadcaster,
+      year,
+      genre: ['Drama'],
+      synopsis: `${title} é uma telenovela da ${sourceInfo.broadcaster}.`,
+      cast: [],
+      episodes: episodes || this.estimateEpisodes(sourceInfo.country),
+      director: '',
+      author,
+      wikipediaUrl: wikipediaUrl || '',
+      imageUrl: '',
+      scraped: new Date().toISOString()
+    };
+  }
+
+  /**
+   * Parse Band table row
+   * Similar structure to Record with numbered entries
+   */
+  parseBandTableRow($, cells, sourceInfo) {
+    const cellsArray = cells.toArray();
+    if (cellsArray.length < 4) return null;
+    
+    let title = '';
+    let year = null;
+    let episodes = null;
+    let author = '';
+    let director = '';
+    let wikipediaUrl = '';
+    
+    // Extract title (look for link or main title column)
+    for (let i = 0; i < Math.min(4, cellsArray.length); i++) {
+      const cell = $(cellsArray[i]);
+      const link = cell.find('a').first();
+      
+      if (link.length > 0 && !title) {
+        title = this.cleanText(link.text());
+        const href = link.attr('href');
+        if (href && href.startsWith('/wiki/')) {
+          const baseUrl = sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org';
+          wikipediaUrl = baseUrl + href;
+        }
+        break;
+      }
+    }
+    
+    // Fallback to text extraction
+    if (!title && cellsArray.length > 1) {
+      title = this.cleanText($(cellsArray[1]).text());
+    }
+    
+    // Extract dates, episodes, and other data
+    cellsArray.forEach((cell, index) => {
+      const cellText = $(cell).text();
+      
+      // Year extraction
+      const yearMatch = cellText.match(/(\d{4})/);
+      if (yearMatch && !year) {
+        year = { start: parseInt(yearMatch[1]), end: null };
+      }
+      
+      // Episodes extraction
+      const episodeMatch = cellText.match(/(\d+)\s*(cap|ep|episódios?|capítulos?)/i);
+      if (episodeMatch) {
+        episodes = parseInt(episodeMatch[1]);
+      }
+    });
+    
+    return {
+      id: this.generateId(title),
+      title,
+      country: sourceInfo.country,
+      broadcaster: sourceInfo.broadcaster,
+      year,
+      genre: ['Drama'],
+      synopsis: `${title} é uma telenovela da ${sourceInfo.broadcaster}.`,
+      cast: [],
+      episodes: episodes || this.estimateEpisodes(sourceInfo.country),
+      director,
+      author,
+      wikipediaUrl: wikipediaUrl || '',
+      imageUrl: '',
+      scraped: new Date().toISOString()
+    };
+  }
+
+  /**
+   * Parse SBT table row
+   * Detailed structure with episodes, timeslot, authorship, direction
+   */
+  parseSbtTableRow($, cells, sourceInfo) {
+    const cellsArray = cells.toArray();
+    if (cellsArray.length < 4) return null;
+    
+    let title = '';
+    let year = null;
+    let episodes = null;
+    let author = '';
+    let director = '';
+    let wikipediaUrl = '';
+    
+    // Title extraction (look for italicized title or link)
+    for (let i = 0; i < Math.min(4, cellsArray.length); i++) {
+      const cell = $(cellsArray[i]);
+      
+      // Look for italicized title first
+      const italicTitle = cell.find('i').first();
+      if (italicTitle.length > 0 && !title) {
+        title = this.cleanText(italicTitle.text());
+      }
+      
+      // Look for linked title
+      const link = cell.find('a').first();
+      if (link.length > 0 && !title) {
+        title = this.cleanText(link.text());
+        const href = link.attr('href');
+        if (href && href.startsWith('/wiki/')) {
+          const baseUrl = sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org';
+          wikipediaUrl = baseUrl + href;
+        }
+      }
+      
+      if (title) break;
+    }
+    
+    // Extract data from all cells
+    cellsArray.forEach((cell, index) => {
+      const cellText = $(cell).text();
+      
+      // Year and date extraction
+      const dateMatch = cellText.match(/(\d{1,2})\s*de\s*\w+\s*de\s*(\d{4})/i);
+      if (dateMatch && !year) {
+        year = { start: parseInt(dateMatch[2]), end: null };
+      } else {
+        const yearMatch = cellText.match(/(\d{4})/);
+        if (yearMatch && !year) {
+          year = { start: parseInt(yearMatch[1]), end: null };
+        }
+      }
+      
+      // Episodes extraction
+      const episodeMatch = cellText.match(/(\d+)\s*(cap|ep|episódios?|capítulos?)/i);
+      if (episodeMatch) {
+        episodes = parseInt(episodeMatch[1]);
+      }
+    });
+    
+    // Author and director from later columns if available
+    if (cellsArray.length > 6) {
+      author = this.cleanText($(cellsArray[6]).text());
+    }
+    if (cellsArray.length > 7) {
+      director = this.cleanText($(cellsArray[7]).text());
+    }
+    
+    return {
+      id: this.generateId(title),
+      title,
+      country: sourceInfo.country,
+      broadcaster: sourceInfo.broadcaster,
+      year,
+      genre: ['Drama'],
+      synopsis: `${title} é uma telenovela do ${sourceInfo.broadcaster}.`,
+      cast: [],
+      episodes: episodes || this.estimateEpisodes(sourceInfo.country),
+      director,
+      author,
+      wikipediaUrl: wikipediaUrl || '',
       imageUrl: '',
       scraped: new Date().toISOString()
     };
@@ -310,7 +764,7 @@ export class NovelParser {
 }
 
 /**
- * Extract additional information from individual novela pages
+ * Extract comprehensive information from individual novela pages
  */
 export async function parseNovelDetailsPage(html) {
   const $ = cheerio.load(html);
@@ -323,49 +777,94 @@ export async function parseNovelDetailsPage(html) {
     author: '',
     episodes: null,
     synopsis: '',
-    imageUrl: ''
+    imageUrl: '',
+    genre: [],
+    productionCompany: '',
+    originalNetwork: '',
+    year: null,
+    country: '',
+    language: ''
   };
   
-  // Extract cast from infobox
-  const castRow = infobox.find('tr').filter((i, el) => {
-    const text = $(el).find('th, td').first().text().toLowerCase();
-    return text.includes('elenco') || text.includes('protagonistas') || text.includes('cast');
-  });
+  // Helper function to find infobox rows
+  const findInfoboxRow = (keywords) => {
+    return infobox.find('tr').filter((i, el) => {
+      const text = $(el).find('th, td').first().text().toLowerCase();
+      return keywords.some(keyword => text.includes(keyword));
+    });
+  };
   
+  // Extract cast from infobox - focus on main cast
+  const castRow = findInfoboxRow(['elenco', 'protagonistas', 'cast', 'starring', 'protagonista']);
   if (castRow.length > 0) {
-    const castText = castRow.find('td').text();
-    details.cast = castText.split(/[,\n]/)
-      .map(name => name.trim())
-      .filter(name => name.length > 0)
-      .slice(0, 10); // Limit to main cast
+    const castCell = castRow.find('td').first();
+    // Try to get only main cast by looking for links or bold text
+    const castLinks = castCell.find('a');
+    if (castLinks.length > 0) {
+      details.cast = castLinks.map((i, el) => $(el).text().trim())
+        .get()
+        .filter(name => name.length > 2)
+        .slice(0, 8); // Limit to main cast
+    } else {
+      // Fallback to text parsing
+      const castText = castCell.text();
+      details.cast = castText.split(/[,\n•]/)
+        .map(name => name.trim())
+        .filter(name => name.length > 2 && !name.includes('['))
+        .slice(0, 8);
+    }
   }
   
   // Extract director
-  const directorRow = infobox.find('tr').filter((i, el) => {
-    const text = $(el).find('th, td').first().text().toLowerCase();
-    return text.includes('direção') || text.includes('director') || text.includes('dirigida');
-  });
-  
+  const directorRow = findInfoboxRow(['direção', 'director', 'dirigida', 'directed']);
   if (directorRow.length > 0) {
-    details.director = directorRow.find('td').text().trim();
+    const directorText = directorRow.find('td').text().trim();
+    details.director = directorText.split(/[,\n]/)[0].trim(); // Get first director
   }
   
   // Extract author/creator
-  const authorRow = infobox.find('tr').filter((i, el) => {
-    const text = $(el).find('th, td').first().text().toLowerCase();
-    return text.includes('autor') || text.includes('criação') || text.includes('roteiro');
-  });
-  
+  const authorRow = findInfoboxRow(['autor', 'criação', 'roteiro', 'created', 'writer', 'screenplay']);
   if (authorRow.length > 0) {
-    details.author = authorRow.find('td').text().trim();
+    const authorText = authorRow.find('td').text().trim();
+    details.author = authorText.split(/[,\n]/)[0].trim(); // Get main author
+  }
+  
+  // Extract production company
+  const productionRow = findInfoboxRow(['produtora', 'production', 'produtor', 'producer']);
+  if (productionRow.length > 0) {
+    details.productionCompany = productionRow.find('td').text().trim().split(/[,\n]/)[0].trim();
+  }
+  
+  // Extract original network
+  const networkRow = findInfoboxRow(['emissora', 'rede', 'network', 'channel', 'broadcaster']);
+  if (networkRow.length > 0) {
+    details.originalNetwork = networkRow.find('td').text().trim().split(/[,\n]/)[0].trim();
+  }
+  
+  // Extract genre(s)
+  const genreRow = findInfoboxRow(['gênero', 'género', 'genre']);
+  if (genreRow.length > 0) {
+    const genreText = genreRow.find('td').text();
+    details.genre = genreText.split(/[,\n•]/)
+      .map(genre => genre.trim())
+      .filter(genre => genre.length > 0 && genre.length < 20)
+      .slice(0, 5); // Limit to 5 genres
+  }
+  
+  // Extract country
+  const countryRow = findInfoboxRow(['país', 'country', 'origin']);
+  if (countryRow.length > 0) {
+    details.country = countryRow.find('td').text().trim().split(/[,\n]/)[0].trim();
+  }
+  
+  // Extract language
+  const languageRow = findInfoboxRow(['idioma', 'language', 'língua']);
+  if (languageRow.length > 0) {
+    details.language = languageRow.find('td').text().trim().split(/[,\n]/)[0].trim();
   }
   
   // Extract episodes count
-  const episodesRow = infobox.find('tr').filter((i, el) => {
-    const text = $(el).find('th, td').first().text().toLowerCase();
-    return text.includes('episódios') || text.includes('capítulos') || text.includes('episodes');
-  });
-  
+  const episodesRow = findInfoboxRow(['episódios', 'capítulos', 'episodes']);
   if (episodesRow.length > 0) {
     const episodesText = episodesRow.find('td').text();
     const match = episodesText.match(/(\d+)/);
@@ -374,22 +873,94 @@ export async function parseNovelDetailsPage(html) {
     }
   }
   
-  // Extract image
-  const image = $('.infobox img, .thumbinner img').first();
-  if (image.length > 0) {
-    const src = image.attr('src');
-    if (src && src.startsWith('//')) {
-      details.imageUrl = 'https:' + src;
-    } else if (src && src.startsWith('/')) {
-      details.imageUrl = 'https://upload.wikimedia.org' + src;
+  // Extract year from air dates
+  const airDateRow = findInfoboxRow(['exibição', 'transmissão', 'aired', 'original run', 'period']);
+  if (airDateRow.length > 0) {
+    const dateText = airDateRow.find('td').text();
+    const yearMatch = dateText.match(/(\d{4})/);
+    if (yearMatch) {
+      const startYear = parseInt(yearMatch[1]);
+      const yearRangeMatch = dateText.match(/(\d{4})\s*[-–—]\s*(\d{4})/);
+      if (yearRangeMatch) {
+        details.year = { 
+          start: parseInt(yearRangeMatch[1]), 
+          end: parseInt(yearRangeMatch[2]) 
+        };
+      } else {
+        details.year = { start: startYear, end: null };
+      }
     }
   }
   
-  // Extract synopsis from first paragraph
-  const firstParagraph = $('#mw-content-text p').first();
-  if (firstParagraph.length > 0) {
-    details.synopsis = firstParagraph.text().trim().substring(0, 500);
+  // Extract image - prioritize high quality images
+  let imageFound = false;
+  
+  // Try infobox image first
+  const infoboxImage = infobox.find('img').first();
+  if (infoboxImage.length > 0) {
+    const src = infoboxImage.attr('src');
+    if (src) {
+      details.imageUrl = normalizeWikipediaImageUrl(src);
+      imageFound = true;
+    }
   }
   
+  // If no infobox image, try thumbnail images
+  if (!imageFound) {
+    const thumbnailImage = $('.thumbinner img, .thumb img').first();
+    if (thumbnailImage.length > 0) {
+      const src = thumbnailImage.attr('src');
+      if (src) {
+        details.imageUrl = normalizeWikipediaImageUrl(src);
+        imageFound = true;
+      }
+    }
+  }
+  
+  // Extract comprehensive synopsis from multiple paragraphs
+  const contentDiv = $('#mw-content-text .mw-parser-output, #mw-content-text');
+  let synopsis = '';
+  
+  // Get first few meaningful paragraphs
+  const paragraphs = contentDiv.find('p').slice(0, 3);
+  paragraphs.each((i, p) => {
+    const text = $(p).text().trim();
+    if (text.length > 50 && !text.includes('Coordinates:') && !text.includes('disambiguation')) {
+      synopsis += text + ' ';
+    }
+  });
+  
+  if (synopsis.length > 100) {
+    details.synopsis = synopsis.trim().substring(0, 800) + (synopsis.length > 800 ? '...' : '');
+  }
+  
+  // Clean up empty arrays and strings
+  Object.keys(details).forEach(key => {
+    if (Array.isArray(details[key]) && details[key].length === 0) {
+      delete details[key];
+    } else if (typeof details[key] === 'string' && details[key].trim() === '') {
+      delete details[key];
+    }
+  });
+  
   return details;
+}
+
+/**
+ * Normalize Wikipedia image URLs to get higher resolution versions
+ */
+function normalizeWikipediaImageUrl(src) {
+  if (!src) return '';
+  
+  if (src.startsWith('//')) {
+    src = 'https:' + src;
+  } else if (src.startsWith('/')) {
+    src = 'https://upload.wikimedia.org' + src;
+  }
+  
+  // Try to get a higher resolution version
+  src = src.replace(/\/thumb\//, '/');
+  src = src.replace(/\/\d+px-[^/]+$/, '');
+  
+  return src;
 }

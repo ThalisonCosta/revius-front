@@ -28,6 +28,19 @@ export const CONFIG = {
   // Rate limiting
   CONCURRENT_REQUESTS: 3,
   
+  // Enhancement settings
+  DEFAULT_MAX_ENHANCE: 100, // Increased from 30
+  ENHANCEMENT_ENABLED: true,
+  
+  // Default images for broadcasters
+  DEFAULT_IMAGES: {
+    'Record': 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Rede_Record_logo.svg/240px-Rede_Record_logo.svg.png',
+    'Globo': 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Rede_Globo_logo.svg/240px-Rede_Globo_logo.svg.png',
+    'Band': 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rede_Bandeirantes_logo.svg/240px-Rede_Bandeirantes_logo.svg.png',
+    'SBT': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/SBT_logo.svg/240px-SBT_logo.svg.png',
+    'default': 'https://via.placeholder.com/300x400/cccccc/666666?text=Novela'
+  },
+  
   // Countries to scrape
   TARGET_COUNTRIES: [
     'Brasil',

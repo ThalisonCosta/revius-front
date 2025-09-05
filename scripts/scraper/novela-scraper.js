@@ -154,12 +154,18 @@ class NovelaScraper {
   /**
    * Enhanced details scraping for specific novelas
    */
-  async enhanceNovelasWithDetails(novelas, maxToEnhance = 50) {
+  async enhanceNovelasWithDetails(novelas, maxToEnhance = CONFIG.DEFAULT_MAX_ENHANCE) {
     console.log(`\n🔍 Enhancing ${Math.min(maxToEnhance, novelas.length)} novelas with detailed information...`);
     
     let enhanced = 0;
     const toEnhance = novelas
       .filter(n => n.wikipediaUrl && n.wikipediaUrl.length > 0)
+      .sort((a, b) => {
+        // Prioritize newer novelas
+        const yearA = a.year ? a.year.start : 1900;
+        const yearB = b.year ? b.year.start : 1900;
+        return yearB - yearA;
+      })
       .slice(0, maxToEnhance);
     
     for (const novela of toEnhance) {
@@ -170,18 +176,29 @@ class NovelaScraper {
         if (html) {
           const details = await parseNovelDetailsPage(html);
           
-          // Merge details with existing novela data
+          // Merge details with existing novela data, preserving existing data where appropriate
           Object.keys(details).forEach(key => {
-            if (details[key] && 
-                (!novela[key] || 
-                 (Array.isArray(novela[key]) && novela[key].length === 0) ||
-                 (typeof novela[key] === 'string' && novela[key].trim() === ''))) {
-              novela[key] = details[key];
+            if (details[key]) {
+              if (!novela[key] || 
+                  (Array.isArray(novela[key]) && novela[key].length === 0) ||
+                  (typeof novela[key] === 'string' && novela[key].trim() === '')) {
+                novela[key] = details[key];
+              } else if (key === 'genre' && Array.isArray(details[key]) && details[key].length > 0) {
+                // Merge genres, keeping unique values
+                const existingGenres = Array.isArray(novela[key]) ? novela[key] : [novela[key]];
+                const newGenres = [...new Set([...existingGenres, ...details[key]])];
+                novela[key] = newGenres.slice(0, 5); // Limit to 5 genres
+              }
             }
           });
           
+          // Add default image if no image found
+          if (!novela.imageUrl || novela.imageUrl.trim() === '') {
+            novela.imageUrl = this.getDefaultImage(novela.broadcaster);
+          }
+          
           enhanced++;
-          console.log(`✨ Enhanced: ${novela.title}`);
+          console.log(`✨ Enhanced: ${novela.title} - Added ${Object.keys(details).length} fields`);
         }
         
         // Respect rate limiting
@@ -190,11 +207,23 @@ class NovelaScraper {
       } catch (error) {
         console.error(`❌ Error enhancing ${novela.title}:`, error.message);
         this.stats.errors++;
+        
+        // Add default image even on error
+        if (!novela.imageUrl || novela.imageUrl.trim() === '') {
+          novela.imageUrl = this.getDefaultImage(novela.broadcaster);
+        }
       }
     }
     
     console.log(`✅ Enhanced ${enhanced} novelas with additional details`);
     return novelas;
+  }
+
+  /**
+   * Get default image for broadcaster
+   */
+  getDefaultImage(broadcaster) {
+    return CONFIG.DEFAULT_IMAGES[broadcaster] || CONFIG.DEFAULT_IMAGES['default'];
   }
 
   /**
@@ -252,7 +281,7 @@ class NovelaScraper {
       
       // Enhance with detailed information (limited to avoid overwhelming)
       if (options.enhanceDetails !== false && allNovelas.length > 0) {
-        await this.enhanceNovelasWithDetails(allNovelas, options.maxToEnhance || 30);
+        await this.enhanceNovelasWithDetails(allNovelas, options.maxToEnhance || CONFIG.DEFAULT_MAX_ENHANCE);
       }
       
       // Merge with existing data if requested
@@ -336,7 +365,7 @@ async function main() {
     countries: [],
     enhanceDetails: true,
     mergeWithExisting: true,
-    maxToEnhance: 30
+    maxToEnhance: CONFIG.DEFAULT_MAX_ENHANCE
   };
   
   // Parse command line arguments
