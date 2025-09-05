@@ -280,8 +280,8 @@ export function useNovelaSearch(initialQuery: string = '') {
     sortBy: 'title' | 'year' | 'episodes' | 'country';
     sortOrder: 'asc' | 'desc';
   }>({
-    sortBy: 'title',
-    sortOrder: 'asc'
+    sortBy: 'year',
+    sortOrder: 'desc'
   });
 
   const { novelas, loading, error, filterOptions, totalResults } = useNovelaData({
@@ -313,8 +313,8 @@ export function useNovelaSearch(initialQuery: string = '') {
       year: undefined,
     });
     setSorting({
-      sortBy: 'title',
-      sortOrder: 'asc'
+      sortBy: 'year',
+      sortOrder: 'desc'
     });
   };
 
