@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "lastUpdated": "2025-01-04T12:00:00.000Z",
+    "totalNovelas": 10,
+    "countries": ["Brasil", "México", "Coreia do Sul", "Colômbia"],
+    "broadcasters": ["Rede Globo", "SBT", "Record", "Televisa", "tvN", "RCN"],
+    "genres": ["Drama", "Romance", "Comédia", "Suspense", "Fantasy", "Infantil", "Histórico"],
+    "statistics": {
+      "totalEpisodes": 1846,
+      "averageEpisodes": 185,
+      "yearRange": "1995-2024",
+      "oldestYear": 1995,
+      "newestYear": 2024
+    },
+    "scrapedAt": "2025-01-04T12:00:00.000Z"
+  },
+  "novelas": [
+    {
+      "id": "terra-e-paixao-1",
+      "title": "Terra e Paixão",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": {"start": 2023, "end": 2024},
+      "genre": ["Drama", "Romance"],
+      "synopsis": "Terra e Paixão é uma telenovela brasileira produzida pela TV Globo. A trama gira em torno de conflitos familiares e amorosos em uma fazenda no interior.",
+      "cast": ["Cauã Reymond", "Bárbara Reis", "Tony Ramos", "Eliane Giardini"],
+      "episodes": 203,
+      "director": "Rogério Gomes",
+      "author": "Walcyr Carrasco",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Terra_e_Paixão",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/pt/thumb/5/52/Terra_e_Paix%C3%A3o_logo.jpg/250px-Terra_e_Paix%C3%A3o_logo.jpg",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "vai-na-fe-2",
+      "title": "Vai na Fé",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": {"start": 2023, "end": 2023},
+      "genre": ["Drama", "Comédia"],
+      "synopsis": "Vai na Fé é uma telenovela brasileira que conta a história de Sol, uma mulher que busca recomeçar a vida após descobrir traições do marido.",
+      "cast": ["Sheron Menezzes", "Samuel de Assis", "Dandara Mariana"],
+      "episodes": 155,
+      "director": "Paulo Silvestrini",
+      "author": "Rosane Svartman",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Vai_na_Fé",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "la-usurpadora-3",
+      "title": "La Usurpadora",
+      "country": "México",
+      "broadcaster": "Televisa",
+      "year": {"start": 1998, "end": 1999},
+      "genre": ["Drama", "Romance"],
+      "synopsis": "La Usurpadora é uma telenovela mexicana que conta a história de Paulina, uma mulher humilde que assume a identidade de sua sósia rica.",
+      "cast": ["Gabriela Spanic", "Fernando Colunga", "Libertad Lamarque"],
+      "episodes": 125,
+      "director": "Beatriz Sheridan",
+      "author": "Inés Rodena",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/La_usurpadora",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "crash-landing-on-you-4",
+      "title": "Crash Landing on You",
+      "country": "Coreia do Sul",
+      "broadcaster": "tvN",
+      "year": {"start": 2019, "end": 2020},
+      "genre": ["Romance", "Comédia", "Drama"],
+      "synopsis": "Uma herdeira sul-coreana faz um pouso forçado na Coreia do Norte durante um voo de parapente e conhece um oficial norte-coreano.",
+      "cast": ["Hyun Bin", "Son Ye-jin", "Seo Ji-hye"],
+      "episodes": 16,
+      "director": "Lee Jeong-hyo",
+      "author": "Park Ji-eun",
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Crash_Landing_on_You",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "betty-la-fea-5",
+      "title": "Betty, la Fea",
+      "country": "Colômbia",
+      "broadcaster": "RCN",
+      "year": {"start": 1999, "end": 2001},
+      "genre": ["Comédia", "Romance"],
+      "synopsis": "A história de Beatriz Pinzón, uma mulher inteligente mas considerada feia, que trabalha em uma empresa de moda e se apaixona pelo seu chefe.",
+      "cast": ["Ana María Orozco", "Jorge Enrique Abello", "Natalia Ramírez"],
+      "episodes": 335,
+      "director": "Mario Ribero Ferreira",
+      "author": "Fernando Gaitán",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Betty,_la_fea",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    }
+  ]
+}
