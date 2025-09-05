@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star, BookOpen, Film, Tv, Gamepad2 } from "lucide-react";
+import { Star, BookOpen, Film, Tv, Drama, Gamepad2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
@@ -11,18 +11,20 @@ interface MediaCardProps {
   year?: number;
   rating?: number;
   genre?: string[];
-  type: "movie" | "tv" | "anime" | "manga" | "game";
+  type: "movie" | "tv" | "novela" | "anime" | "manga" | "game";
   className?: string;
   id?: string;
   synopsis?: string;
   runtime?: number;
   cast?: string[];
   externalUrl?: string;
+  customBadge?: React.ReactNode;
 }
 
 const typeIcons = {
   movie: Film,
   tv: Tv,
+  novela: Drama,
   anime: BookOpen,
   manga: BookOpen,
   game: Gamepad2
@@ -40,7 +42,8 @@ export function MediaCard({
   synopsis,
   runtime,
   cast,
-  externalUrl
+  externalUrl,
+  customBadge
 }: MediaCardProps) {
   const TypeIcon = typeIcons[type] || Film;
   const navigate = useNavigate();
@@ -110,12 +113,18 @@ export function MediaCard({
             {title}
           </h3>
           
-          <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>{year}</span>
-            {genre.length > 0 && (
-              <span className="line-clamp-1">{genre.slice(0, 2).join(", ")}</span>
-            )}
-          </div>
+          {customBadge ? (
+            <div className="mb-2">
+              {customBadge}
+            </div>
+          ) : (
+            <div className="flex items-center justify-between text-xs text-muted-foreground mb-2">
+              <span>{year}</span>
+              {genre.length > 0 && (
+                <span className="line-clamp-1">{genre.slice(0, 2).join(", ")}</span>
+              )}
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>

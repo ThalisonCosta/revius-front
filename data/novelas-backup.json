@@ -1,0 +1,5604 @@
+{
+  "metadata": {
+    "lastUpdated": "2025-09-05T00:28:51.763Z",
+    "totalNovelas": 256,
+    "countries": [
+      "Brasil",
+      "Colômbia",
+      "Coreia do Sul",
+      "México"
+    ],
+    "broadcasters": [
+      "Band",
+      "RCN",
+      "Record",
+      "Rede Globo",
+      "SBT",
+      "Televisa",
+      "tvN"
+    ],
+    "genres": [
+      "Ação",
+      "Comédia",
+      "Drama",
+      "Romance"
+    ],
+    "statistics": {
+      "totalEpisodes": 46014,
+      "averageEpisodes": 180,
+      "yearRange": "1954-2025",
+      "oldestYear": 1954,
+      "newestYear": 2025
+    },
+    "scrapedAt": "2025-09-05T00:28:51.763Z"
+  },
+  "novelas": [
+    {
+      "id": "terra-e-paixao-1",
+      "title": "Terra e Paixão",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": {
+        "start": 2023,
+        "end": 2024
+      },
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "synopsis": "Terra e Paixão é uma telenovela brasileira produzida pela TV Globo. A trama gira em torno de conflitos familiares e amorosos em uma fazenda no interior.",
+      "cast": [
+        "Cauã Reymond",
+        "Bárbara Reis",
+        "Tony Ramos",
+        "Eliane Giardini"
+      ],
+      "episodes": 203,
+      "director": "Rogério Gomes",
+      "author": "Walcyr Carrasco",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Terra_e_Paixão",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/pt/thumb/5/52/Terra_e_Paix%C3%A3o_logo.jpg/250px-Terra_e_Paix%C3%A3o_logo.jpg",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "vai-na-fe-2",
+      "title": "Vai na Fé",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": {
+        "start": 2023,
+        "end": 2023
+      },
+      "genre": [
+        "Drama",
+        "Comédia"
+      ],
+      "synopsis": "Vai na Fé é uma telenovela brasileira que conta a história de Sol, uma mulher que busca recomeçar a vida após descobrir traições do marido.",
+      "cast": [
+        "Sheron Menezzes",
+        "Samuel de Assis",
+        "Dandara Mariana"
+      ],
+      "episodes": 155,
+      "director": "Paulo Silvestrini",
+      "author": "Rosane Svartman",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Vai_na_Fé",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "la-usurpadora-3",
+      "title": "La Usurpadora",
+      "country": "México",
+      "broadcaster": "Televisa",
+      "year": {
+        "start": 1998,
+        "end": 1999
+      },
+      "genre": [
+        "Drama",
+        "Romance"
+      ],
+      "synopsis": "La Usurpadora é uma telenovela mexicana que conta a história de Paulina, uma mulher humilde que assume a identidade de sua sósia rica.",
+      "cast": [
+        "Gabriela Spanic",
+        "Fernando Colunga",
+        "Libertad Lamarque"
+      ],
+      "episodes": 125,
+      "director": "Beatriz Sheridan",
+      "author": "Inés Rodena",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/La_usurpadora",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "crash-landing-on-you-4",
+      "title": "Crash Landing on You",
+      "country": "Coreia do Sul",
+      "broadcaster": "tvN",
+      "year": {
+        "start": 2019,
+        "end": 2020
+      },
+      "genre": [
+        "Romance",
+        "Comédia",
+        "Drama"
+      ],
+      "synopsis": "Uma herdeira sul-coreana faz um pouso forçado na Coreia do Norte durante um voo de parapente e conhece um oficial norte-coreano.",
+      "cast": [
+        "Hyun Bin",
+        "Son Ye-jin",
+        "Seo Ji-hye"
+      ],
+      "episodes": 16,
+      "director": "Lee Jeong-hyo",
+      "author": "Park Ji-eun",
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Crash_Landing_on_You",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "betty-la-fea-5",
+      "title": "Betty, la Fea",
+      "country": "Colômbia",
+      "broadcaster": "RCN",
+      "year": {
+        "start": 1999,
+        "end": 2001
+      },
+      "genre": [
+        "Comédia",
+        "Romance"
+      ],
+      "synopsis": "A história de Beatriz Pinzón, uma mulher inteligente mas considerada feia, que trabalha em uma empresa de moda e se apaixona pelo seu chefe.",
+      "cast": [
+        "Ana María Orozco",
+        "Jorge Enrique Abello",
+        "Natalia Ramírez"
+      ],
+      "episodes": 335,
+      "director": "Mario Ribero Ferreira",
+      "author": "Fernando Gaitán",
+      "wikipediaUrl": "https://es.wikipedia.org/wiki/Betty,_la_fea",
+      "imageUrl": "",
+      "scraped": "2025-01-04T12:00:00.000Z"
+    },
+    {
+      "id": "purge-13",
+      "title": "purge",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "purge é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:37.759Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "sensiveis-ao-uso-de-maiuscula-14",
+      "title": "sensíveis ao uso de maiúscula",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "sensíveis ao uso de maiúscula é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Case-sensitive",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:37.759Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "registro-de-eliminacao-15",
+      "title": "regist(r)o de eliminação",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "regist(r)o de eliminação é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:37.760Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "registro-do-filtro-de-edicoes-16",
+      "title": "regist(r)o do filtro de edições",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "regist(r)o do filtro de edições é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:37.760Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "purge-20",
+      "title": "purge",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "purge é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:40.634Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "sensiveis-ao-uso-de-maiuscula-21",
+      "title": "sensíveis ao uso de maiúscula",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "sensíveis ao uso de maiúscula é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Case-sensitive",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:40.634Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "registro-de-eliminacao-22",
+      "title": "regist(r)o de eliminação",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "regist(r)o de eliminação é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:40.635Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "registro-do-filtro-de-edicoes-23",
+      "title": "regist(r)o do filtro de edições",
+      "country": "Brasil",
+      "broadcaster": "Rede Globo",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "regist(r)o do filtro de edições é uma telenovela de Rede Globo.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:40.635Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "destino-24",
+      "title": "Destino",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Destino é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Destino_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.743Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-forca-do-amor-25",
+      "title": "A Força do Amor",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Força do Amor é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_For%C3%A7a_do_Amor_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.744Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-leoa-26",
+      "title": "A Leoa",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Leoa é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Leoa",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.744Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "conflito-27",
+      "title": "Conflito",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Conflito é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Conflito_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.744Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "sombras-do-passado-28",
+      "title": "Sombras do Passado",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Sombras do Passado é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Sombras_do_Passado",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.744Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "acorrentada-29",
+      "title": "Acorrentada",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Acorrentada é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Acorrentada",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.744Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-ponte-do-amor-30",
+      "title": "A Ponte do Amor",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Ponte do Amor é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Ponte_do_Amor",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.744Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-justica-de-deus-31",
+      "title": "A Justiça de Deus",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Justiça de Deus é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Justi%C3%A7a_de_Deus",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.744Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "pecado-de-amor-32",
+      "title": "Pecado de Amor",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Pecado de Amor é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Pecado_de_Amor",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "razao-de-viver-33",
+      "title": "Razão de Viver",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Razão de Viver é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Raz%C3%A3o_de_Viver",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "o-anjo-maldito-34",
+      "title": "O Anjo Maldito",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Anjo Maldito é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/O_Anjo_Maldito",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "vida-roubada-35",
+      "title": "Vida Roubada",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Vida Roubada é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Vida_Roubada",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "meus-filhos-minha-vida-36",
+      "title": "Meus Filhos, Minha Vida",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1984,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Meus Filhos, Minha Vida é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Meus_Filhos,_Minha_Vida",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "jeronimo-37",
+      "title": "Jerônimo",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1984,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Jerônimo é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Jer%C3%B4nimo_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "jogo-do-amor-38",
+      "title": "Jogo do Amor",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1985,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Jogo do Amor é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Jogo_do_Amor",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "uma-esperanca-no-ar-39",
+      "title": "Uma Esperança no Ar",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1985,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Uma Esperança no Ar é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Uma_Esperan%C3%A7a_no_Ar",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.745Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "cortina-de-vidro-40",
+      "title": "Cortina de Vidro",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1989,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Cortina de Vidro é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Cortina_de_Vidro",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "brasileiras-e-brasileiros-41",
+      "title": "Brasileiras e Brasileiros",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1990,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Brasileiras e Brasileiros é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Brasileiras_e_Brasileiros",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "eramos-seis-42",
+      "title": "Éramos Seis",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1994,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Éramos Seis é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/%C3%89ramos_Seis_(1994)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "as-pupilas-do-senhor-reitor-43",
+      "title": "As Pupilas do Senhor Reitor",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1994,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "As Pupilas do Senhor Reitor é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/As_Pupilas_do_Senhor_Reitor_(1994)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "sangue-do-meu-sangue-44",
+      "title": "Sangue do Meu Sangue",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1995,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Sangue do Meu Sangue é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Sangue_do_Meu_Sangue_(1995)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "colegio-brasil-45",
+      "title": "Colégio Brasil",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1996,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Colégio Brasil é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Col%C3%A9gio_Brasil",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "antonio-alves-taxista-46",
+      "title": "Antônio Alves, Taxista",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1996,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Antônio Alves, Taxista é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ant%C3%B4nio_Alves,_Taxista",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "dona-anja-48",
+      "title": "Dona Anja",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1996,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Dona Anja é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Dona_Anja_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-ossos-do-barao-49",
+      "title": "Os Ossos do Barão",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1997,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Ossos do Barão é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Ossos_do_Bar%C3%A3o_(1997)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.746Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "chiquititas-50",
+      "title": "Chiquititas",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1997,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Chiquititas é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Chiquititas_(1997)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "fascinacao-51",
+      "title": "Fascinação",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1998,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Fascinação é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Fascina%C3%A7%C3%A3o",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "perola-negra-52",
+      "title": "Pérola Negra",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1998,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Pérola Negra é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/P%C3%A9rola_Negra_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "o-direito-de-nascer-53",
+      "title": "O Direito de Nascer",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2001,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Direito de Nascer é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/O_Direito_de_Nascer_(2001)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "picara-sonhadora-54",
+      "title": "Pícara Sonhadora",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2001,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Pícara Sonhadora é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/P%C3%ADcara_Sonhadora",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "amor-e-odio-55",
+      "title": "Amor e Ódio",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2001,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Amor e Ódio é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Amor_e_%C3%93dio",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "marisol-56",
+      "title": "Marisol",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2002,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Marisol é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Marisol_(telenovela_brasileira)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "pequena-travessa-57",
+      "title": "Pequena Travessa",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2002,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Pequena Travessa é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Pequena_Travessa",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "jamais-te-esquecerei-58",
+      "title": "Jamais Te Esquecerei",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2003,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Jamais Te Esquecerei é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Jamais_Te_Esquecerei",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "canavial-de-paixoes-59",
+      "title": "Canavial de Paixões",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2003,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Canavial de Paixões é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Canavial_de_Paix%C3%B5es",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "seus-olhos-60",
+      "title": "Seus Olhos",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2004,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Seus Olhos é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Seus_Olhos",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "esmeralda-61",
+      "title": "Esmeralda",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2004,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Esmeralda é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Esmeralda_(telenovela_brasileira)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-ricos-tambem-choram-62",
+      "title": "Os Ricos Também Choram",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2005,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Ricos Também Choram é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Ricos_Tamb%C3%A9m_Choram",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.747Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "cristal-63",
+      "title": "Cristal",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2006,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Cristal é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Cristal_(2006)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "maria-esperanca-64",
+      "title": "Maria Esperança",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2007,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Maria Esperança é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Maria_Esperan%C3%A7a",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "amigas-rivais-65",
+      "title": "Amigas & Rivais",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2007,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Amigas & Rivais é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Amigas_%26_Rivais",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "revelacao-66",
+      "title": "Revelação",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2008,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Revelação é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Revela%C3%A7%C3%A3o_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "vendese-um-veu-de-noiva-67",
+      "title": "Vende-se um Véu de Noiva",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2009,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Vende-se um Véu de Noiva é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Vende-se_um_V%C3%A9u_de_Noiva",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "uma-rosa-com-amor-68",
+      "title": "Uma Rosa com Amor",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2010,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Uma Rosa com Amor é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Uma_Rosa_com_Amor_(2010)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "amor-e-revolucao-69",
+      "title": "Amor e Revolução",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2011,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Amor e Revolução é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Amor_e_Revolu%C3%A7%C3%A3o",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "coracoes-feridos-70",
+      "title": "Corações Feridos",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2012,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Corações Feridos é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Cora%C3%A7%C3%B5es_Feridos",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "carrossel-71",
+      "title": "Carrossel",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2012,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Carrossel é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Carrossel_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "cumplices-de-um-resgate-73",
+      "title": "Cúmplices de um Resgate",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2015,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Cúmplices de um Resgate é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/C%C3%BAmplices_de_um_Resgate",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "carinha-de-anjo-74",
+      "title": "Carinha de Anjo",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2016,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Carinha de Anjo é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Carinha_de_Anjo",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "as-aventuras-de-poliana-75",
+      "title": "As Aventuras de Poliana",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2018,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "As Aventuras de Poliana é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/As_Aventuras_de_Poliana",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.748Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "poliana-moca-76",
+      "title": "Poliana Moça",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2022,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Poliana Moça é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Poliana_Mo%C3%A7a",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.749Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-infancia-de-romeu-e-julieta-77",
+      "title": "A Infância de Romeu e Julieta",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2023,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Infância de Romeu e Julieta é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Inf%C3%A2ncia_de_Romeu_e_Julieta",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.749Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-caverna-encantada-78",
+      "title": "A Caverna Encantada",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2024,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Caverna Encantada é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Caverna_Encantada",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.749Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "solar-paraiso-79",
+      "title": "Solar Paraíso",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 1978,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Solar Paraíso é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Solar_Para%C3%ADso",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.749Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "sbt-80",
+      "title": "+SBT.",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "+SBT. é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/%2BSBT",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.751Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "ir-para-a-84",
+      "title": "Ir para: a",
+      "country": "Brasil",
+      "broadcaster": "SBT",
+      "year": {
+        "start": 2011,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Ir para: a é uma telenovela de SBT.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:43.759Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "2-de-novembro-de-1954-125",
+      "title": "2 de novembro de 1954",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1954,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "2 de novembro de 1954 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1956-126",
+      "title": "1956",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1956,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1956 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1957-127",
+      "title": "1957",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1957,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1957 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "my-darling-128",
+      "title": "My Darling",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "My Darling é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-mansao-dos-daltons-129",
+      "title": "A Mansão dos Daltons",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Mansão dos Daltons é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "desce-o-pano-130",
+      "title": "Desce o Pano",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Desce o Pano é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "o-solar-das-almas-perdidas-131",
+      "title": "O Solar das Almas Perdidas",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Solar das Almas Perdidas é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1958-132",
+      "title": "1958",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1958,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1958 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "3-de-fevereiro-de-1958-133",
+      "title": "3 de fevereiro de 1958",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1958,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "3 de fevereiro de 1958 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "29-de-abril-de-1958-134",
+      "title": "29 de abril de 1958",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1958,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "29 de abril de 1958 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "cela-da-morte-136",
+      "title": "Cela da Morte",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Cela da Morte é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "apenas-uma-ilusao-137",
+      "title": "Apenas uma Ilusão",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Apenas uma Ilusão é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "anos-de-tormenta-138",
+      "title": "Anos de Tormenta",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Anos de Tormenta é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "anos-de-ternura-139",
+      "title": "Anos de Ternura",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Anos de Ternura é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1959-140",
+      "title": "1959",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1959,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1959 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "lili-141",
+      "title": "Lili",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Lili é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "eu-fui-toxicomano-142",
+      "title": "Eu Fui Toxicômano",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Eu Fui Toxicômano é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "8-de-janeiro-de-1959-143",
+      "title": "8 de janeiro de 1959",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1959,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "8 de janeiro de 1959 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.762Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1960-144",
+      "title": "1960",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1960,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1960 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "viagem-a-lua-145",
+      "title": "Viagem à Lua",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Viagem à Lua é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-mascara-e-o-rosto-146",
+      "title": "A Máscara e o Rosto",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Máscara e o Rosto é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "o-homem-que-eu-comprei-147",
+      "title": "O Homem que Eu Comprei",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Homem que Eu Comprei é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "imitacao-da-vida-148",
+      "title": "Imitação da Vida",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Imitação da Vida é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1961-149",
+      "title": "1961",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1961,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1961 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-senhora-da-casa-grande-150",
+      "title": "A Senhora da Casa Grande",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Senhora da Casa Grande é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1962-151",
+      "title": "1962",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1962,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1962 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1963-152",
+      "title": "1963",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1963,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1963 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "29-de-julho-de-1963-154",
+      "title": "29 de julho de 1963",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1963,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "29 de julho de 1963 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "3-de-fevereiro-de-1964-155",
+      "title": "3 de fevereiro de 1964",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1964,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "3 de fevereiro de 1964 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "13-de-abril-de-1964-156",
+      "title": "13 de abril de 1964",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1964,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "13 de abril de 1964 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "4-de-julho-de-1964-157",
+      "title": "4 de julho de 1964",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1964,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "4 de julho de 1964 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.771Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "6-de-julho-de-1964-158",
+      "title": "6 de julho de 1964",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1964,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "6 de julho de 1964 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1-de-agosto-de-1964-159",
+      "title": "1 de agosto de 1964",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1964,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1 de agosto de 1964 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "21-de-setembro-de-1964-160",
+      "title": "21 de setembro de 1964",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1964,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "21 de setembro de 1964 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "7-de-dezembro-de-1964-161",
+      "title": "7 de dezembro de 1964",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1964,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "7 de dezembro de 1964 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "11-de-janeiro-de-1965-163",
+      "title": "11 de janeiro de 1965",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1965,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "11 de janeiro de 1965 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "15-de-fevereiro-de-1965-164",
+      "title": "15 de fevereiro de 1965",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1965,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "15 de fevereiro de 1965 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "8-de-marco-de-1965-165",
+      "title": "8 de março de 1965",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1965,
+        "end": null
+      },
+      "genre": [
+        "Comédia"
+      ],
+      "synopsis": "8 de março de 1965 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "28-de-junho-de-1965-166",
+      "title": "28 de junho de 1965",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1965,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "28 de junho de 1965 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "5-de-julho-de-1965-167",
+      "title": "5 de julho de 1965",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1965,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "5 de julho de 1965 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.772Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "20-de-setembro-de-1965-168",
+      "title": "20 de setembro de 1965",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1965,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "20 de setembro de 1965 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "6-de-dezembro-de-1965-169",
+      "title": "6 de dezembro de 1965",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1965,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "6 de dezembro de 1965 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1-de-agosto-de-1968-170",
+      "title": "1 de agosto de 1968",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1968,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1 de agosto de 1968 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "7-de-outubro-de-1968-172",
+      "title": "7 de outubro de 1968",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1968,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "7 de outubro de 1968 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "3-de-marco-de-1969-173",
+      "title": "3 de março de 1969",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1969,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "3 de março de 1969 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "6-de-outubro-de-1969-175",
+      "title": "6 de outubro de 1969",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1969,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "6 de outubro de 1969 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "20-de-marco-de-1970-176",
+      "title": "20 de março de 1970",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1970,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "20 de março de 1970 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "30-de-novembro-de-1970-177",
+      "title": "30 de novembro de 1970",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1970,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "30 de novembro de 1970 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "8-de-marco-de-1971-178",
+      "title": "8 de março de 1971",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1971,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "8 de março de 1971 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "7-de-abril-de-1971-179",
+      "title": "7 de abril de 1971",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1971,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "7 de abril de 1971 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "9-de-agosto-de-1971-180",
+      "title": "9 de agosto de 1971",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1971,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "9 de agosto de 1971 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "15-de-dezembro-de-1971-181",
+      "title": "15 de dezembro de 1971",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1971,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "15 de dezembro de 1971 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.773Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "4-de-janeiro-de-1972-183",
+      "title": "4 de janeiro de 1972",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1972,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "4 de janeiro de 1972 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "7-de-marco-de-1972-184",
+      "title": "7 de março de 1972",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1972,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "7 de março de 1972 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "2-de-maio-de-1972-185",
+      "title": "2 de maio de 1972",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1972,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "2 de maio de 1972 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "4-de-setembro-de-1972-186",
+      "title": "4 de setembro de 1972",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1972,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "4 de setembro de 1972 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "1-de-setembro-de-1972-187",
+      "title": "1 de setembro de 1972",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1972,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "1 de setembro de 1972 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "13-de-novembro-de-1972-188",
+      "title": "13 de novembro de 1972",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1972,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "13 de novembro de 1972 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "12-de-marco-de-1973-189",
+      "title": "12 de março de 1973",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1973,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "12 de março de 1973 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "2-de-abril-de-1973-190",
+      "title": "2 de abril de 1973",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1973,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "2 de abril de 1973 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "30-de-julho-de-1973-191",
+      "title": "30 de julho de 1973",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1973,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "30 de julho de 1973 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "10-de-dezembro-de-1973-192",
+      "title": "10 de dezembro de 1973",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1973,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "10 de dezembro de 1973 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "25-de-janeiro-de-1977-193",
+      "title": "25 de janeiro de 1977",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1977,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "25 de janeiro de 1977 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "15-de-setembro-de-1997-194",
+      "title": "15 de setembro de 1997",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1997,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "15 de setembro de 1997 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "4-de-maio-de-1998-195",
+      "title": "4 de maio de 1998",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1998,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "4 de maio de 1998 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "30-de-marco-de-1999-196",
+      "title": "30 de março de 1999",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1999,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "30 de março de 1999 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "13-de-setembro-de-1999-197",
+      "title": "13 de setembro de 1999",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1999,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "13 de setembro de 1999 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "8-de-maio-de-2000-198",
+      "title": "8 de maio de 2000",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2000,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "8 de maio de 2000 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "20-de-novembro-de-2000-199",
+      "title": "20 de novembro de 2000",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2000,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "20 de novembro de 2000 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "17-de-abril-de-2001-200",
+      "title": "17 de abril de 2001",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2001,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "17 de abril de 2001 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "14-de-marco-de-2004-201",
+      "title": "14 de março de 2004",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2004,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "14 de março de 2004 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.774Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-escrava-isaura-202",
+      "title": "A Escrava Isaura",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2004,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Escrava Isaura é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Escrava_Isaura_(telenovela_de_2004)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "essas-mulheres-203",
+      "title": "Essas Mulheres",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2005,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Essas Mulheres é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Essas_Mulheres",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "prova-de-amor-204",
+      "title": "Prova de Amor",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2005,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Prova de Amor é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Prova_de_Amor_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "cidadao-brasileiro-205",
+      "title": "Cidadão Brasileiro",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2006,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Cidadão Brasileiro é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Cidad%C3%A3o_Brasileiro",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "bicho-do-mato-206",
+      "title": "Bicho do Mato",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2006,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Bicho do Mato é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Bicho_do_Mato_(2006)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "alta-estacao-207",
+      "title": "Alta Estação",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2006,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Alta Estação é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Alta_Esta%C3%A7%C3%A3o",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "vidas-opostas-208",
+      "title": "Vidas Opostas",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2006,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Vidas Opostas é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Vidas_Opostas",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "luz-do-sol-209",
+      "title": "Luz do Sol",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2007,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Luz do Sol é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Luz_do_Sol",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "caminhos-do-coracao-210",
+      "title": "Caminhos do Coração",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2007,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Caminhos do Coração é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Caminhos_do_Cora%C3%A7%C3%A3o",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "amor-e-intrigas-211",
+      "title": "Amor e Intrigas",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2007,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Amor e Intrigas é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Amor_e_Intrigas",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-mutantes-caminhos-do-coracao-212",
+      "title": "Os Mutantes: Caminhos do Coração",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2008,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Mutantes: Caminhos do Coração é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Mutantes:_Caminhos_do_Cora%C3%A7%C3%A3o",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "chamas-da-vida-213",
+      "title": "Chamas da Vida",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2008,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Chamas da Vida é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Chamas_da_Vida",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "mutantes-promessas-de-amor-214",
+      "title": "Mutantes: Promessas de Amor",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2009,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Mutantes: Promessas de Amor é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Promessas_de_Amor",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.775Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "poder-paralelo-215",
+      "title": "Poder Paralelo",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2009,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Poder Paralelo é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Poder_Paralelo",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "bela-a-feia-216",
+      "title": "Bela, a Feia",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2009,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Bela, a Feia é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Bela,_a_Feia",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "ribeirao-do-tempo-217",
+      "title": "Ribeirão do Tempo",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2010,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Ribeirão do Tempo é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ribeir%C3%A3o_do_Tempo",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "rebelde-218",
+      "title": "Rebelde",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2011,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Rebelde é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Rebelde_(telenovela_brasileira)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "vidas-em-jogo-219",
+      "title": "Vidas em Jogo",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2011,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Vidas em Jogo é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Vidas_em_Jogo_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "mascaras-220",
+      "title": "Máscaras",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2012,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Máscaras é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/M%C3%A1scaras_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "balacobaco-221",
+      "title": "Balacobaco",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2012,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Balacobaco é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Balacobaco_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "dona-xepa-222",
+      "title": "Dona Xepa",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2013,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Dona Xepa é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Dona_Xepa_(2013)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "pecado-mortal-223",
+      "title": "Pecado Mortal",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2013,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Pecado Mortal é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Pecado_Mortal_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "vitoria-224",
+      "title": "Vitória",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2014,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Vitória é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Vit%C3%B3ria_(2014)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-dez-mandamentos-225",
+      "title": "Os Dez Mandamentos",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2015,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Dez Mandamentos é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Dez_Mandamentos_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "escrava-mae-226",
+      "title": "Escrava Mãe",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2016,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Escrava Mãe é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Escrava_M%C3%A3e",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-terra-prometida-227",
+      "title": "A Terra Prometida",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2016,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Terra Prometida é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Terra_Prometida",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "o-rico-e-lazaro-228",
+      "title": "O Rico e Lázaro",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2017,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Rico e Lázaro é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/O_Rico_e_L%C3%A1zaro",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "belaventura-229",
+      "title": "Belaventura",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2017,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Belaventura é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Belaventura",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "apocalipse-230",
+      "title": "Apocalipse",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2017,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Apocalipse é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Apocalipse_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "jesus-231",
+      "title": "Jesus",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2018,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Jesus é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Jesus_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "jezabel-232",
+      "title": "Jezabel",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2019,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Jezabel é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Jezabel_(macross%C3%A9rie)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "topissima-233",
+      "title": "Topíssima",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2019,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Topíssima é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Top%C3%ADssima",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.776Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "amor-sem-igual-234",
+      "title": "Amor sem Igual",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2019,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Amor sem Igual é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Amor_sem_Igual",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "genesis-235",
+      "title": "Gênesis",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2021,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Gênesis é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/G%C3%AAnesis_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "reis-236",
+      "title": "Reis",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2022,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Reis é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Reis_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "paulo-o-apostolo-237",
+      "title": "Paulo, o Apóstolo",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2025,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Paulo, o Apóstolo é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Paulo,_o_Ap%C3%B3stolo_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "29-de-marco-de-1994-238",
+      "title": "29 de março de 1994",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 1994,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "29 de março de 1994 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "05-de-junho-de-2000-239",
+      "title": "05 de junho de 2000",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2000,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "05 de junho de 2000 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "2-de-abril-de-2001-240",
+      "title": "2 de abril de 2001",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2001,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "2 de abril de 2001 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "15-de-julho-de-2002-241",
+      "title": "15 de julho de 2002",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2002,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "15 de julho de 2002 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "10-de-marco-de-2003-242",
+      "title": "10 de março de 2003",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2003,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "10 de março de 2003 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "28-de-maio-de-2007-243",
+      "title": "28 de maio de 2007",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2007,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "28 de maio de 2007 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "25-de-agosto-de-2021-244",
+      "title": "25 de agosto de 2021",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2021,
+        "end": null
+      },
+      "genre": [
+        "Ação"
+      ],
+      "synopsis": "25 de agosto de 2021 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "17-de-janeiro-de-2024-245",
+      "title": "17 de janeiro de 2024",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2024,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "17 de janeiro de 2024 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "29-de-julho-de-2024-246",
+      "title": "29 de julho de 2024",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2024,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "29 de julho de 2024 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.777Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "21-de-abril-de-2020-247",
+      "title": "21 de abril de 2020",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2020,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "21 de abril de 2020 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.778Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "22-de-setembro-de-2020-248",
+      "title": "22 de setembro de 2020",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2020,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "22 de setembro de 2020 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.778Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "23-de-novembro-de-2021-249",
+      "title": "23 de novembro de 2021",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2021,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "23 de novembro de 2021 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.778Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "12-de-setembro-de-2023-250",
+      "title": "12 de setembro de 2023",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": {
+        "start": 2023,
+        "end": null
+      },
+      "genre": [
+        "Ação"
+      ],
+      "synopsis": "12 de setembro de 2023 é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.778Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "ir-para-a-251",
+      "title": "Ir para: a",
+      "country": "Brasil",
+      "broadcaster": "Record",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Ir para: a é uma telenovela de Record.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:46.781Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-miseraveis-256",
+      "title": "Os Miseráveis",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1967,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Miseráveis é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Miser%C3%A1veis_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-moca-do-sobrado-grande-257",
+      "title": "A Moça do Sobrado Grande",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1967,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Moça do Sobrado Grande é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Mo%C3%A7a_do_Sobrado_Grande",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "ricardinho-sou-crianca-quero-viver-258",
+      "title": "Ricardinho: Sou Criança, Quero Viver",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1968,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Ricardinho: Sou Criança, Quero Viver é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ricardinho:_Sou_Crian%C3%A7a,_Quero_Viver",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "nunca-e-tarde-demais-259",
+      "title": "Nunca É Tarde Demais",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1968,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Nunca É Tarde Demais é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Nunca_%C3%89_Tarde_Demais",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "era-preciso-voltar-260",
+      "title": "Era Preciso Voltar",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1969,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Era Preciso Voltar é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Era_Preciso_Voltar",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "o-bolha-261",
+      "title": "O Bolha",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1969,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Bolha é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/O_Bolha",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "cara-a-cara-262",
+      "title": "Cara a Cara",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1979,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Cara a Cara é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Cara_a_Cara_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "o-todo-poderoso-263",
+      "title": "O Todo Poderoso",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1979,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Todo Poderoso é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/O_Todo_Poderoso",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "pe-de-vento-264",
+      "title": "Pé de Vento",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1980,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Pé de Vento é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/P%C3%A9_de_Vento",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "a-deusa-vencida-265",
+      "title": "A Deusa Vencida",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1980,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Deusa Vencida é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Deusa_Vencida_(1980)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.731Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "cavalo-amarelo-266",
+      "title": "Cavalo Amarelo",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1980,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Cavalo Amarelo é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Cavalo_Amarelo",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "um-homem-muito-especial-267",
+      "title": "Um Homem Muito Especial",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1980,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Um Homem Muito Especial é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Um_Homem_Muito_Especial",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "meu-pe-de-laranja-lima-268",
+      "title": "Meu Pé de Laranja Lima",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1980,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Meu Pé de Laranja Lima é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Meu_P%C3%A9_de_Laranja_Lima_(1980)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "dulcinea-vai-a-guerra-269",
+      "title": "Dulcinéa Vai à Guerra",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1980,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Dulcinéa Vai à Guerra é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Dulcin%C3%A9a_Vai_%C3%A0_Guerra",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "rosa-baiana-270",
+      "title": "Rosa Baiana",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1981,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Rosa Baiana é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Rosa_Baiana",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-imigrantes-271",
+      "title": "Os Imigrantes",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1981,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Imigrantes é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Imigrantes",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-adolescentes-272",
+      "title": "Os Adolescentes",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1981,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Adolescentes é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Adolescentes",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "ninho-da-serpente-273",
+      "title": "Ninho da Serpente",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Ninho da Serpente é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ninho_da_Serpente",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.762Z"
+    },
+    {
+      "id": "os-imigrantes-terceira-geracao-274",
+      "title": "Os Imigrantes: Terceira Geração",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Os Imigrantes: Terceira Geração é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Os_Imigrantes:_Terceira_Gera%C3%A7%C3%A3o",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "a-filha-do-silencio-275",
+      "title": "A Filha do Silêncio",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Filha do Silêncio é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Filha_do_Sil%C3%AAncio",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "renuncia-276",
+      "title": "Renúncia",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Renúncia é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ren%C3%BAncia_(1982)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "campeao-277",
+      "title": "Campeão",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1982,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Campeão é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Campe%C3%A3o_(1983)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "sabor-de-mel-278",
+      "title": "Sabor de Mel",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Sabor de Mel é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Sabor_de_Mel",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "maca-do-amor-279",
+      "title": "Maçã do Amor",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Maçã do Amor é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ma%C3%A7%C3%A3_do_Amor",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "braco-de-ferro-280",
+      "title": "Braço de Ferro",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1983,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Braço de Ferro é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Bra%C3%A7o_de_Ferro_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "a-idade-da-loba-281",
+      "title": "A Idade da Loba",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1995,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "A Idade da Loba é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/A_Idade_da_Loba",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.732Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "o-campeao-282",
+      "title": "O Campeão",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1996,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Campeão é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/O_Campe%C3%A3o_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "perdidos-de-amor-283",
+      "title": "Perdidos de Amor",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1996,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Perdidos de Amor é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Perdidos_de_Amor",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "serras-azuis-284",
+      "title": "Serras Azuis",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1998,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Serras Azuis é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Serras_Azuis",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "floribella-286",
+      "title": "Floribella",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2005,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Floribella é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Floribella_(telenovela_brasileira)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "paixoes-proibidas-287",
+      "title": "Paixões Proibidas",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2006,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Paixões Proibidas é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Paix%C3%B5es_Proibidas",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "dance-dance-dance-288",
+      "title": "Dance Dance Dance",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2007,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Dance Dance Dance é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Dance_Dance_Dance",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "agua-na-boca-289",
+      "title": "Água na Boca",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2008,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Água na Boca é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/%C3%81gua_na_Boca",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "beleza-fatal-290",
+      "title": "Beleza Fatal",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2025,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Beleza Fatal é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Beleza_Fatal",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "romaria-291",
+      "title": "Romaria",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Romaria é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Romaria_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "o-ouro-da-china-292",
+      "title": "O Ouro da China",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "O Ouro da China é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.733Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "desencontros-294",
+      "title": "Desencontros",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1990,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Desencontros é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "abigail-295",
+      "title": "Abigail",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1998,
+        "end": 1989
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Abigail é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "maria-celeste-296",
+      "title": "Maria Celeste",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1997,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Maria Celeste é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "traicao-297",
+      "title": "Traição",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1996,
+        "end": 1997
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Traição é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "caminhos-do-amor-298",
+      "title": "Caminhos do Amor",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1998,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Caminhos do Amor é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "sombras-do-passado-299",
+      "title": "Sombras do Passado",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1999,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Sombras do Passado é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "belas-e-intrepidas-300",
+      "title": "Belas e Intrépidas",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1999,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Belas e Intrépidas é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "historia-de-amor-em-toquio-301",
+      "title": "História de amor em Tóquio",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 1991,
+        "end": 1993
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "História de amor em Tóquio é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "olhos-dagua-302",
+      "title": "Olhos d'Água",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2004,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Olhos d'Água é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "morangos-com-acucar-303",
+      "title": "Morangos com Açúcar",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2003,
+        "end": 2004
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Morangos com Açúcar é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Morangos_com_A%C3%A7%C3%BAcar",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.734Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "mantenha-a-cara-seria-304",
+      "title": "Mantenha a cara séria",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2008,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Mantenha a cara séria é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.744Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "isa-tkm-305",
+      "title": "Isa TKM",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2008,
+        "end": 2009
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Isa TKM é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Isa_TKM",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.744Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "quase-anjos-306",
+      "title": "Quase Anjos",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2007,
+        "end": 2008
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Quase Anjos é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.744Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "isa-tk-307",
+      "title": "Isa TK+",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2009,
+        "end": 2010
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Isa TK+ é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Isa_TK%2B",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.744Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "violetta-308",
+      "title": "Violetta",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2013,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Violetta é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Violetta",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "rosario-309",
+      "title": "Rosário",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2014,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Rosário é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "mil-e-uma-noites-310",
+      "title": "Mil e Uma Noites",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2006,
+        "end": 2009
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Mil e Uma Noites é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "fatmagul-a-forca-do-amor-311",
+      "title": "Fatmagül: A Força do Amor",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2010,
+        "end": 2012
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Fatmagül: A Força do Amor é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "sila-prisioneira-do-amor-312",
+      "title": "Sila: Prisioneira do Amor",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2006,
+        "end": 2008
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Sila: Prisioneira do Amor é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "ezel-313",
+      "title": "Ezel",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2009,
+        "end": 2011
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Ezel é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ezel",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "amor-proibido-314",
+      "title": "Amor Proibido",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2008,
+        "end": 2010
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Amor Proibido é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "senhor-dos-ceus-315",
+      "title": "Senhor dos Céus",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2018,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Senhor dos Céus é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "asas-do-amor-316",
+      "title": "Asas do Amor",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2016,
+        "end": 2017
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Asas do Amor é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "minha-vida-317",
+      "title": "Minha Vida",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2014,
+        "end": 2017
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Minha Vida é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "ouro-verde-318",
+      "title": "Ouro Verde",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2019,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Ouro Verde é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Ouro_Verde_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "nazare-319",
+      "title": "Nazaré",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2019,
+        "end": 2021
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Nazaré é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Nazar%C3%A9_(telenovela)",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "valor-da-vida-320",
+      "title": "Valor da Vida",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2018,
+        "end": 2019
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Valor da Vida é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Valor_da_Vida",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "cafe-com-aroma-de-mulher-321",
+      "title": "Café com Aroma de Mulher",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": {
+        "start": 2025,
+        "end": null
+      },
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Café com Aroma de Mulher é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.745Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "telenovela-brasileira-323",
+      "title": "Telenovela brasileira",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Telenovela brasileira é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Telenovela_brasileira",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.752Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    },
+    {
+      "id": "teledramaturgia-no-brasil-324",
+      "title": "Teledramaturgia no Brasil",
+      "country": "Brasil",
+      "broadcaster": "Band",
+      "year": null,
+      "genre": [
+        "Drama"
+      ],
+      "synopsis": "Teledramaturgia no Brasil é uma telenovela de Band.",
+      "cast": [],
+      "episodes": 180,
+      "director": "",
+      "author": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Teledramaturgia_no_Brasil",
+      "imageUrl": "",
+      "scraped": "2025-09-05T00:28:49.752Z",
+      "createdAt": "2025-09-05T00:28:51.763Z"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import Movies from "./pages/Movies";
 import TVShows from "./pages/TVShows";
+import Novelas from "./pages/Novelas";
 import Anime from "./pages/Anime";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -34,6 +35,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/movies" element={<Movies />} />
             <Route path="/tv-shows" element={<TVShows />} />
+            <Route path="/novelas" element={<Novelas />} />
             <Route path="/anime" element={<Anime />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

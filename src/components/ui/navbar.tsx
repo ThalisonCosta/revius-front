@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Search, Home, Film, Tv, BookOpen, Menu, X, User, Settings, LogOut } from "lucide-react";
+import { Search, Home, Film, Tv, Drama, BookOpen, Menu, X, User, Settings, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUserProfile } from "@/hooks/useUserProfile";
@@ -80,6 +80,20 @@ export function Navbar() {
             <Link to="/tv-shows">
               <Tv className="h-4 w-4 mr-2" />
               TV Shows
+            </Link>
+          </Button>
+          <Button 
+            variant={isActive("/novelas") ? "secondary" : "ghost"} 
+            size="sm" 
+            className={cn(
+              "text-muted-foreground hover:text-primary transition-smooth",
+              isActive("/novelas") && "text-primary"
+            )}
+            asChild
+          >
+            <Link to="/novelas">
+              <Drama className="h-4 w-4 mr-2" />
+              Novelas
             </Link>
           </Button>
           <Button 
@@ -194,6 +208,12 @@ export function Navbar() {
               <Link to="/tv-shows">
                 <Tv className="h-4 w-4 mr-2" />
                 TV Shows
+              </Link>
+            </Button>
+            <Button variant="ghost" className="w-full justify-start" asChild>
+              <Link to="/novelas">
+                <Drama className="h-4 w-4 mr-2" />
+                Novelas
               </Link>
             </Button>
             <Button variant="ghost" className="w-full justify-start" asChild>
