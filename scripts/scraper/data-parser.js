@@ -892,29 +892,89 @@ export async function parseNovelDetailsPage(html) {
     }
   }
   
-  // Extract image - prioritize high quality images
+  // Extract image - prioritize high quality images with comprehensive search
   let imageFound = false;
+  let bestImage = null;
+  const candidateImages = [];
   
-  // Try infobox image first
-  const infoboxImage = infobox.find('img').first();
-  if (infoboxImage.length > 0) {
-    const src = infoboxImage.attr('src');
-    if (src) {
-      details.imageUrl = normalizeWikipediaImageUrl(src);
-      imageFound = true;
+  // Strategy 1: Try infobox image first (highest priority)
+  const infoboxImages = infobox.find('img');
+  infoboxImages.each((i, img) => {
+    const src = $(img).attr('src');
+    if (src && isValidImage(src)) {
+      candidateImages.push({ src, priority: 1, source: 'infobox' });
     }
-  }
+  });
   
-  // If no infobox image, try thumbnail images
-  if (!imageFound) {
-    const thumbnailImage = $('.thumbinner img, .thumb img').first();
-    if (thumbnailImage.length > 0) {
-      const src = thumbnailImage.attr('src');
-      if (src) {
-        details.imageUrl = normalizeWikipediaImageUrl(src);
-        imageFound = true;
+  // Strategy 2: Try thumbnail images (medium priority) 
+  const thumbnailImages = $('.thumbinner img, .thumb img, .thumbimage');
+  thumbnailImages.each((i, img) => {
+    const src = $(img).attr('src');
+    if (src && isValidImage(src)) {
+      candidateImages.push({ src, priority: 2, source: 'thumbnail' });
+    }
+  });
+  
+  // Strategy 3: Search all img tags in content area (lower priority)
+  const allImages = $('#mw-content-text img, .mw-parser-output img');
+  allImages.each((i, img) => {
+    const src = $(img).attr('src');
+    if (src && isValidImage(src)) {
+      // Skip if already found in higher priority searches
+      const alreadyFound = candidateImages.some(candidate => candidate.src === src);
+      if (!alreadyFound) {
+        candidateImages.push({ src, priority: 3, source: 'content' });
       }
     }
+  });
+  
+  // Select best image based on priority and quality
+  if (candidateImages.length > 0) {
+    // Sort by priority first, then by image quality indicators
+    candidateImages.sort((a, b) => {
+      if (a.priority !== b.priority) return a.priority - b.priority;
+      
+      // Prefer larger images (less likely to be thumbnails)
+      const aHasSize = /\d+px/i.test(a.src);
+      const bHasSize = /\d+px/i.test(b.src);
+      if (aHasSize !== bHasSize) return aHasSize ? 1 : -1;
+      
+      // Prefer common image formats for posters/logos
+      const aIsLogo = /logo|poster|banner/i.test(a.src);
+      const bIsLogo = /logo|poster|banner/i.test(b.src);
+      if (aIsLogo !== bIsLogo) return bIsLogo ? 1 : -1;
+      
+      return 0;
+    });
+    
+    bestImage = candidateImages[0];
+    details.imageUrl = normalizeWikipediaImageUrl(bestImage.src);
+    imageFound = true;
+  }
+  
+  // Helper function to validate image URLs
+  function isValidImage(src) {
+    if (!src || typeof src !== 'string') return false;
+    
+    // Must be from Wikipedia/Wikimedia first
+    if (!/upload\.wikimedia\.org/i.test(src) && !/wikipedia/i.test(src)) return false;
+    
+    // Only allow image formats
+    if (!/\.(jpg|jpeg|png|gif|webp|svg)(\?|$|\/)/i.test(src)) return false;
+    
+    // Skip very small images and UI elements
+    if (/\b\d+px\b/.test(src)) {
+      const sizeMatch = src.match(/\b(\d+)px\b/);
+      if (sizeMatch && parseInt(sizeMatch[1]) < 50) return false;
+    }
+    
+    // Skip specific UI and navigation elements
+    if (/\b(edit|external|arrow|icon|bullet|flag|star|OOjs_UI|Symbol_category)\b/i.test(src)) return false;
+    
+    // Skip static UI images
+    if (/\/static\/images\//.test(src)) return false;
+    
+    return true;
   }
   
   // Extract comprehensive synopsis from multiple paragraphs
@@ -952,15 +1012,26 @@ export async function parseNovelDetailsPage(html) {
 function normalizeWikipediaImageUrl(src) {
   if (!src) return '';
   
+  // Handle protocol-relative URLs
   if (src.startsWith('//')) {
     src = 'https:' + src;
   } else if (src.startsWith('/')) {
     src = 'https://upload.wikimedia.org' + src;
   }
   
-  // Try to get a higher resolution version
-  src = src.replace(/\/thumb\//, '/');
-  src = src.replace(/\/\d+px-[^/]+$/, '');
+  // For very small thumbnails, try to get a larger version but keep the thumbnail URL structure
+  // This is safer than trying to get the original which might not exist
+  if (src.includes('/thumb/') && /\/\d+px-/.test(src)) {
+    // Only increase size for very small images (under 100px), otherwise keep original
+    const sizeMatch = src.match(/\/(\d+)px-/);
+    if (sizeMatch && parseInt(sizeMatch[1]) < 100) {
+      // Try to get a 400px version instead
+      src = src.replace(/\/\d+px-/, '/400px-');
+    }
+  }
+  
+  // Ensure we're using HTTPS
+  src = src.replace(/^http:/, 'https:');
   
   return src;
 }
