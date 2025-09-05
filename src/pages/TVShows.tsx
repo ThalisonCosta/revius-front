@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/ui/navbar";
 import { MediaCard } from "@/components/MediaCard";
+import { BlurredMediaCard } from "@/components/BlurredMediaCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, TrendingUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useContentFilter } from "@/hooks/useContentFilter";
 
 interface TVShow {
   id: number;
@@ -30,6 +32,7 @@ export default function TVShows() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(0);
   const { toast } = useToast();
+  const { isAdultContent, shouldBlurContent, shouldHideContent } = useContentFilter();
   
   // Debounce search query for 3 seconds
   const debouncedSearchQuery = useDebounce(searchQuery, 3000);
@@ -226,20 +229,44 @@ export default function TVShows() {
 
         {/* Shows Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {shows.map((show) => (
-            <MediaCard
-              key={show.id}
-              id={show.id.toString()}
-              title={show.name}
-              poster={show.image?.medium}
-              year={getYear(show.premiered)}
-              rating={show.rating?.average}
-              genre={show.genres}
-              type="tv"
-              synopsis={show.summary?.replace(/<[^>]*>/g, '')}
-              externalUrl={`https://www.tvmaze.com/shows/${show.id}`}
-            />
-          ))}
+          {shows
+            .filter((show) => !shouldHideContent(show))
+            .map((show) => {
+              const isAdult = isAdultContent(show);
+              const shouldBlur = shouldBlurContent(show);
+              
+              if (isAdult && shouldBlur) {
+                return (
+                  <BlurredMediaCard
+                    key={show.id}
+                    title={show.name}
+                    poster={show.image?.medium}
+                    year={getYear(show.premiered)}
+                    rating={show.rating?.average}
+                    genre={show.genres}
+                    type="tv"
+                    synopsis={show.summary?.replace(/<[^>]*>/g, '')}
+                    isAdult={true}
+                    isBlurred={true}
+                  />
+                );
+              }
+              
+              return (
+                <MediaCard
+                  key={show.id}
+                  id={show.id.toString()}
+                  title={show.name}
+                  poster={show.image?.medium}
+                  year={getYear(show.premiered)}
+                  rating={show.rating?.average}
+                  genre={show.genres}
+                  type="tv"
+                  synopsis={show.summary?.replace(/<[^>]*>/g, '')}
+                  externalUrl={`https://www.tvmaze.com/shows/${show.id}`}
+                />
+              );
+            })}
         </div>
 
         {/* Loading state */}

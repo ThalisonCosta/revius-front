@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/ui/navbar";
 import { MediaCard } from "@/components/MediaCard";
+import { BlurredMediaCard } from "@/components/BlurredMediaCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Search, Filter, TrendingUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useContentFilter } from "@/hooks/useContentFilter";
 
 interface JikanItem {
   mal_id: number;
@@ -35,6 +37,7 @@ export default function Anime() {
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState("anime");
   const { toast } = useToast();
+  const { isAdultContent, shouldBlurContent, shouldHideContent } = useContentFilter();
   
   // Debounce search query for 3 seconds
   const debouncedSearchQuery = useDebounce(searchQuery, 3000);
@@ -71,7 +74,7 @@ export default function Anime() {
         if (url.includes('recommendations')) {
           // Process recommendations API response
           if (data.data && Array.isArray(data.data)) {
-            processedData = data.data.flatMap((rec: any) => {
+            const allEntries = data.data.flatMap((rec: any) => {
               const entries = rec.entry || [];
               return entries.map((entry: any) => ({
                 mal_id: entry.mal_id,
@@ -84,11 +87,31 @@ export default function Anime() {
                 type: entry.type || (type === "anime" ? "TV" : "Manga"),
                 synopsis: entry.synopsis || `Recommended ${type} title.`
               }));
-            }).slice(0, 24); // Limit to 24 items
+            });
+            
+            // Remove duplicates based on mal_id
+            const seenIds = new Set();
+            processedData = allEntries.filter((item: JikanItem) => {
+              if (seenIds.has(item.mal_id)) {
+                return false;
+              }
+              seenIds.add(item.mal_id);
+              return true;
+            }).slice(0, 24); // Limit to 24 items after deduplication
           }
         } else {
           // Process regular API response
-          processedData = data.data || [];
+          const rawData = data.data || [];
+          
+          // Remove duplicates based on mal_id as a safeguard
+          const seenIds = new Set();
+          processedData = rawData.filter((item: JikanItem) => {
+            if (seenIds.has(item.mal_id)) {
+              return false;
+            }
+            seenIds.add(item.mal_id);
+            return true;
+          });
         }
         
         // Sort by score/popularity (highest first)
@@ -101,13 +124,23 @@ export default function Anime() {
       
       if (type === "anime") {
         if (loadMore) {
-          setAnimeList(prev => [...prev, ...processedData]);
+          setAnimeList(prev => {
+            // Prevent duplicate entries when loading more
+            const existingIds = new Set(prev.map(item => item.mal_id));
+            const newItems = processedData.filter((item: JikanItem) => !existingIds.has(item.mal_id));
+            return [...prev, ...newItems];
+          });
         } else {
           setAnimeList(processedData);
         }
       } else {
         if (loadMore) {
-          setMangaList(prev => [...prev, ...processedData]);
+          setMangaList(prev => {
+            // Prevent duplicate entries when loading more
+            const existingIds = new Set(prev.map(item => item.mal_id));
+            const newItems = processedData.filter((item: JikanItem) => !existingIds.has(item.mal_id));
+            return [...prev, ...newItems];
+          });
         } else {
           setMangaList(processedData);
         }
@@ -285,20 +318,44 @@ export default function Anime() {
 
             {/* Content Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-              {currentList.map((item) => (
-                <MediaCard
-                  key={item.mal_id}
-                  id={item.mal_id.toString()}
-                  title={item.title}
-                  poster={item.images.jpg.image_url}
-                  year={item.year}
-                  rating={item.score}
-                  genre={item.genres.map(g => g.name)}
-                  type={activeTab as "anime" | "manga"}
-                  synopsis={item.synopsis}
-                  externalUrl={`https://myanimelist.net/${activeTab}/${item.mal_id}`}
-                />
-              ))}
+              {currentList
+                .filter((item) => !shouldHideContent(item))
+                .map((item) => {
+                  const isAdult = isAdultContent(item);
+                  const shouldBlur = shouldBlurContent(item);
+                  
+                  if (isAdult && shouldBlur) {
+                    return (
+                      <BlurredMediaCard
+                        key={item.mal_id}
+                        title={item.title}
+                        poster={item.images.jpg.image_url}
+                        year={item.year}
+                        rating={item.score}
+                        genre={item.genres.map(g => g.name)}
+                        type={activeTab as "anime" | "manga"}
+                        synopsis={item.synopsis}
+                        isAdult={true}
+                        isBlurred={true}
+                      />
+                    );
+                  }
+                  
+                  return (
+                    <MediaCard
+                      key={item.mal_id}
+                      id={item.mal_id.toString()}
+                      title={item.title}
+                      poster={item.images.jpg.image_url}
+                      year={item.year}
+                      rating={item.score}
+                      genre={item.genres.map(g => g.name)}
+                      type={activeTab as "anime" | "manga"}
+                      synopsis={item.synopsis}
+                      externalUrl={`https://myanimelist.net/${activeTab}/${item.mal_id}`}
+                    />
+                  );
+                })}
             </div>
 
             {/* Loading state */}

@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/ui/navbar";
 import { MediaCard } from "@/components/MediaCard";
+import { BlurredMediaCard } from "@/components/BlurredMediaCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, Filter, TrendingUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useContentFilter } from "@/hooks/useContentFilter";
 
 interface Movie {
   imdbID: string;
@@ -30,6 +32,7 @@ export default function Movies() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const { toast } = useToast();
+  const { isAdultContent, shouldBlurContent, shouldHideContent } = useContentFilter();
   
   // Debounce search query for 3 seconds
   const debouncedSearchQuery = useDebounce(searchQuery, 3000);
@@ -229,22 +232,48 @@ export default function Movies() {
 
         {/* Movies Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {movies.map((movie) => (
-            <MediaCard
-              key={movie.imdbID}
-              id={movie.imdbID}
-              title={movie.Title}
-              poster={movie.Poster}
-              year={parseInt(movie.Year)}
-              rating={movie.imdbRating ? parseFloat(movie.imdbRating) : undefined}
-              genre={movie.Genre?.split(", ")}
-              type="movie"
-              synopsis={movie.Plot}
-              runtime={movie.Runtime ? parseInt(movie.Runtime) : undefined}
-              cast={movie.Actors?.split(", ")}
-              externalUrl={`https://www.imdb.com/title/${movie.imdbID}/`}
-            />
-          ))}
+          {movies
+            .filter((movie) => !shouldHideContent(movie))
+            .map((movie) => {
+              const isAdult = isAdultContent(movie);
+              const shouldBlur = shouldBlurContent(movie);
+              
+              if (isAdult && shouldBlur) {
+                return (
+                  <BlurredMediaCard
+                    key={movie.imdbID}
+                    title={movie.Title}
+                    poster={movie.Poster}
+                    year={parseInt(movie.Year)}
+                    rating={movie.imdbRating ? parseFloat(movie.imdbRating) : undefined}
+                    genre={movie.Genre?.split(", ")}
+                    type="movie"
+                    synopsis={movie.Plot}
+                    runtime={movie.Runtime ? parseInt(movie.Runtime) : undefined}
+                    cast={movie.Actors?.split(", ")}
+                    isAdult={true}
+                    isBlurred={true}
+                  />
+                );
+              }
+              
+              return (
+                <MediaCard
+                  key={movie.imdbID}
+                  id={movie.imdbID}
+                  title={movie.Title}
+                  poster={movie.Poster}
+                  year={parseInt(movie.Year)}
+                  rating={movie.imdbRating ? parseFloat(movie.imdbRating) : undefined}
+                  genre={movie.Genre?.split(", ")}
+                  type="movie"
+                  synopsis={movie.Plot}
+                  runtime={movie.Runtime ? parseInt(movie.Runtime) : undefined}
+                  cast={movie.Actors?.split(", ")}
+                  externalUrl={`https://www.imdb.com/title/${movie.imdbID}/`}
+                />
+              );
+            })}
         </div>
 
         {/* Loading state */}

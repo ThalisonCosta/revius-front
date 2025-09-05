@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Navbar } from "@/components/ui/navbar";
 import { MediaCard } from "@/components/MediaCard";
+import { BlurredMediaCard } from "@/components/BlurredMediaCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,10 +9,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Search, Filter, TrendingUp, Globe, Tv, Calendar, BarChart } from "lucide-react";
 import { useNovelaSearch } from "@/hooks/useNovelaData";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useContentFilter } from "@/hooks/useContentFilter";
 
 export default function Novelas() {
   const [searchInput, setSearchInput] = useState("");
   const debouncedSearch = useDebounce(searchInput, 500);
+  const { isAdultContent, shouldBlurContent, shouldHideContent } = useContentFilter();
 
   const {
     novelas,
@@ -253,19 +256,13 @@ export default function Novelas() {
 
         {/* Novelas Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-          {novelas.map((novela) => (
-            <MediaCard
-              key={novela.id}
-              id={novela.id}
-              title={novela.title}
-              poster={novela.imageUrl}
-              year={getYear(novela)}
-              rating={undefined} // Novelas don't have ratings in our data
-              genre={novela.genre}
-              type="novela"
-              synopsis={novela.synopsis}
-              externalUrl={novela.wikipediaUrl}
-              customBadge={
+          {novelas
+            .filter((novela) => !shouldHideContent(novela))
+            .map((novela) => {
+              const isAdult = isAdultContent(novela);
+              const shouldBlur = shouldBlurContent(novela);
+              
+              const customBadge = (
                 <div className="space-y-1">
                   <Badge variant="outline" className="text-xs">
                     {novela.country}
@@ -281,9 +278,41 @@ export default function Novelas() {
                     </Badge>
                   )}
                 </div>
+              );
+              
+              if (isAdult && shouldBlur) {
+                return (
+                  <BlurredMediaCard
+                    key={novela.id}
+                    title={novela.title}
+                    poster={novela.imageUrl}
+                    year={getYear(novela)}
+                    rating={undefined} // Novelas don't have ratings in our data
+                    genre={novela.genre}
+                    type="novela"
+                    synopsis={novela.synopsis}
+                    isAdult={true}
+                    isBlurred={true}
+                  />
+                );
               }
-            />
-          ))}
+              
+              return (
+                <MediaCard
+                  key={novela.id}
+                  id={novela.id}
+                  title={novela.title}
+                  poster={novela.imageUrl}
+                  year={getYear(novela)}
+                  rating={undefined} // Novelas don't have ratings in our data
+                  genre={novela.genre}
+                  type="novela"
+                  synopsis={novela.synopsis}
+                  externalUrl={novela.wikipediaUrl}
+                  customBadge={customBadge}
+                />
+              );
+            })}
         </div>
 
         {/* Empty State */}
