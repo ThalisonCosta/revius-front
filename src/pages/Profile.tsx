@@ -307,12 +307,6 @@ const Profile = () => {
             <Card className="border-border shadow-card">
               <CardHeader className="text-center">
                 <div className="relative inline-block">
-                  <Avatar className="h-24 w-24">
-                    <AvatarImage src={(profile as any)?.avatar_url} alt={profile.username} />
-                    <AvatarFallback className="text-lg">
-                      {profile.username?.charAt(0)?.toUpperCase() || 'U'}
-                    </AvatarFallback>
-                  </Avatar>
                   <ProfilePictureUpload 
                     currentPictureUrl={(profile as any)?.avatar_url}
                     username={profile.username}
