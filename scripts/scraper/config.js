@@ -8,15 +8,23 @@ export const CONFIG = {
   OUTPUT_FILE: 'novelas.json',
   BACKUP_FILE: 'novelas-backup.json',
   
-  // Scraping settings
-  DELAY_BETWEEN_REQUESTS: 2000, // 2 seconds
-  MAX_RETRIES: 3,
-  TIMEOUT: 30000, // 30 seconds
+  // Enhanced scraping settings
+  DELAY_BETWEEN_REQUESTS: 3000, // 3 seconds (increased for better reliability)
+  MAX_RETRIES: 5, // More retries for better success rate
+  TIMEOUT: 45000, // 45 seconds (increased for complex pages)
+  ENHANCEMENT_TIMEOUT: 60000, // 1 minute for detail enhancement pages
   
-  // Browser settings for Playwright
+  // Enhanced browser settings for Playwright
   BROWSER_OPTIONS: {
     headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: [
+      '--no-sandbox', 
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-web-security',
+      '--disable-features=VizDisplayCompositor',
+      '--disable-blink-features=AutomationControlled'
+    ]
   },
   
   // Data validation
@@ -25,12 +33,15 @@ export const CONFIG = {
   // Logging
   LOG_LEVEL: 'info', // 'error', 'warn', 'info', 'debug'
   
-  // Rate limiting
-  CONCURRENT_REQUESTS: 3,
+  // Enhanced rate limiting
+  CONCURRENT_REQUESTS: 2, // Reduced for better stability
+  ADAPTIVE_DELAY: true, // Enable adaptive delays based on response times
   
-  // Enhancement settings
-  DEFAULT_MAX_ENHANCE: 100, // Increased from 30
+  // Enhanced enhancement settings
+  DEFAULT_MAX_ENHANCE: 150, // Increased further for more complete data
   ENHANCEMENT_ENABLED: true,
+  PRIORITY_ENHANCEMENT: true, // Prioritize newer and more popular novelas
+  IMAGE_ENHANCEMENT_PRIORITY: 'high', // Focus on getting images
   
   // Default images for broadcasters
   DEFAULT_IMAGES: {

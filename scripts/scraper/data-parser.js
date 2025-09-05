@@ -257,7 +257,7 @@ export class NovelParser {
       broadcaster: sourceInfo.broadcaster,
       year,
       genre: genres.length > 0 ? genres : ['Drama'],
-      synopsis: synopsis || `${title} é uma ${sourceInfo.country === 'Brasil' ? 'telenovela' : 'série'} de ${sourceInfo.broadcaster}.`,
+      synopsis: synopsis && synopsis.length > 50 ? synopsis : `${title} é uma ${sourceInfo.country === 'Brasil' ? 'telenovela' : 'série'} de ${sourceInfo.broadcaster}.`,
       cast: cast,
       episodes: episodes || this.estimateEpisodes(sourceInfo.country),
       director,
@@ -311,77 +311,131 @@ export class NovelParser {
   }
 
   /**
-   * Parse Record TV table row
+   * Parse Record TV table row with enhanced extraction
    * Columns: #, Start Date, End Date, Title, Episodes, Timeslot, Authorship, Direction
    */
   parseRecordTableRow($, cells, sourceInfo) {
     const cellsArray = cells.toArray();
     if (cellsArray.length < 4) return null;
     
-    // Typically: column 3 is title, columns 1-2 are dates
     let title = '';
     let year = null;
     let episodes = null;
     let author = '';
     let director = '';
     let wikipediaUrl = '';
+    let genres = ['Drama'];
     
-    // Extract title (usually column 3 or first column with a link)
-    for (let i = 0; i < Math.min(4, cellsArray.length); i++) {
+    // Enhanced title extraction with better column detection
+    for (let i = 0; i < Math.min(6, cellsArray.length); i++) {
       const cell = $(cellsArray[i]);
+      const cellText = cell.text().trim();
+      
+      // Skip cells with only numbers or dates
+      if (/^\d+$/.test(cellText) || /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(cellText)) continue;
+      
       const link = cell.find('a').first();
       
       if (link.length > 0 && !title) {
-        title = this.cleanText(link.text());
-        const href = link.attr('href');
-        if (href && href.startsWith('/wiki/')) {
-          const baseUrl = sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org';
-          wikipediaUrl = baseUrl + href;
+        const linkText = this.cleanText(link.text());
+        if (linkText.length > 2 && !linkText.toLowerCase().includes('record')) {
+          title = linkText;
+          const href = link.attr('href');
+          if (href && href.startsWith('/wiki/')) {
+            const baseUrl = sourceInfo.language === 'en' ? 'https://en.wikipedia.org' : 'https://pt.wikipedia.org';
+            wikipediaUrl = baseUrl + href;
+          }
+          break;
         }
-        break;
+      }
+      
+      // Fallback: look for italicized text (common for titles)
+      if (!title) {
+        const italicText = cell.find('i').text().trim();
+        if (italicText.length > 3 && !italicText.toLowerCase().includes('record')) {
+          title = this.cleanText(italicText);
+        }
       }
     }
     
-    // If no link found, try to extract title from a text cell
-    if (!title && cellsArray.length > 3) {
-      title = this.cleanText($(cellsArray[3]).text());
+    // Enhanced fallback title extraction
+    if (!title) {
+      for (let i = 2; i < Math.min(5, cellsArray.length); i++) {
+        const cellText = this.cleanText($(cellsArray[i]).text());
+        if (cellText.length > 3 && !/^\d+$/.test(cellText) && !cellText.toLowerCase().includes('record')) {
+          title = cellText;
+          break;
+        }
+      }
     }
     
-    // Extract dates and year
-    cellsArray.forEach((cell, index) => {
+    // Enhanced data extraction with better pattern recognition
+    cellsArray.forEach((cell) => {
       const cellText = $(cell).text();
       
-      // Look for dates and extract year
-      const dateMatch = cellText.match(/(\d{1,2})\s*de\s*\w+\s*de\s*(\d{4})/i);
-      if (dateMatch && !year) {
-        const yearNum = parseInt(dateMatch[2]);
-        year = { start: yearNum, end: null };
-      }
+      // Enhanced date extraction
+      const datePatterns = [
+        /(\d{1,2})\s*de\s*(\w+)\s*de\s*(\d{4})/i,
+        /(\d{1,2})\/(\d{1,2})\/(\d{4})/,
+        /(\d{4})-(\d{1,2})-(\d{1,2})/,
+        /\b(\d{4})\b/
+      ];
       
-      // Look for year only
-      if (!year) {
-        const yearMatch = cellText.match(/(\d{4})/);
-        if (yearMatch) {
-          year = { start: parseInt(yearMatch[1]), end: null };
+      for (const pattern of datePatterns) {
+        const match = cellText.match(pattern);
+        if (match && !year) {
+          const yearNum = parseInt(match[match.length - 1]); // Last capture group is usually year
+          if (yearNum >= 1950 && yearNum <= new Date().getFullYear() + 5) {
+            year = { start: yearNum, end: null };
+            break;
+          }
         }
       }
       
-      // Look for episodes
-      const episodeMatch = cellText.match(/(\d+)\s*(cap|ep|episódios?|capítulos?)/i);
-      if (episodeMatch) {
-        episodes = parseInt(episodeMatch[1]);
+      // Enhanced episode extraction
+      const episodePatterns = [
+        /(\d+)\s*(capítulos?|cap\.?)/i,
+        /(\d+)\s*(episódios?|ep\.?)/i,
+        /\b(\d{2,4})\s*eps?\b/i
+      ];
+      
+      for (const pattern of episodePatterns) {
+        const match = cellText.match(pattern);
+        if (match && !episodes) {
+          const epCount = parseInt(match[1]);
+          if (epCount > 0 && epCount < 2000) {
+            episodes = epCount;
+            break;
+          }
+        }
       }
+      
+      // Extract genres from cell text
+      const genreKeywords = ['drama', 'comédia', 'romance', 'suspense', 'ação', 'musical', 'histórico', 'infantil', 'aventura'];
+      genreKeywords.forEach(genre => {
+        if (cellText.toLowerCase().includes(genre) && !genres.some(g => g.toLowerCase() === genre)) {
+          genres.push(this.capitalizeFirst(genre));
+        }
+      });
     });
     
-    // Extract authorship (usually later columns)
+    // Enhanced authorship and direction extraction
     if (cellsArray.length > 6) {
-      author = this.cleanText($(cellsArray[6]).text());
+      const authorText = this.cleanText($(cellsArray[6]).text());
+      if (authorText && !authorText.match(/^\d+$/) && authorText.length > 2) {
+        author = authorText.split(',')[0].trim(); // Get first author if multiple
+      }
     }
     
-    // Extract direction
     if (cellsArray.length > 7) {
-      director = this.cleanText($(cellsArray[7]).text());
+      const directorText = this.cleanText($(cellsArray[7]).text());
+      if (directorText && !directorText.match(/^\d+$/) && directorText.length > 2) {
+        director = directorText.split(',')[0].trim(); // Get first director if multiple
+      }
     }
+    
+    // Clean up genres array
+    genres = [...new Set(genres)].slice(0, 3);
     
     return {
       id: this.generateId(title),
@@ -389,7 +443,7 @@ export class NovelParser {
       country: sourceInfo.country,
       broadcaster: sourceInfo.broadcaster,
       year,
-      genre: ['Drama'],
+      genre: genres,
       synopsis: `${title} é uma telenovela da ${sourceInfo.broadcaster}.`,
       cast: [],
       episodes: episodes || this.estimateEpisodes(sourceInfo.country),
@@ -740,26 +794,165 @@ export class NovelParser {
   }
 
   /**
-   * Remove duplicate novelas based on title similarity
+   * Remove duplicate novelas with comprehensive deduplication
    */
   deduplicate(novelas) {
     const unique = [];
-    const seen = new Set();
+    const seenTitles = new Set();
+    const seenUrls = new Set();
+    const titleToNovela = new Map();
     
     for (const novela of novelas) {
-      const normalizedTitle = novela.title.toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-z0-9\s]/g, '')
-        .replace(/\s+/g, '');
+      const normalizedTitle = this.normalizeForComparison(novela.title);
+      const cleanUrl = novela.wikipediaUrl ? novela.wikipediaUrl.split('#')[0].toLowerCase() : '';
       
-      if (!seen.has(normalizedTitle)) {
-        seen.add(normalizedTitle);
+      let isDuplicate = false;
+      let existingNovela = null;
+      
+      // Check for URL duplication first (most reliable)
+      if (cleanUrl && seenUrls.has(cleanUrl)) {
+        isDuplicate = true;
+        // Find the existing novela with this URL
+        existingNovela = unique.find(n => {
+          const existingUrl = n.wikipediaUrl ? n.wikipediaUrl.split('#')[0].toLowerCase() : '';
+          return existingUrl === cleanUrl;
+        });
+      }
+      // Check for title similarity if no URL match
+      else if (seenTitles.has(normalizedTitle)) {
+        isDuplicate = true;
+        existingNovela = titleToNovela.get(normalizedTitle);
+      }
+      // Check for fuzzy title matching for close variations
+      else {
+        for (const existingTitle of seenTitles) {
+          if (this.titlesAreSimilar(normalizedTitle, existingTitle)) {
+            isDuplicate = true;
+            existingNovela = titleToNovela.get(existingTitle);
+            break;
+          }
+        }
+      }
+      
+      if (isDuplicate && existingNovela) {
+        // Merge data from duplicate into existing novela
+        this.mergeNovelasData(existingNovela, novela);
+        console.log(`🔄 Merged duplicate: ${novela.title}`);
+      } else {
+        // Add as new novela
+        seenTitles.add(normalizedTitle);
+        if (cleanUrl) seenUrls.add(cleanUrl);
+        titleToNovela.set(normalizedTitle, novela);
         unique.push(novela);
       }
     }
     
+    console.log(`📊 Deduplication: ${novelas.length} → ${unique.length} (removed ${novelas.length - unique.length} duplicates)`);
     return unique;
+  }
+  
+  /**
+   * Normalize text for comparison
+   */
+  normalizeForComparison(text) {
+    return text.toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '') // Remove accents
+      .replace(/[^a-z0-9\s]/g, '') // Remove special chars
+      .replace(/\s+/g, '') // Remove spaces
+      .trim();
+  }
+  
+  /**
+   * Check if two titles are similar using fuzzy matching
+   */
+  titlesAreSimilar(title1, title2) {
+    if (title1 === title2) return true;
+    
+    // Calculate Levenshtein distance for similarity
+    const distance = this.levenshteinDistance(title1, title2);
+    const maxLength = Math.max(title1.length, title2.length);
+    const similarity = 1 - (distance / maxLength);
+    
+    // Consider similar if 85% or more similar
+    return similarity >= 0.85;
+  }
+  
+  /**
+   * Calculate Levenshtein distance between two strings
+   */
+  levenshteinDistance(str1, str2) {
+    const matrix = [];
+    const len1 = str1.length;
+    const len2 = str2.length;
+    
+    for (let i = 0; i <= len2; i++) {
+      matrix[i] = [i];
+    }
+    
+    for (let j = 0; j <= len1; j++) {
+      matrix[0][j] = j;
+    }
+    
+    for (let i = 1; i <= len2; i++) {
+      for (let j = 1; j <= len1; j++) {
+        if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1, // substitution
+            matrix[i][j - 1] + 1,     // insertion
+            matrix[i - 1][j] + 1      // deletion
+          );
+        }
+      }
+    }
+    
+    return matrix[len2][len1];
+  }
+  
+  /**
+   * Merge data from duplicate novela into existing one
+   */
+  mergeNovelasData(existing, duplicate) {
+    // Merge fields that might be better in the duplicate
+    const fieldsToMerge = ['synopsis', 'cast', 'director', 'author', 'episodes', 'imageUrl', 'genre'];
+    
+    fieldsToMerge.forEach(field => {
+      if (this.isFieldBetter(existing[field], duplicate[field])) {
+        existing[field] = duplicate[field];
+      }
+    });
+    
+    // Merge genres
+    if (duplicate.genre && Array.isArray(duplicate.genre)) {
+      const existingGenres = existing.genre || [];
+      existing.genre = [...new Set([...existingGenres, ...duplicate.genre])].slice(0, 5);
+    }
+    
+    // Update scraped date
+    existing.updatedAt = new Date().toISOString();
+  }
+  
+  /**
+   * Determine if a field value is better than existing
+   */
+  isFieldBetter(existingValue, newValue) {
+    if (!newValue) return false;
+    if (!existingValue) return true;
+    
+    if (typeof existingValue === 'string' && typeof newValue === 'string') {
+      // Prefer longer, more descriptive text
+      if (newValue.length > existingValue.length * 1.5) return true;
+      // Prefer non-generic text
+      if (existingValue.includes('é uma telenovela') && !newValue.includes('é uma telenovela')) return true;
+    }
+    
+    if (Array.isArray(existingValue) && Array.isArray(newValue)) {
+      return newValue.length > existingValue.length;
+    }
+    
+    return false;
   }
 }
 
@@ -892,106 +1085,345 @@ export async function parseNovelDetailsPage(html) {
     }
   }
   
-  // Extract image - prioritize high quality images with comprehensive search
+  // Extract image - comprehensive search with multiple strategies
   let imageFound = false;
   let bestImage = null;
   const candidateImages = [];
   
-  // Strategy 1: Try infobox image first (highest priority)
-  const infoboxImages = infobox.find('img');
-  infoboxImages.each((i, img) => {
-    const src = $(img).attr('src');
-    if (src && isValidImage(src)) {
-      candidateImages.push({ src, priority: 1, source: 'infobox' });
-    }
-  });
-  
-  // Strategy 2: Try thumbnail images (medium priority) 
-  const thumbnailImages = $('.thumbinner img, .thumb img, .thumbimage');
-  thumbnailImages.each((i, img) => {
-    const src = $(img).attr('src');
-    if (src && isValidImage(src)) {
-      candidateImages.push({ src, priority: 2, source: 'thumbnail' });
-    }
-  });
-  
-  // Strategy 3: Search all img tags in content area (lower priority)
-  const allImages = $('#mw-content-text img, .mw-parser-output img');
-  allImages.each((i, img) => {
-    const src = $(img).attr('src');
-    if (src && isValidImage(src)) {
-      // Skip if already found in higher priority searches
-      const alreadyFound = candidateImages.some(candidate => candidate.src === src);
-      if (!alreadyFound) {
-        candidateImages.push({ src, priority: 3, source: 'content' });
+  // Strategy 1: Specific XPath for novela images (highest priority)
+  // Convert XPath //*[@id="mw-content-text"]/div[1]/table[2]/tbody/tr[2]/td/span/a/img to CSS selector
+  try {
+    // Try multiple variations of the infobox image location
+    const xpathSelectors = [
+      '#mw-content-text > div:first-child table:nth-of-type(1) tr:nth-child(2) td span a img',
+      '#mw-content-text .mw-parser-output table:nth-of-type(1) tr:nth-child(2) td span a img',
+      '#mw-content-text table.infobox tr:nth-child(2) td span a img',
+      '#mw-content-text .infobox tr:nth-child(2) td span a img'
+    ];
+    
+    for (const selector of xpathSelectors) {
+      const specificImagePath = $(selector);
+      if (specificImagePath.length > 0) {
+        const src = specificImagePath.attr('src');
+        if (src && isValidImage(src)) {
+          candidateImages.push({ src, priority: 0, source: 'specific-xpath', selector });
+          console.log(`✅ Found image using XPath selector: ${selector}`);
+          break; // Found image with highest priority selector
+        }
       }
     }
-  });
+  } catch (error) {
+    console.log('⚠️ Specific XPath image search failed, continuing with fallbacks:', error.message);
+  }
   
-  // Select best image based on priority and quality
-  if (candidateImages.length > 0) {
-    // Sort by priority first, then by image quality indicators
-    candidateImages.sort((a, b) => {
-      if (a.priority !== b.priority) return a.priority - b.priority;
-      
-      // Prefer larger images (less likely to be thumbnails)
-      const aHasSize = /\d+px/i.test(a.src);
-      const bHasSize = /\d+px/i.test(b.src);
-      if (aHasSize !== bHasSize) return aHasSize ? 1 : -1;
-      
-      // Prefer common image formats for posters/logos
-      const aIsLogo = /logo|poster|banner/i.test(a.src);
-      const bIsLogo = /logo|poster|banner/i.test(b.src);
-      if (aIsLogo !== bIsLogo) return bIsLogo ? 1 : -1;
-      
-      return 0;
+  // Strategy 2: Enhanced infobox image search (high priority)
+  const infoboxSelectors = [
+    '.infobox img',
+    'table.infobox img', 
+    '.infobox_v2 img',
+    '[class*="infobox"] img',
+    'table[class*="infobox"] img'
+  ];
+  
+  for (const selector of infoboxSelectors) {
+    const infoboxImages = $(selector);
+    infoboxImages.each((i, img) => {
+      const src = $(img).attr('src');
+      const alt = $(img).attr('alt') || '';
+      if (src && isValidImage(src)) {
+        // Prioritize images that are likely to be the main poster
+        let priority = 1;
+        if (alt.toLowerCase().includes('poster') || alt.toLowerCase().includes('capa')) {
+          priority = 0.5; // Higher priority for poster images
+        }
+        candidateImages.push({ src, priority, source: 'infobox', selector, alt });
+        console.log(`📸 Found infobox image: ${selector} (alt: ${alt})`);
+      }
     });
+    
+    // If we found images with this selector, log it
+    if (infoboxImages.length > 0) {
+      console.log(`🔍 Searched infobox with selector: ${selector} - found ${infoboxImages.length} images`);
+    }
+  }
+  
+  // Strategy 3: Enhanced table image search focusing on content tables
+  const tableSelectors = [
+    'table.wikitable img',
+    'table[class*="infobox"] img',
+    'table img[alt*="poster" i]',
+    'table img[alt*="capa" i]',
+    'table img[alt*="logo" i]',
+    '#mw-content-text table img',
+    '.mw-parser-output table img'
+  ];
+  
+  for (const selector of tableSelectors) {
+    const tableImages = $(selector);
+    tableImages.each((i, img) => {
+      const src = $(img).attr('src');
+      const alt = $(img).attr('alt') || '';
+      if (src && isValidImage(src)) {
+        let priority = 1.5;
+        
+        // Higher priority for poster-like images
+        if (alt.toLowerCase().includes('poster') || alt.toLowerCase().includes('capa') || alt.toLowerCase().includes('logo')) {
+          priority = 1;
+        }
+        
+        // Skip if already found in higher priority searches
+        const alreadyFound = candidateImages.some(candidate => candidate.src === src);
+        if (!alreadyFound) {
+          candidateImages.push({ src, priority, source: 'table-enhanced', selector, alt });
+          console.log(`🖼️ Found table image: ${selector} (alt: ${alt})`);
+        }
+      }
+    });
+  }
+  
+  // Strategy 4: Enhanced thumbnail and figure image search (medium priority)
+  const thumbnailSelectors = [
+    '.thumbinner img',
+    '.thumb img', 
+    '.thumbimage',
+    'figure img',
+    '.mw-default-size img',
+    'div[class*="thumb"] img',
+    'span[class*="thumb"] img'
+  ];
+  
+  for (const selector of thumbnailSelectors) {
+    const thumbnailImages = $(selector);
+    thumbnailImages.each((i, img) => {
+      const src = $(img).attr('src');
+      const alt = $(img).attr('alt') || '';
+      if (src && isValidImage(src)) {
+        // Skip if already found in higher priority searches
+        const alreadyFound = candidateImages.some(candidate => candidate.src === src);
+        if (!alreadyFound) {
+          candidateImages.push({ src, priority: 2, source: 'thumbnail', selector, alt });
+          console.log(`🖼️ Found thumbnail image: ${selector} (alt: ${alt})`);
+        }
+      }
+    });
+  }
+  
+  // Strategy 5: Comprehensive content area image search (lower priority)
+  const contentSelectors = [
+    '#mw-content-text img',
+    '.mw-parser-output img',
+    'div.mw-content-ltr img',
+    'div[id*="content"] img'
+  ];
+  
+  for (const selector of contentSelectors) {
+    const allImages = $(selector);
+    allImages.each((i, img) => {
+      const src = $(img).attr('src');
+      const alt = $(img).attr('alt') || '';
+      if (src && isValidImage(src)) {
+        // Skip if already found in higher priority searches
+        const alreadyFound = candidateImages.some(candidate => candidate.src === src);
+        if (!alreadyFound) {
+          candidateImages.push({ src, priority: 3, source: 'content', selector, alt });
+          console.log(`🔍 Found content image: ${selector} (alt: ${alt})`);
+        }
+      }
+    });
+  }
+  
+  // Log total candidates found
+  console.log(`📊 Total image candidates found: ${candidateImages.length}`);
+  
+  // Select best image based on comprehensive scoring
+  if (candidateImages.length > 0) {
+    // Score each candidate and sort by quality
+    candidateImages.forEach(candidate => {
+      candidate.score = scoreImageQuality(candidate);
+    });
+    
+    candidateImages.sort((a, b) => b.score - a.score);
     
     bestImage = candidateImages[0];
     details.imageUrl = normalizeWikipediaImageUrl(bestImage.src);
     imageFound = true;
+    
+    // Log the successful image extraction for debugging
+    console.log(`✅ Selected best image: ${bestImage.source} (score: ${bestImage.score}, selector: ${bestImage.selector || 'N/A'})`);
+    console.log(`🔗 Image URL: ${details.imageUrl}`);
+  } else {
+    console.log('❌ No valid images found for this novela');
+    if (candidateImages.length > 0) {
+      console.log('🚫 Rejected candidates:');
+      candidateImages.forEach((candidate, index) => {
+        console.log(`   ${index + 1}. ${candidate.source}: ${candidate.src} (score: ${candidate.score || 'N/A'})`);
+      });
+    }
   }
   
-  // Helper function to validate image URLs
+  // Helper function to validate image URLs with enhanced filtering
   function isValidImage(src) {
     if (!src || typeof src !== 'string') return false;
     
-    // Must be from Wikipedia/Wikimedia first
-    if (!/upload\.wikimedia\.org/i.test(src) && !/wikipedia/i.test(src)) return false;
-    
-    // Only allow image formats
-    if (!/\.(jpg|jpeg|png|gif|webp|svg)(\?|$|\/)/i.test(src)) return false;
-    
-    // Skip very small images and UI elements
-    if (/\b\d+px\b/.test(src)) {
-      const sizeMatch = src.match(/\b(\d+)px\b/);
-      if (sizeMatch && parseInt(sizeMatch[1]) < 50) return false;
+    // Must be from Wikipedia/Wikimedia (relaxed check for better coverage)
+    if (!/upload\.wikimedia\.org|commons\.wikimedia|wikipedia/i.test(src)) {
+      console.log(`❌ Image rejected - not from Wikimedia: ${src}`);
+      return false;
     }
     
-    // Skip specific UI and navigation elements
-    if (/\b(edit|external|arrow|icon|bullet|flag|star|OOjs_UI|Symbol_category)\b/i.test(src)) return false;
+    // Only allow image formats
+    if (!/\.(jpg|jpeg|png|gif|webp|svg)(\?|$|\/|:)/i.test(src)) {
+      console.log(`❌ Image rejected - invalid format: ${src}`);
+      return false;
+    }
+    
+    // More lenient size checking - only skip extremely small images
+    if (/\b\d+px\b/.test(src)) {
+      const sizeMatch = src.match(/\b(\d+)px\b/);
+      if (sizeMatch && parseInt(sizeMatch[1]) < 50) {
+        console.log(`❌ Image rejected - too small (${sizeMatch[1]}px): ${src}`);
+        return false;
+      }
+    }
+    
+    // Skip specific UI and navigation elements (but be more permissive)
+    if (/\b(edit-icon|external-link|arrow-icon|OOjs_UI|Symbol_category|Commons-logo|Edit-icon)\b/i.test(src)) {
+      console.log(`❌ Image rejected - UI element: ${src}`);
+      return false;
+    }
     
     // Skip static UI images
-    if (/\/static\/images\//.test(src)) return false;
+    if (/\/static\/images\//.test(src)) {
+      console.log(`❌ Image rejected - static UI: ${src}`);
+      return false;
+    }
     
+    // Accept the image
+    console.log(`✅ Image accepted: ${src}`);
     return true;
   }
   
-  // Extract comprehensive synopsis from multiple paragraphs
+  // Helper function to score image quality
+  function scoreImageQuality(candidate) {
+    let score = 0;
+    const { src, source } = candidate;
+    
+    // Priority by source type
+    if (source === 'specific-xpath') score += 100;
+    else if (source === 'infobox') score += 80;
+    else if (source === 'table-poster') score += 75;
+    else if (source === 'thumbnail') score += 60;
+    else score += 40;
+    
+    // Prefer larger images
+    const sizeMatch = src.match(/\b(\d+)px\b/);
+    if (sizeMatch) {
+      const size = parseInt(sizeMatch[1]);
+      if (size >= 300) score += 30;
+      else if (size >= 200) score += 20;
+      else if (size >= 100) score += 10;
+    }
+    
+    // Prefer poster/cover/logo keywords
+    if (/poster|capa|cover|logo/i.test(src)) score += 25;
+    
+    // Prefer JPG/PNG over SVG for posters
+    if (/\.(jpg|jpeg|png)/i.test(src)) score += 15;
+    
+    return score;
+  }
+  
+  // Extract comprehensive synopsis with multiple strategies
   const contentDiv = $('#mw-content-text .mw-parser-output, #mw-content-text');
   let synopsis = '';
+  let synopsisFound = false;
   
-  // Get first few meaningful paragraphs
-  const paragraphs = contentDiv.find('p').slice(0, 3);
-  paragraphs.each((i, p) => {
-    const text = $(p).text().trim();
-    if (text.length > 50 && !text.includes('Coordinates:') && !text.includes('disambiguation')) {
-      synopsis += text + ' ';
+  // Strategy 1: Look for specific sections with plot/synopsis
+  const plotSections = ['Enredo', 'Sinopse', 'Plot', 'Synopsis', 'História', 'Story', 'Trama'];
+  for (const sectionName of plotSections) {
+    const sectionHeader = contentDiv.find(`h2, h3, h4`).filter((_, el) => {
+      const text = $(el).text().toLowerCase();
+      return text.includes(sectionName.toLowerCase());
+    });
+    
+    if (sectionHeader.length > 0) {
+      // Get paragraphs after this section header until next header
+      let nextElement = sectionHeader.next();
+      let sectionText = '';
+      
+      while (nextElement.length > 0 && !nextElement.is('h1, h2, h3, h4')) {
+        if (nextElement.is('p')) {
+          const pText = nextElement.text().trim();
+          if (pText.length > 30 && !isMetaText(pText)) {
+            sectionText += pText + ' ';
+            if (sectionText.length > 200) break; // Got enough content
+          }
+        }
+        nextElement = nextElement.next();
+      }
+      
+      if (sectionText.length > 100) {
+        synopsis = sectionText;
+        synopsisFound = true;
+        break;
+      }
     }
-  });
+  }
   
+  // Strategy 2: If no specific section found, get meaningful paragraphs from start
+  if (!synopsisFound) {
+    const paragraphs = contentDiv.find('p').slice(0, 5);
+    paragraphs.each((_, p) => {
+      const text = $(p).text().trim();
+      if (text.length > 50 && !isMetaText(text) && !synopsis.includes(text.substring(0, 50))) {
+        synopsis += text + ' ';
+        if (synopsis.length > 300) return false; // Break out of each loop
+      }
+    });
+  }
+  
+  // Clean and validate synopsis
   if (synopsis.length > 100) {
-    details.synopsis = synopsis.trim().substring(0, 800) + (synopsis.length > 800 ? '...' : '');
+    synopsis = cleanSynopsis(synopsis);
+    if (synopsis.length > 100) {
+      details.synopsis = synopsis.substring(0, 800) + (synopsis.length > 800 ? '...' : '');
+      synopsisFound = true;
+    }
+  }
+  
+  // Helper function to detect meta/navigation text
+  function isMetaText(text) {
+    const metaPatterns = [
+      'coordinates:', 'disambiguation', 'this article', 'wikipedia', 'citation needed',
+      'ver também', 'see also', 'referências', 'references', 'ligações externas',
+      'external links', 'categoria:', 'category:', 'this page', 'may refer to',
+      'the following', 'redirect', 'retrieved', 'isbn', 'doi:', 'archived from',
+      'wayback machine', 'access date', 'originally aired', 'primeiro episódio',
+      'último episódio', 'temporada', 'season', 'episodes?\\s*:', 'capítulos?\\s*:'
+    ];
+    
+    const lowerText = text.toLowerCase();
+    return metaPatterns.some(pattern => {
+      try {
+        return new RegExp(pattern, 'i').test(lowerText);
+      } catch {
+        return lowerText.includes(pattern);
+      }
+    });
+  }
+  
+  // Helper function to clean synopsis text
+  function cleanSynopsis(text) {
+    return text
+      .replace(/\[[^\]]*\]/g, '') // Remove Wikipedia citations
+      .replace(/\([^)]*\d{4}[^)]*\)/g, '') // Remove year references in parentheses
+      .replace(/\s+/g, ' ') // Normalize whitespace
+      .replace(/\.\s*\./g, '.') // Fix double periods
+      .trim();
+  }
+  
+  if (!synopsisFound) {
+    console.log('⚠️ No quality synopsis found, will use default');
   }
   
   // Clean up empty arrays and strings

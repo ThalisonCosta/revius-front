@@ -20,8 +20,13 @@ class NovelaScraper {
       sourcesProcessed: 0,
       novelasFound: 0,
       errors: 0,
-      startTime: new Date()
+      imageFailures: 0,
+      synopsisFailures: 0,
+      duplicatesRemoved: 0,
+      startTime: new Date(),
+      failedPages: []
     };
+    this.retryAttempts = new Map();
   }
 
   /**
@@ -152,12 +157,15 @@ class NovelaScraper {
   }
 
   /**
-   * Enhanced details scraping for specific novelas
+   * Enhanced details scraping with retry mechanism and better error handling
    */
   async enhanceNovelasWithDetails(novelas, maxToEnhance = CONFIG.DEFAULT_MAX_ENHANCE) {
     console.log(`\n🔍 Enhancing ${Math.min(maxToEnhance, novelas.length)} novelas with detailed information...`);
     
     let enhanced = 0;
+    let imageSuccesses = 0;
+    let synopsisSuccesses = 0;
+    
     const toEnhance = novelas
       .filter(n => n.wikipediaUrl && n.wikipediaUrl.length > 0)
       .sort((a, b) => {
@@ -169,54 +177,145 @@ class NovelaScraper {
       .slice(0, maxToEnhance);
     
     for (const novela of toEnhance) {
-      try {
-        console.log(`🔍 Enhancing: ${novela.title}`);
+      const result = await this.enhanceNovelaWithRetry(novela);
+      
+      if (result.success) {
+        enhanced++;
+        if (result.imageFound) imageSuccesses++;
+        if (result.synopsisFound) synopsisSuccesses++;
         
-        const html = await this.fetchPage(novela.wikipediaUrl);
-        if (html) {
-          const details = await parseNovelDetailsPage(html);
-          
-          // Merge details with existing novela data, preserving existing data where appropriate
-          Object.keys(details).forEach(key => {
-            if (details[key]) {
-              if (!novela[key] || 
-                  (Array.isArray(novela[key]) && novela[key].length === 0) ||
-                  (typeof novela[key] === 'string' && novela[key].trim() === '')) {
-                novela[key] = details[key];
-              } else if (key === 'genre' && Array.isArray(details[key]) && details[key].length > 0) {
-                // Merge genres, keeping unique values
-                const existingGenres = Array.isArray(novela[key]) ? novela[key] : [novela[key]];
-                const newGenres = [...new Set([...existingGenres, ...details[key]])];
-                novela[key] = newGenres.slice(0, 5); // Limit to 5 genres
-              }
-            }
-          });
-          
-          // Add default image if no image found
-          if (!novela.imageUrl || novela.imageUrl.trim() === '') {
-            novela.imageUrl = this.getDefaultImage(novela.broadcaster);
-          }
-          
-          enhanced++;
-          console.log(`✨ Enhanced: ${novela.title} - Added ${Object.keys(details).length} fields`);
-        }
+        console.log(`✨ Enhanced: ${novela.title} - ${result.fieldsAdded} fields (img: ${result.imageFound ? '✓' : '✗'}, synopsis: ${result.synopsisFound ? '✓' : '✗'})`);
+      } else {
+        console.error(`❌ Failed to enhance ${novela.title} after retries: ${result.error}`);
+        this.stats.failedPages.push({ url: novela.wikipediaUrl, title: novela.title, error: result.error });
         
-        // Respect rate limiting
-        await this.sleep(CONFIG.DELAY_BETWEEN_REQUESTS);
-        
-      } catch (error) {
-        console.error(`❌ Error enhancing ${novela.title}:`, error.message);
-        this.stats.errors++;
-        
-        // Add default image even on error
+        // Add default image on failure
         if (!novela.imageUrl || novela.imageUrl.trim() === '') {
           novela.imageUrl = this.getDefaultImage(novela.broadcaster);
         }
       }
+      
+      // Adaptive delay based on success rate
+      const delayMs = result.success ? CONFIG.DELAY_BETWEEN_REQUESTS : CONFIG.DELAY_BETWEEN_REQUESTS * 2;
+      await this.sleep(delayMs);
     }
     
-    console.log(`✅ Enhanced ${enhanced} novelas with additional details`);
+    console.log(`✅ Enhancement results: ${enhanced}/${toEnhance.length} enhanced, ${imageSuccesses} images, ${synopsisSuccesses} synopses`);
+    this.stats.imageFailures = toEnhance.length - imageSuccesses;
+    this.stats.synopsisFailures = toEnhance.length - synopsisSuccesses;
+    
     return novelas;
+  }
+  
+  /**
+   * Enhance single novela with retry mechanism
+   */
+  async enhanceNovelaWithRetry(novela, maxRetries = 3) {
+    const originalImageUrl = novela.imageUrl;
+    const originalSynopsis = novela.synopsis;
+    
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        console.log(`🔍 Enhancing: ${novela.title} (attempt ${attempt}/${maxRetries})`);
+        
+        const html = await this.fetchPageWithEnhancedRetry(novela.wikipediaUrl, attempt);
+        if (!html) {
+          throw new Error(`Failed to fetch page content after ${attempt} attempts`);
+        }
+        
+        const details = await parseNovelDetailsPage(html);
+        const fieldsAdded = Object.keys(details).filter(key => details[key]).length;
+        
+        // Merge details with existing novela data
+        this.mergeNovelDetails(novela, details);
+        
+        // Check success metrics
+        const imageFound = novela.imageUrl && novela.imageUrl !== originalImageUrl && !novela.imageUrl.includes('via.placeholder.com');
+        const synopsisFound = novela.synopsis && novela.synopsis !== originalSynopsis && !novela.synopsis.includes('é uma telenovela');
+        
+        return {
+          success: true,
+          imageFound,
+          synopsisFound,
+          fieldsAdded,
+          attempts: attempt
+        };
+        
+      } catch (error) {
+        console.log(`⚠️  Attempt ${attempt} failed for ${novela.title}: ${error.message}`);
+        
+        if (attempt === maxRetries) {
+          this.stats.errors++;
+          return {
+            success: false,
+            error: error.message,
+            attempts: attempt
+          };
+        }
+        
+        // Exponential backoff
+        await this.sleep(CONFIG.DELAY_BETWEEN_REQUESTS * Math.pow(2, attempt - 1));
+      }
+    }
+  }
+  
+  /**
+   * Enhanced page fetching with adaptive retry
+   */
+  async fetchPageWithEnhancedRetry(url, attempt = 1) {
+    const retryKey = url;
+    const previousAttempts = this.retryAttempts.get(retryKey) || 0;
+    this.retryAttempts.set(retryKey, previousAttempts + 1);
+    
+    // Increase timeout for retry attempts
+    const timeout = CONFIG.TIMEOUT + (attempt - 1) * 10000;
+    
+    try {
+      await this.page.goto(url, { 
+        waitUntil: 'networkidle', 
+        timeout 
+      });
+      
+      // Wait for content to load with longer timeout on retries
+      await this.page.waitForSelector('body', { timeout: 5000 + (attempt * 2000) });
+      
+      const content = await this.page.content();
+      
+      if (content && content.length > 1000) {
+        return content;
+      } else {
+        throw new Error(`Page content too short or empty (${content?.length || 0} chars)`);
+      }
+      
+    } catch (error) {
+      throw new Error(`Page fetch failed: ${error.message}`);
+    }
+  }
+  
+  /**
+   * Merge novela details with better conflict resolution
+   */
+  mergeNovelDetails(novela, details) {
+    Object.keys(details).forEach(key => {
+      if (details[key]) {
+        if (!novela[key] || 
+            (Array.isArray(novela[key]) && novela[key].length === 0) ||
+            (typeof novela[key] === 'string' && (novela[key].trim() === '' || novela[key].includes('é uma telenovela')))) {
+          novela[key] = details[key];
+        } else if (key === 'genre' && Array.isArray(details[key]) && details[key].length > 0) {
+          // Merge genres, keeping unique values
+          const existingGenres = Array.isArray(novela[key]) ? novela[key] : [novela[key]];
+          const newGenres = [...new Set([...existingGenres, ...details[key]])];
+          novela[key] = newGenres.slice(0, 5);
+        } else if (key === 'synopsis' && typeof details[key] === 'string' && details[key].length > novela[key].length) {
+          // Prefer longer, more detailed synopsis
+          novela[key] = details[key];
+        } else if (key === 'imageUrl' && details[key] && (!novela[key] || novela[key].includes('placeholder'))) {
+          // Always prefer real images over placeholders
+          novela[key] = details[key];
+        }
+      }
+    });
   }
 
   /**
@@ -311,14 +410,21 @@ class NovelaScraper {
   }
 
   /**
-   * Print final results summary
+   * Print comprehensive results summary with quality metrics
    */
   printResults(novelas, startTime) {
     const duration = Math.round((new Date() - startTime) / 1000);
     const countries = [...new Set(novelas.map(n => n.country))];
     const broadcasters = [...new Set(novelas.map(n => n.broadcaster))];
     
-    console.log('\n' + '=' * 50);
+    // Quality metrics
+    const withImages = novelas.filter(n => n.imageUrl && !n.imageUrl.includes('placeholder')).length;
+    const withRealSynopsis = novelas.filter(n => n.synopsis && !n.synopsis.includes('é uma telenovela')).length;
+    const withCast = novelas.filter(n => n.cast && n.cast.length > 0).length;
+    const withAuthor = novelas.filter(n => n.author && n.author.length > 0).length;
+    const withDirector = novelas.filter(n => n.director && n.director.length > 0).length;
+    
+    console.log('\n' + '='.repeat(50));
     console.log('🎉 SCRAPING COMPLETED SUCCESSFULLY!');
     console.log('='.repeat(50));
     console.log(`⏱️  Duration: ${duration} seconds`);
@@ -326,7 +432,18 @@ class NovelaScraper {
     console.log(`🌍 Countries: ${countries.length} (${countries.join(', ')})`);
     console.log(`📺 Broadcasters: ${broadcasters.length}`);
     console.log(`🔗 Sources processed: ${this.stats.sourcesProcessed}`);
-    console.log(`❌ Errors: ${this.stats.errors}`);
+    console.log(`❌ Total errors: ${this.stats.errors}`);
+    
+    console.log('\n📊 Data Quality Metrics:');
+    console.log(`   🖼️  Images: ${withImages}/${novelas.length} (${Math.round(withImages/novelas.length*100)}%)`);
+    console.log(`   📖 Real synopses: ${withRealSynopsis}/${novelas.length} (${Math.round(withRealSynopsis/novelas.length*100)}%)`);
+    console.log(`   👥 Cast info: ${withCast}/${novelas.length} (${Math.round(withCast/novelas.length*100)}%)`);
+    console.log(`   ✍️  Authors: ${withAuthor}/${novelas.length} (${Math.round(withAuthor/novelas.length*100)}%)`);
+    console.log(`   🎬 Directors: ${withDirector}/${novelas.length} (${Math.round(withDirector/novelas.length*100)}%)`);
+    
+    if (this.stats.duplicatesRemoved > 0) {
+      console.log(`   🔄 Duplicates removed: ${this.stats.duplicatesRemoved}`);
+    }
     
     // Top countries by count
     const countryCounts = {};
@@ -343,15 +460,40 @@ class NovelaScraper {
       console.log(`   ${country}: ${count} novelas`);
     });
     
+    // Failed pages summary
+    if (this.stats.failedPages.length > 0) {
+      console.log(`\n⚠️  Failed to process ${this.stats.failedPages.length} pages:`);
+      this.stats.failedPages.slice(0, 5).forEach(failed => {
+        console.log(`   • ${failed.title}: ${failed.error.substring(0, 50)}...`);
+      });
+      if (this.stats.failedPages.length > 5) {
+        console.log(`   ... and ${this.stats.failedPages.length - 5} more`);
+      }
+    }
+    
     console.log(`\n📁 Data saved to: ${this.fileUtils.outputFile}`);
     console.log('='.repeat(50));
   }
 
   /**
-   * Sleep utility
+   * Sleep utility with jitter to avoid request patterns
    */
   async sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    // Add random jitter to avoid predictable request patterns
+    const jitter = Math.random() * 1000; // Up to 1 second of jitter
+    return new Promise(resolve => setTimeout(resolve, ms + jitter));
+  }
+  
+  /**
+   * Get detailed scraping statistics
+   */
+  getStats() {
+    return {
+      ...this.stats,
+      duration: Math.round((new Date() - this.stats.startTime) / 1000),
+      successRate: this.stats.sourcesProcessed > 0 ? 
+        Math.round((this.stats.sourcesProcessed - this.stats.errors) / this.stats.sourcesProcessed * 100) : 0
+    };
   }
 }
 
