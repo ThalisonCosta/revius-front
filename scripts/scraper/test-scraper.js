@@ -1,145 +1,256 @@
 #!/usr/bin/env node
 
-import NovelaScraper from './novela-scraper.js';
-import { WIKIPEDIA_SOURCES } from './wikipedia-sources.js';
+import fs from 'fs';
+import path from 'path';
+import { NovelParser } from './data-parser.js';
+import { FileUtils } from './file-utils.js';
+import { getAllSources } from './wikipedia-sources.js';
+import { CONFIG } from './config.js';
 
 /**
- * Test the scraper with a small subset of sources
+ * Test utility for the novela scraper
  */
-async function testScraper() {
-  console.log('🧪 Testing Novela Scraper with sample sources');
-  console.log('='.repeat(50));
-  
-  // Test with just Brazilian sources first
-  const testSources = WIKIPEDIA_SOURCES.brasil.slice(0, 2); // Just first 2 sources
-  
-  console.log('📚 Test sources:');
-  testSources.forEach((source, index) => {
-    console.log(`${index + 1}. ${source.broadcaster} - ${source.url}`);
-  });
-  
-  const scraper = new NovelaScraper();
-  
-  // Test with limited options
-  const options = {
-    countries: ['Brasil'],
-    enhanceDetails: false, // Skip enhancement for faster testing
-    mergeWithExisting: false, // Don't merge for clean test
-    maxToEnhance: 0
-  };
-  
-  console.log('\n🚀 Starting test scrape...');
-  const result = await scraper.scrape(options);
-  
-  if (result.success) {
-    console.log('\n✅ Test completed successfully!');
-    console.log(`📊 Found ${result.data.length} novelas`);
-    
-    // Show sample data
-    if (result.data.length > 0) {
-      console.log('\n📋 Sample novelas:');
-      result.data.slice(0, 5).forEach((novela, index) => {
-        console.log(`${index + 1}. ${novela.title} (${novela.year?.start || 'Unknown year'}) - ${novela.broadcaster}`);
-      });
-      
-      // Show data structure
-      console.log('\n🔍 Sample data structure:');
-      const sample = result.data[0];
-      console.log(JSON.stringify(sample, null, 2));
-    }
-  } else {
-    console.log('\n❌ Test failed:', result.error);
+class ScraperTester {
+  constructor() {
+    this.parser = new NovelParser();
+    this.fileUtils = new FileUtils();
+    this.passed = 0;
+    this.failed = 0;
   }
-  
-  return result.success;
-}
 
-// Simpler validation test
-async function testPageParsing() {
-  console.log('\n🔬 Testing page parsing without browser...');
-  
-  try {
-    const { NovelParser } = await import('./data-parser.js');
-    const parser = new NovelParser();
+  /**
+   * Run parsing tests without browser
+   */
+  async runParsingTests() {
+    console.log('🧪 Running Parsing Tests');
+    console.log('='.repeat(40));
     
-    // Test with mock HTML structure
-    const mockHtml = `
+    // Test 1: Parser initialization
+    this.test('Parser Initialization', () => {
+      return this.parser instanceof NovelParser;
+    });
+
+    // Test 2: Wikipedia sources loading
+    this.test('Wikipedia Sources Loading', () => {
+      const sources = getAllSources();
+      return sources.length > 0 && sources[0].url && sources[0].country;
+    });
+
+    // Test 3: Config validation
+    this.test('Config Validation', () => {
+      return CONFIG.OUTPUT_DIR && CONFIG.OUTPUT_FILE && CONFIG.DELAY_BETWEEN_REQUESTS;
+    });
+
+    // Test 4: File utilities
+    this.test('File Utils Initialization', () => {
+      return this.fileUtils instanceof FileUtils;
+    });
+
+    // Test 5: Sample HTML parsing
+    await this.testSampleHtmlParsing();
+
+    // Test 6: ID generation
+    this.test('ID Generation', () => {
+      const id1 = this.parser.generateId('Terra e Paixão');
+      const id2 = this.parser.generateId('Senhora do Destino');
+      return id1 !== id2 && id1.includes('terra-e-paixao') && id2.includes('senhora-do-destino');
+    });
+
+    // Test 7: Data validation
+    this.testDataValidation();
+
+    this.printResults();
+  }
+
+  /**
+   * Test sample HTML parsing
+   */
+  async testSampleHtmlParsing() {
+    const sampleHtml = `
       <html>
         <body>
-          <table class="wikitable">
-            <tr><th>Título</th><th>Ano</th><th>Emissora</th></tr>
-            <tr>
-              <td><a href="/wiki/Novela_Teste">Novela Teste</a></td>
-              <td>2023</td>
-              <td>Rede Globo</td>
-            </tr>
-            <tr>
-              <td><a href="/wiki/Outra_Novela">Outra Novela</a></td>
-              <td>2022-2023</td>
-              <td>SBT</td>
-            </tr>
-          </table>
+          <div id="mw-content-text">
+            <table class="wikitable">
+              <tr><th>Título</th><th>Ano</th><th>Emissora</th></tr>
+              <tr>
+                <td><a href="/wiki/Terra_e_Paixao">Terra e Paixão</a></td>
+                <td>2023</td>
+                <td>Rede Globo</td>
+              </tr>
+              <tr>
+                <td><a href="/wiki/Senhora_do_Destino">Senhora do Destino</a></td>
+                <td>2004-2005</td>
+                <td>Rede Globo</td>
+              </tr>
+            </table>
+          </div>
         </body>
       </html>
     `;
-    
-    const sourceInfo = {
-      broadcaster: 'Test Broadcaster',
-      country: 'Brasil',
-      url: 'https://test.com'
-    };
-    
-    const novelas = parser.parseListPage(mockHtml, sourceInfo);
-    
-    console.log('✅ Parsing test successful!');
-    console.log(`📊 Parsed ${novelas.length} novelas from mock HTML`);
-    
-    if (novelas.length > 0) {
-      console.log('📋 Parsed novelas:');
-      novelas.forEach((novela, index) => {
-        console.log(`${index + 1}. ${novela.title} - ${JSON.stringify(novela.year)}`);
-      });
-    }
-    
-    return true;
-  } catch (error) {
-    console.error('❌ Parsing test failed:', error.message);
-    return false;
+
+    this.test('Sample HTML Parsing', () => {
+      const sourceInfo = {
+        country: 'Brasil',
+        broadcaster: 'Rede Globo',
+        url: 'https://pt.wikipedia.org/wiki/test'
+      };
+
+      const novelas = this.parser.parseListPage(sampleHtml, sourceInfo);
+      
+      return novelas.length >= 2 && 
+             novelas[0].title.includes('Terra e Paixão') &&
+             novelas[0].country === 'Brasil' &&
+             novelas[0].broadcaster === 'Rede Globo';
+    });
   }
-}
 
-async function main() {
-  const args = process.argv.slice(2);
-  
-  if (args.includes('--parsing-only')) {
-    await testPageParsing();
-  } else if (args.includes('--help')) {
-    console.log(`
-Test Scraper - Test the novela scraper functionality
+  /**
+   * Test data validation
+   */
+  testDataValidation() {
+    const validNovela = {
+      title: 'Terra e Paixão',
+      country: 'Brasil',
+      broadcaster: 'Rede Globo',
+      year: { start: 2023, end: 2024 },
+      wikipediaUrl: 'https://pt.wikipedia.org/wiki/Terra_e_Paixao'
+    };
 
-Usage: node test-scraper.js [options]
+    const invalidNovela1 = {
+      title: 'Lista de telenovelas',
+      country: 'Brasil'
+    };
 
-Options:
-  --parsing-only    Test only the HTML parsing logic (no browser)
-  --help           Show this help message
+    const invalidNovela2 = {
+      title: 'ab',
+      country: 'Brasil'
+    };
 
-Default: Run full scraper test with browser
-    `);
-  } else {
-    // First test parsing
-    console.log('🔬 Step 1: Testing parsing logic...');
-    const parsingTest = await testPageParsing();
+    this.test('Valid Novela Validation', () => {
+      return this.parser.isValidNovela(validNovela);
+    });
+
+    this.test('Invalid Novela Validation (List Page)', () => {
+      return !this.parser.isValidNovela(invalidNovela1);
+    });
+
+    this.test('Invalid Novela Validation (Too Short)', () => {
+      return !this.parser.isValidNovela(invalidNovela2);
+    });
+  }
+
+  /**
+   * Validate existing JSON file
+   */
+  async validateJsonFile() {
+    console.log('📊 Validating JSON File');
+    console.log('='.repeat(40));
+
+    const jsonPath = path.join(CONFIG.OUTPUT_DIR, CONFIG.OUTPUT_FILE);
     
-    if (parsingTest) {
-      console.log('\n🚀 Step 2: Testing full scraper...');
-      await testScraper();
+    if (!fs.existsSync(jsonPath)) {
+      console.log('⚠️  No JSON file found to validate');
+      return;
+    }
+
+    try {
+      const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+      
+      const errors = this.fileUtils.validateJsonStructure(data);
+      
+      if (errors.length === 0) {
+        console.log('✅ JSON file is valid');
+        console.log(`📚 Contains ${data.novelas?.length || 0} novelas`);
+        console.log(`🌍 Countries: ${data.metadata?.countries?.length || 0}`);
+        console.log(`📺 Broadcasters: ${data.metadata?.broadcasters?.length || 0}`);
+      } else {
+        console.log('❌ JSON file has validation errors:');
+        errors.forEach(error => console.log(`   - ${error}`));
+      }
+      
+    } catch (error) {
+      console.log('❌ Failed to parse JSON file:', error.message);
+    }
+  }
+
+  /**
+   * Run full test suite
+   */
+  async runFullTests() {
+    console.log('🚀 Running Full Test Suite');
+    console.log('='.repeat(50));
+    
+    await this.runParsingTests();
+    console.log('\n');
+    await this.validateJsonFile();
+    
+    console.log('\n' + '='.repeat(50));
+    console.log('🎉 Full Test Suite Completed');
+    
+    if (this.failed === 0) {
+      console.log('✅ All tests passed!');
+      process.exit(0);
     } else {
-      console.log('\n❌ Skipping full test due to parsing failure');
+      console.log(`❌ ${this.failed} test(s) failed`);
       process.exit(1);
     }
   }
+
+  /**
+   * Test helper
+   */
+  test(name, testFn) {
+    try {
+      const result = testFn();
+      if (result) {
+        console.log(`✅ ${name}`);
+        this.passed++;
+      } else {
+        console.log(`❌ ${name}`);
+        this.failed++;
+      }
+    } catch (error) {
+      console.log(`❌ ${name}: ${error.message}`);
+      this.failed++;
+    }
+  }
+
+  /**
+   * Print test results
+   */
+  printResults() {
+    console.log('\n' + '='.repeat(40));
+    console.log('📊 Test Results');
+    console.log('='.repeat(40));
+    console.log(`✅ Passed: ${this.passed}`);
+    console.log(`❌ Failed: ${this.failed}`);
+    console.log(`📊 Total: ${this.passed + this.failed}`);
+    
+    if (this.failed === 0) {
+      console.log('🎉 All parsing tests passed!');
+    }
+  }
 }
 
+/**
+ * CLI interface
+ */
+async function main() {
+  const args = process.argv.slice(2);
+  const tester = new ScraperTester();
+
+  if (args.includes('--validate')) {
+    await tester.validateJsonFile();
+  } else if (args.includes('--full-test')) {
+    await tester.runFullTests();
+  } else {
+    await tester.runParsingTests();
+  }
+}
+
+// Run if called directly
 if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch(console.error);
 }
+
+export default ScraperTester;

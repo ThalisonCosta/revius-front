@@ -8,7 +8,14 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape:novelas": "node scripts/scraper/novela-scraper.js",
+    "scrape:novelas:brasil": "node scripts/scraper/novela-scraper.js --countries \"Brasil\"",
+    "scrape:novelas:fast": "node scripts/scraper/novela-scraper.js --no-enhance",
+    "scrape:novelas:update": "node scripts/scraper/novela-scraper.js --max-enhance 20",
+    "scrape:test:parsing": "node scripts/scraper/test-scraper.js",
+    "validate:novelas": "node scripts/scraper/test-scraper.js --validate",
+    "scrape:test": "node scripts/scraper/test-scraper.js --full-test"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -43,6 +50,7 @@
     "@tanstack/react-query": "^5.83.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
+    "cheerio": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",

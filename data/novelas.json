@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdated": "2025-09-05T00:35:23.196Z",
+    "lastUpdated": "2025-09-05T01:40:22.643Z",
     "totalNovelas": 3918,
     "countries": [
       "Argentina",
@@ -41,13 +41,13 @@
       "Romance"
     ],
     "statistics": {
-      "totalEpisodes": 427004,
+      "totalEpisodes": 426084,
       "averageEpisodes": 109,
       "yearRange": "1128-2900",
       "oldestYear": 1128,
       "newestYear": 2900
     },
-    "scrapedAt": "2025-09-05T00:35:23.196Z"
+    "scrapedAt": "2025-09-05T01:40:22.643Z"
   },
   "novelas": [
     {
@@ -472,7 +472,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/pt/thumb/4/4b/Sombras_do_Passado_logotipo.jpg/330px-Sombras_do_Passado_logotipo.jpg",
       "scraped": "2025-09-05T00:28:49.734Z",
       "createdAt": "2025-09-05T00:28:51.763Z",
-      "updatedAt": "2025-09-05T00:35:23.188Z"
+      "updatedAt": "2025-09-05T01:40:22.618Z"
     },
     {
       "id": "acorrentada-29",
@@ -12473,10 +12473,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1972-1016",
+      "id": "1972-1940",
       "title": "1972",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1972,
         "end": null
@@ -12484,21 +12484,22 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1972 é uma série de Caracol.",
+      "synopsis": "1972 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1972",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.223Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.622Z"
     },
     {
-      "id": "1975-1017",
+      "id": "1975-1944",
       "title": "1975",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1975,
         "end": null
@@ -12506,21 +12507,22 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1975 é uma série de Caracol.",
+      "synopsis": "1975 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1975",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.223Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.623Z"
     },
     {
-      "id": "1977-1018",
+      "id": "1977-1950",
       "title": "1977",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1977,
         "end": null
@@ -12528,15 +12530,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1977 é uma série de Caracol.",
+      "synopsis": "1977 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1977",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.223Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.624Z"
     },
     {
       "id": "almas-malditas-1019",
@@ -12558,10 +12561,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1978-1020",
+      "id": "1978-1954",
       "title": "1978",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1978,
         "end": null
@@ -12569,15 +12572,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1978 é uma série de Caracol.",
+      "synopsis": "1978 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1978",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.223Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.624Z"
     },
     {
       "id": "lejos-del-nido-1021",
@@ -12599,10 +12603,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1979-1022",
+      "id": "1979-1955",
       "title": "1979",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1979,
         "end": null
@@ -12610,15 +12614,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1979 é uma série de Caracol.",
+      "synopsis": "1979 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1979",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.223Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.625Z"
     },
     {
       "id": "kundry-1023",
@@ -12703,10 +12708,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1981-1027",
+      "id": "1981-1956",
       "title": "1981",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1981,
         "end": null
@@ -12714,15 +12719,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1981 é uma série de Caracol.",
+      "synopsis": "1981 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1981",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.224Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.625Z"
     },
     {
       "id": "sur-verde-1028",
@@ -12766,10 +12772,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1982-1030",
+      "id": "1982-3174",
       "title": "1982",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 1982,
         "end": null
@@ -12777,15 +12783,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1982 é uma série de Caracol.",
+      "synopsis": "1982 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1982",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.224Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.550Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.625Z"
     },
     {
       "id": "la-bruja-de-las-minas-1031",
@@ -12845,10 +12852,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1983-1034",
+      "id": "1983-1964",
       "title": "1983",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1983,
         "end": null
@@ -12856,15 +12863,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1983 é uma série de Caracol.",
+      "synopsis": "1983 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1983",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.224Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.551Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.625Z"
     },
     {
       "id": "las-voces-del-silencio-1035",
@@ -12905,10 +12913,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1984-1037",
+      "id": "1984-1967",
       "title": "1984",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1984,
         "end": null
@@ -12916,15 +12924,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1984 é uma série de Caracol.",
+      "synopsis": "1984 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1984",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.225Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.551Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.626Z"
     },
     {
       "id": "el-faraon-1038",
@@ -12968,10 +12977,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1985-1040",
+      "id": "1985-1971",
       "title": "1985",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1985,
         "end": null
@@ -12979,15 +12988,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1985 é uma série de Caracol.",
+      "synopsis": "1985 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1985",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.225Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.560Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.626Z"
     },
     {
       "id": "notas-de-sociedad-1041",
@@ -13050,10 +13060,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1986-1044",
+      "id": "1986-1976",
       "title": "1986",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1986,
         "end": null
@@ -13061,15 +13071,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1986 é uma série de Caracol.",
+      "synopsis": "1986 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1986",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.225Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.560Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.626Z"
     },
     {
       "id": "gallito-ramirez-1045",
@@ -13094,10 +13105,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1987-1046",
+      "id": "1987-1980",
       "title": "1987",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1987,
         "end": null
@@ -13105,15 +13116,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1987 é uma série de Caracol.",
+      "synopsis": "1987 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1987",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.225Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.561Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.627Z"
     },
     {
       "id": "san-tropel-1047",
@@ -13138,10 +13150,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1988-1048",
+      "id": "1988-1983",
       "title": "1988",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1988,
         "end": null
@@ -13149,15 +13161,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1988 é uma série de Caracol.",
+      "synopsis": "1988 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1988",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.225Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.561Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.627Z"
     },
     {
       "id": "quieta-margarita-1049",
@@ -13182,10 +13195,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1989-1050",
+      "id": "1989-1988",
       "title": "1989",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1989,
         "end": null
@@ -13193,15 +13206,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1989 é uma série de Caracol.",
+      "synopsis": "1989 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1989",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.226Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.561Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.627Z"
     },
     {
       "id": "calamar-1051",
@@ -13226,10 +13240,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1990-1052",
+      "id": "1990-1991",
       "title": "1990",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1990,
         "end": null
@@ -13237,15 +13251,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1990 é uma série de Caracol.",
+      "synopsis": "1990 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1990",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.226Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.561Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.627Z"
     },
     {
       "id": "el-carretero-1053",
@@ -13267,10 +13282,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1991-1054",
+      "id": "1991-1994",
       "title": "1991",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1991,
         "end": null
@@ -13278,15 +13293,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1991 é uma série de Caracol.",
+      "synopsis": "1991 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1991",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.226Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.561Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.628Z"
     },
     {
       "id": "la-locha-1055",
@@ -13327,10 +13343,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1992-1057",
+      "id": "1992-1997",
       "title": "1992",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1992,
         "end": null
@@ -13338,15 +13354,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1992 é uma série de Caracol.",
+      "synopsis": "1992 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1992",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.226Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.561Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.628Z"
     },
     {
       "id": "la-40-la-calle-del-amor-1058",
@@ -13434,10 +13451,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1993-1062",
+      "id": "1993-2000",
       "title": "1993",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1993,
         "end": null
@@ -13445,15 +13462,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1993 é uma série de Caracol.",
+      "synopsis": "1993 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1993",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.226Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.562Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.628Z"
     },
     {
       "id": "solo-una-mujer-1063",
@@ -13478,10 +13496,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1994-1064",
+      "id": "1994-2004",
       "title": "1994",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1994,
         "end": null
@@ -13489,15 +13507,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1994 é uma série de Caracol.",
+      "synopsis": "1994 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1994",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.227Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.562Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.628Z"
     },
     {
       "id": "tentaciones-1065",
@@ -13566,10 +13585,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1995-1068",
+      "id": "1995-2008",
       "title": "1995",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1995,
         "end": null
@@ -13577,15 +13596,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1995 é uma série de Caracol.",
+      "synopsis": "1995 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1995",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.227Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.562Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.629Z"
     },
     {
       "id": "leche-1069",
@@ -13676,10 +13696,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1996-1073",
+      "id": "1996-2012",
       "title": "1996",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1996,
         "end": null
@@ -13687,15 +13707,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1996 é uma série de Caracol.",
+      "synopsis": "1996 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1996",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.227Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.562Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.629Z"
     },
     {
       "id": "cartas-de-amor-1074",
@@ -13717,10 +13738,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1997-1075",
+      "id": "1997-2016",
       "title": "1997",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1997,
         "end": null
@@ -13728,15 +13749,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1997 é uma série de Caracol.",
+      "synopsis": "1997 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1997",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.227Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.562Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.629Z"
     },
     {
       "id": "juliana-que-mala-eres-1076",
@@ -13783,10 +13805,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1998-1078",
+      "id": "1998-2022",
       "title": "1998",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1998,
         "end": null
@@ -13794,15 +13816,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1998 é uma série de Caracol.",
+      "synopsis": "1998 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1998",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.227Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.562Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.629Z"
     },
     {
       "id": "rosas-del-atardecer-1079",
@@ -13950,10 +13973,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "1999-1086",
+      "id": "1999-2027",
       "title": "1999",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 1999,
         "end": null
@@ -13961,15 +13984,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "1999 é uma série de Caracol.",
+      "synopsis": "1999 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1999",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.228Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.563Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.630Z"
     },
     {
       "id": "marido-y-mujer-1087",
@@ -14082,10 +14106,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2000-1092",
+      "id": "2000-2032",
       "title": "2000",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 2000,
         "end": null
@@ -14093,15 +14117,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2000 é uma série de Caracol.",
+      "synopsis": "2000 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2000",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.229Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.563Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.630Z"
     },
     {
       "id": "se-armo-la-gorda-1093",
@@ -14192,10 +14217,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2001-1097",
+      "id": "2001-3175",
       "title": "2001",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2001,
         "end": null
@@ -14203,15 +14228,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2001 é uma série de Caracol.",
+      "synopsis": "2001 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2001",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.229Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.550Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.630Z"
     },
     {
       "id": "pedro-el-escamoso-1098",
@@ -14302,10 +14328,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2002-1102",
+      "id": "2002-2039",
       "title": "2002",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 2002,
         "end": null
@@ -14313,15 +14339,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2002 é uma série de Caracol.",
+      "synopsis": "2002 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2002",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.229Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.563Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.631Z"
     },
     {
       "id": "maria-madrugada-1103",
@@ -14368,10 +14395,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2003-1105",
+      "id": "2003-2042",
       "title": "2003",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 2003,
         "end": null
@@ -14379,15 +14406,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2003 é uma série de Caracol.",
+      "synopsis": "2003 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2003",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.229Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.563Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.633Z"
     },
     {
       "id": "la-jaula-1106",
@@ -14478,10 +14506,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2004-1110",
+      "id": "2004-2047",
       "title": "2004",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 2004,
         "end": null
@@ -14489,15 +14517,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2004 é uma série de Caracol.",
+      "synopsis": "2004 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2004",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.230Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.564Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.633Z"
     },
     {
       "id": "el-vuelo-de-la-cometa-1111",
@@ -14654,10 +14683,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2005-1118",
+      "id": "2005-3177",
       "title": "2005",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2005,
         "end": null
@@ -14665,15 +14694,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2005 é uma série de Caracol.",
+      "synopsis": "2005 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2005",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.230Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.550Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.633Z"
     },
     {
       "id": "vuelo-1503-1119",
@@ -14720,10 +14750,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2006-1121",
+      "id": "2006-3178",
       "title": "2006",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2006,
         "end": null
@@ -14731,15 +14761,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2006 é uma série de Caracol.",
+      "synopsis": "2006 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2006",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.230Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.550Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.634Z"
     },
     {
       "id": "divinas-tentaciones-1122",
@@ -14940,26 +14971,28 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2007-1132",
+      "id": "2007-3179",
       "title": "2007",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2007,
         "end": null
       },
       "genre": [
+        "Ação",
         "Drama"
       ],
-      "synopsis": "2007 é uma série de Caracol.",
+      "synopsis": "2007 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
       "wikipediaUrl": "",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.231Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.550Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.638Z"
     },
     {
       "id": "pocholo-1133",
@@ -15072,10 +15105,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2008-1138",
+      "id": "2008-2077",
       "title": "2008",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 2008,
         "end": null
@@ -15083,15 +15116,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2008 é uma série de Caracol.",
+      "synopsis": "2008 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2008",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.231Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.565Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.634Z"
     },
     {
       "id": "quien-amara-a-maria-1139",
@@ -15270,10 +15304,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2009-1147",
+      "id": "2009-3180",
       "title": "2009",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2009,
         "end": null
@@ -15281,15 +15315,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2009 é uma série de Caracol.",
+      "synopsis": "2009 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2009",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.232Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.550Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.635Z"
     },
     {
       "id": "gabriela-giros-del-destino-1148",
@@ -15358,10 +15393,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2010-1152",
+      "id": "2010-3181",
       "title": "2010",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2010,
         "end": null
@@ -15369,15 +15404,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2010 é uma série de Caracol.",
+      "synopsis": "2010 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2010",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.233Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.550Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.635Z"
     },
     {
       "id": "yo-no-te-pido-la-luna-1154",
@@ -15534,10 +15570,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2011-1161",
+      "id": "2011-3182",
       "title": "2011",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2011,
         "end": null
@@ -15545,15 +15581,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2011 é uma série de Caracol.",
+      "synopsis": "2011 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2011",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.233Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.551Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.635Z"
     },
     {
       "id": "confidencial-1162",
@@ -15710,10 +15747,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2012-1169",
+      "id": "2012-3184",
       "title": "2012",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2012,
         "end": null
@@ -15721,15 +15758,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2012 é uma série de Caracol.",
+      "synopsis": "2012 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2012",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.234Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.551Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.635Z"
     },
     {
       "id": "amor-de-carnaval-1170",
@@ -15820,10 +15858,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2013-1174",
+      "id": "2013-3185",
       "title": "2013",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2013,
         "end": null
@@ -15831,15 +15869,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2013 é uma série de Caracol.",
+      "synopsis": "2013 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2013",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.234Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.551Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.636Z"
     },
     {
       "id": "la-hipocondriaca-1175",
@@ -15930,10 +15969,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2014-1179",
+      "id": "2014-3186",
       "title": "2014",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2014,
         "end": null
@@ -15941,15 +15980,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2014 é uma série de Caracol.",
+      "synopsis": "2014 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2014",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.234Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.551Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.636Z"
     },
     {
       "id": "la-ronca-de-oro-1180",
@@ -16150,10 +16190,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2015-1189",
+      "id": "2015-3188",
       "title": "2015",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2015,
         "end": null
@@ -16161,15 +16201,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2015 é uma série de Caracol.",
+      "synopsis": "2015 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2015",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.235Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.551Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.636Z"
     },
     {
       "id": "tiro-de-gracia-1190",
@@ -16304,10 +16345,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2016-1196",
+      "id": "2016-2142",
       "title": "2016",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 2016,
         "end": null
@@ -16315,15 +16356,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2016 é uma série de Caracol.",
+      "synopsis": "2016 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2016",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.236Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.567Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.637Z"
     },
     {
       "id": "la-esclava-blanca-1197",
@@ -16436,10 +16478,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2017-1202",
+      "id": "2017-3189",
       "title": "2017",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2017,
         "end": null
@@ -16447,15 +16489,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2017 é uma série de Caracol.",
+      "synopsis": "2017 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2017",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.236Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.551Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.637Z"
     },
     {
       "id": "alias-j-j-1203",
@@ -16568,10 +16611,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2018-1208",
+      "id": "2018-2157",
       "title": "2018",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Chile",
+      "broadcaster": "Várias",
       "year": {
         "start": 2018,
         "end": null
@@ -16579,15 +16622,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2018 é uma série de Caracol.",
+      "synopsis": "2018 é uma série de Várias.",
       "cast": [],
-      "episodes": 100,
+      "episodes": 80,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2018",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.236Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:14.568Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.637Z"
     },
     {
       "id": "la-reina-del-flow-1209",
@@ -16656,10 +16700,10 @@
       "createdAt": "2025-09-05T00:35:23.190Z"
     },
     {
-      "id": "2019-1212",
+      "id": "2019-3191",
       "title": "2019",
-      "country": "Colômbia",
-      "broadcaster": "Caracol",
+      "country": "Portugal",
+      "broadcaster": "Várias",
       "year": {
         "start": 2019,
         "end": null
@@ -16667,15 +16711,16 @@
       "genre": [
         "Drama"
       ],
-      "synopsis": "2019 é uma série de Caracol.",
+      "synopsis": "2019 é uma série de Várias.",
       "cast": [],
       "episodes": 100,
       "director": "",
       "author": "",
-      "wikipediaUrl": "",
+      "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_2019",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:32:56.237Z",
-      "createdAt": "2025-09-05T00:35:23.190Z"
+      "scraped": "2025-09-05T00:33:24.551Z",
+      "createdAt": "2025-09-05T00:35:23.192Z",
+      "updatedAt": "2025-09-05T01:40:22.638Z"
     },
     {
       "id": "la-gloria-de-lucho-1213",
@@ -17632,9 +17677,9 @@
       "createdAt": "2025-09-05T00:35:23.191Z"
     },
     {
-      "id": "1967-1324",
+      "id": "1967-1926",
       "title": "1967",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1967,
@@ -17645,18 +17690,19 @@
       ],
       "synopsis": "1967 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1967",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.482Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.549Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.620Z"
     },
     {
-      "id": "1968-1337",
+      "id": "1968-1927",
       "title": "1968",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1968,
@@ -17667,18 +17713,19 @@
       ],
       "synopsis": "1968 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1968",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.482Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.549Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.621Z"
     },
     {
-      "id": "1969-1344",
+      "id": "1969-1930",
       "title": "1969",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1969,
@@ -17689,18 +17736,19 @@
       ],
       "synopsis": "1969 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1969",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.483Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.549Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.621Z"
     },
     {
-      "id": "1970-1355",
+      "id": "1970-1934",
       "title": "1970",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1970,
@@ -17711,13 +17759,14 @@
       ],
       "synopsis": "1970 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1970",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.484Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.549Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.622Z"
     },
     {
       "id": "100-1362",
@@ -17830,9 +17879,9 @@
       "createdAt": "2025-09-05T00:35:23.191Z"
     },
     {
-      "id": "1971-1367",
+      "id": "1971-1937",
       "title": "1971",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1971,
@@ -17843,13 +17892,14 @@
       ],
       "synopsis": "1971 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1971",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.484Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.622Z"
     },
     {
       "id": "106-1368",
@@ -18248,9 +18298,9 @@
       "createdAt": "2025-09-05T00:35:23.191Z"
     },
     {
-      "id": "1973-1386",
+      "id": "1973-1941",
       "title": "1973",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1973,
@@ -18261,13 +18311,14 @@
       ],
       "synopsis": "1973 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1973",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.485Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.623Z"
     },
     {
       "id": "125-1387",
@@ -18380,9 +18431,9 @@
       "createdAt": "2025-09-05T00:35:23.191Z"
     },
     {
-      "id": "1974-1393",
+      "id": "1974-1942",
       "title": "1974",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1974,
@@ -18393,13 +18444,14 @@
       ],
       "synopsis": "1974 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1974",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.486Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.623Z"
     },
     {
       "id": "131-1394",
@@ -18754,9 +18806,9 @@
       "createdAt": "2025-09-05T00:35:23.191Z"
     },
     {
-      "id": "1976-1410",
+      "id": "1976-1948",
       "title": "1976",
-      "country": "Venezuela",
+      "country": "Chile",
       "broadcaster": "Várias",
       "year": {
         "start": 1976,
@@ -18767,13 +18819,14 @@
       ],
       "synopsis": "1976 é uma série de Várias.",
       "cast": [],
-      "episodes": 120,
+      "episodes": 80,
       "director": "",
       "author": "",
       "wikipediaUrl": "https://pt.wikipedia.org/wiki/Anexo:Televisi%C3%B3n_en_1976",
       "imageUrl": "",
-      "scraped": "2025-09-05T00:33:11.486Z",
-      "createdAt": "2025-09-05T00:35:23.191Z"
+      "scraped": "2025-09-05T00:33:14.550Z",
+      "createdAt": "2025-09-05T00:35:23.191Z",
+      "updatedAt": "2025-09-05T01:40:22.624Z"
     },
     {
       "id": "148-1411",
