@@ -40,8 +40,20 @@ export function useListItems(listId: string) {
 
       if (error) throw error;
 
-      // Cast the data to ListItem[] since we're now storing media info directly
-      setItems((data as ListItem[]) || []);
+      // Map database results to ListItem interface
+      const mappedItems: ListItem[] = (data || []).map(item => ({
+        id: item.id,
+        list_id: item.list_id,
+        media_id: item.media_id,
+        media_title: item.media_title || '',
+        media_thumbnail: item.media_thumbnail,
+        media_type: item.media_type || '',
+        media_year: item.media_year,
+        media_synopsis: item.media_synopsis,
+        position: item.position,
+        created_at: item.created_at,
+      }));
+      setItems(mappedItems);
     } catch (error) {
       console.error('Error fetching list items:', error);
       toast({
@@ -86,7 +98,19 @@ export function useListItems(listId: string) {
 
       if (error) throw error;
 
-      setItems(prev => [...prev, data as ListItem]);
+      const newItem: ListItem = {
+        id: data.id,
+        list_id: data.list_id,
+        media_id: data.media_id,
+        media_title: data.media_title || '',
+        media_thumbnail: data.media_thumbnail,
+        media_type: data.media_type || '',
+        media_year: data.media_year,
+        media_synopsis: data.media_synopsis,
+        position: data.position,
+        created_at: data.created_at,
+      };
+      setItems(prev => [...prev, newItem]);
       
       toast({
         title: "Success",

@@ -14,150 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      books: {
-        Row: {
-          author: string | null
-          isbn13: string | null
-          media_id: string
-          page_count: number | null
-          publication_date: string | null
-          publisher: string | null
-        }
-        Insert: {
-          author?: string | null
-          isbn13?: string | null
-          media_id: string
-          page_count?: number | null
-          publication_date?: string | null
-          publisher?: string | null
-        }
-        Update: {
-          author?: string | null
-          isbn13?: string | null
-          media_id?: string
-          page_count?: number | null
-          publication_date?: string | null
-          publisher?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "books_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: true
-            referencedRelation: "media"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      games: {
-        Row: {
-          developer: string | null
-          media_id: string
-          platform: string[] | null
-          publisher: string | null
-          release_date: string | null
-        }
-        Insert: {
-          developer?: string | null
-          media_id: string
-          platform?: string[] | null
-          publisher?: string | null
-          release_date?: string | null
-        }
-        Update: {
-          developer?: string | null
-          media_id?: string
-          platform?: string[] | null
-          publisher?: string | null
-          release_date?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "games_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: true
-            referencedRelation: "media"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      media: {
-        Row: {
-          actors: string[] | null
-          added_by: string | null
-          content_rating:
-            | Database["public"]["Enums"]["content_rating_enum"]
-            | null
-          created_at: string | null
-          genres: string[] | null
-          id: string
-          is_approved: boolean | null
-          rating_avg: number | null
-          rating_count: number | null
-          review_count: number | null
-          slug: string
-          source_data: Json | null
-          synopsis: string | null
-          thumbnail: string | null
-          title: string
-          type: Database["public"]["Enums"]["media_type_enum"]
-          updated_at: string | null
-          year: number | null
-        }
-        Insert: {
-          actors?: string[] | null
-          added_by?: string | null
-          content_rating?:
-            | Database["public"]["Enums"]["content_rating_enum"]
-            | null
-          created_at?: string | null
-          genres?: string[] | null
-          id?: string
-          is_approved?: boolean | null
-          rating_avg?: number | null
-          rating_count?: number | null
-          review_count?: number | null
-          slug: string
-          source_data?: Json | null
-          synopsis?: string | null
-          thumbnail?: string | null
-          title: string
-          type: Database["public"]["Enums"]["media_type_enum"]
-          updated_at?: string | null
-          year?: number | null
-        }
-        Update: {
-          actors?: string[] | null
-          added_by?: string | null
-          content_rating?:
-            | Database["public"]["Enums"]["content_rating_enum"]
-            | null
-          created_at?: string | null
-          genres?: string[] | null
-          id?: string
-          is_approved?: boolean | null
-          rating_avg?: number | null
-          rating_count?: number | null
-          review_count?: number | null
-          slug?: string
-          source_data?: Json | null
-          synopsis?: string | null
-          thumbnail?: string | null
-          title?: string
-          type?: Database["public"]["Enums"]["media_type_enum"]
-          updated_at?: string | null
-          year?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "media_added_by_fkey"
-            columns: ["added_by"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
       novelas: {
         Row: {
           episode_count: number | null
@@ -183,20 +39,13 @@ export type Database = {
           original_air_start?: string | null
           time_slot?: Database["public"]["Enums"]["time_slot_enum"] | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "novelas_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: true
-            referencedRelation: "media"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       reviews: {
         Row: {
           contains_spoilers: boolean | null
           created_at: string | null
+          external_id: string | null
           external_url: string | null
           external_user_avatar: string | null
           external_user_id: string | null
@@ -205,18 +54,19 @@ export type Database = {
           id: string
           is_verified: boolean | null
           language: string | null
-          media_id: string
+          media_id: string | null
+          media_name: string | null
           platform_rating: number | null
           rating: number
           review_text: string | null
           source_platform: string | null
           updated_at: string | null
           user_id: string
-          media_name: string
         }
         Insert: {
           contains_spoilers?: boolean | null
           created_at?: string | null
+          external_id?: string | null
           external_url?: string | null
           external_user_avatar?: string | null
           external_user_id?: string | null
@@ -225,7 +75,8 @@ export type Database = {
           id: string
           is_verified?: boolean | null
           language?: string | null
-          media_id: string
+          media_id?: string | null
+          media_name?: string | null
           platform_rating?: number | null
           rating: number
           review_text?: string | null
@@ -236,6 +87,7 @@ export type Database = {
         Update: {
           contains_spoilers?: boolean | null
           created_at?: string | null
+          external_id?: string | null
           external_url?: string | null
           external_user_avatar?: string | null
           external_user_id?: string | null
@@ -244,7 +96,8 @@ export type Database = {
           id?: string
           is_verified?: boolean | null
           language?: string | null
-          media_id?: string
+          media_id?: string | null
+          media_name?: string | null
           platform_rating?: number | null
           rating?: number
           review_text?: string | null
@@ -253,13 +106,6 @@ export type Database = {
           user_id?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "reviews_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: false
-            referencedRelation: "media"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "reviews_user_id_fkey"
             columns: ["user_id"]
@@ -311,21 +157,30 @@ export type Database = {
           id: string
           list_id: string
           media_id: string
+          media_synopsis: string | null
+          media_thumbnail: string | null
           position: number | null
+          user_id: string | null
         }
         Insert: {
           created_at?: string | null
           id?: string
           list_id: string
           media_id: string
+          media_synopsis?: string | null
+          media_thumbnail?: string | null
           position?: number | null
+          user_id?: string | null
         }
         Update: {
           created_at?: string | null
           id?: string
           list_id?: string
           media_id?: string
+          media_synopsis?: string | null
+          media_thumbnail?: string | null
           position?: number | null
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -333,13 +188,6 @@ export type Database = {
             columns: ["list_id"]
             isOneToOne: false
             referencedRelation: "user_lists"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "user_list_items_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: false
-            referencedRelation: "media"
             referencedColumns: ["id"]
           },
         ]
@@ -422,15 +270,7 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "user_media_status_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: false
-            referencedRelation: "media"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       user_review_preferences: {
         Row: {
@@ -490,18 +330,11 @@ export type Database = {
           user_id?: string
           vote_type?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "user_votes_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: false
-            referencedRelation: "media"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       users: {
         Row: {
+          avatar_url: string | null
           bio: string | null
           created_at: string | null
           email: string | null
@@ -517,6 +350,7 @@ export type Database = {
           username: string
         }
         Insert: {
+          avatar_url?: string | null
           bio?: string | null
           created_at?: string | null
           email?: string | null
@@ -532,6 +366,7 @@ export type Database = {
           username: string
         }
         Update: {
+          avatar_url?: string | null
           bio?: string | null
           created_at?: string | null
           email?: string | null

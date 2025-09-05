@@ -276,9 +276,12 @@ export function useNovelaSearch(initialQuery: string = '') {
     genre: '',
     year: undefined as number | undefined,
   });
-  const [sorting, setSorting] = useState({
-    sortBy: 'title' as const,
-    sortOrder: 'asc' as const
+  const [sorting, setSorting] = useState<{
+    sortBy: 'title' | 'year' | 'episodes' | 'country';
+    sortOrder: 'asc' | 'desc';
+  }>({
+    sortBy: 'title',
+    sortOrder: 'asc'
   });
 
   const { novelas, loading, error, filterOptions, totalResults } = useNovelaData({
