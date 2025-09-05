@@ -77,11 +77,12 @@ serve(async (req) => {
       subscriptionEnd = new Date(subscription.current_period_end * 1000).toISOString();
       logStep("Active subscription found", { subscriptionId: subscription.id, endDate: subscriptionEnd });
       
-      // Determine subscription tier from price
+    // Determine subscription tier from price
       const priceId = subscription.items.data[0].price.id;
       const price = await stripe.prices.retrieve(priceId);
       const amount = price.unit_amount || 0;
       
+      // Brazilian Real pricing
       if (amount <= 999) {
         subscriptionTier = "pro";
       } else if (amount <= 2499) {
@@ -94,9 +95,10 @@ serve(async (req) => {
       logStep("No active subscription found");
     }
 
-    // Update user subscription in database
+    // Update user subscription in database and store customer ID
     await supabaseClient.from("users").update({
       subscription_tier: subscriptionTier,
+      stripe_customer_id: customerId,
       updated_at: new Date().toISOString(),
     }).eq('id', user.id);
 

@@ -2,7 +2,8 @@ import { useState, useCallback } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, ExternalLink, Calendar, Users, Clock, Plus } from "lucide-react";
+import { ShareModal } from "@/components/ShareModal";
+import { Star, ExternalLink, Calendar, Users, Clock, Plus, Share } from "lucide-react";
 import { ReviewsList } from "./ReviewsList";
 import { AddReviewModal } from "./AddReviewModal";
 import { AddToListModal } from "./AddToListModal";
@@ -29,6 +30,7 @@ interface MediaDetailsModalProps {
 export function MediaDetailsModal({ isOpen, onClose, media }: MediaDetailsModalProps) {
   const { user } = useAuth();
   const [reviewsKey, setReviewsKey] = useState(0);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
 
   const handleReviewCreated = useCallback(() => {
     setReviewsKey(prev => prev + 1);
@@ -38,7 +40,17 @@ export function MediaDetailsModal({ isOpen, onClose, media }: MediaDetailsModalP
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">{media.title}</DialogTitle>
+          <div className="flex items-center justify-between">
+            <DialogTitle className="text-2xl font-bold">{media.title}</DialogTitle>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setShareModalOpen(true)}
+            >
+              <Share className="h-4 w-4 mr-2" />
+              Share
+            </Button>
+          </div>
         </DialogHeader>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -183,6 +195,17 @@ export function MediaDetailsModal({ isOpen, onClose, media }: MediaDetailsModalP
             mediaTitle={media.title}
           />
         </div>
+
+        <ShareModal
+          open={shareModalOpen}
+          onOpenChange={setShareModalOpen}
+          type="review"
+          data={{
+            id: media.id,
+            title: media.title,
+            poster: media.poster,
+          }}
+        />
       </DialogContent>
     </Dialog>
   );

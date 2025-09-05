@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
-import { Calendar, Trash2, GripVertical } from 'lucide-react';
+import { ShareModal } from '@/components/ShareModal';
+import { Calendar, Trash2, GripVertical, Share } from 'lucide-react';
 import { useListItems } from '@/hooks/useListItems';
 
 interface ListDetailsModalProps {
@@ -26,6 +28,7 @@ export const ListDetailsModal = ({
   onRemoveItem 
 }: ListDetailsModalProps) => {
   const { items, loading, removeItem } = useListItems(list?.id || '');
+  const [shareModalOpen, setShareModalOpen] = useState(false);
 
   const handleRemoveItem = async (itemId: string) => {
     await removeItem(itemId);
@@ -51,12 +54,22 @@ export const ListDetailsModal = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-hidden flex flex-col">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-3">
-            {list.name}
-            <Badge variant="secondary">
-              {items.length} {items.length === 1 ? 'item' : 'items'}
-            </Badge>
-          </DialogTitle>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <DialogTitle>{list.name}</DialogTitle>
+              <Badge variant="secondary">
+                {items.length} {items.length === 1 ? 'item' : 'items'}
+              </Badge>
+            </div>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => setShareModalOpen(true)}
+            >
+              <Share className="h-4 w-4 mr-2" />
+              Share
+            </Button>
+          </div>
           {list.description && (
             <p className="text-muted-foreground">{list.description}</p>
           )}
@@ -156,6 +169,18 @@ export const ListDetailsModal = ({
           )}
         </div>
       </DialogContent>
+      
+      <ShareModal
+        open={shareModalOpen}
+        onOpenChange={setShareModalOpen}
+        type="list"
+        data={{
+          id: list.id,
+          name: list.name,
+          description: list.description,
+          items,
+        }}
+      />
     </Dialog>
   );
 };

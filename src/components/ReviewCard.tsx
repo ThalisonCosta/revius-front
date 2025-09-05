@@ -4,7 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Star, MoreVertical, Edit, Trash2, Calendar, AlertTriangle, ThumbsUp, Eye, EyeOff } from "lucide-react";
+import { ShareModal } from "@/components/ShareModal";
+import { Star, MoreVertical, Edit, Trash2, Calendar, AlertTriangle, ThumbsUp, Eye, EyeOff, Share } from "lucide-react";
 
 interface ReviewCardProps {
   id: string;
@@ -38,6 +39,7 @@ export function ReviewCard({
   onDelete,
 }: ReviewCardProps) {
   const [showSpoiler, setShowSpoiler] = useState(false);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
   return (
     <Card className="border-border shadow-card">
       <CardHeader className="flex flex-row items-start justify-between space-y-0 pb-2">
@@ -118,6 +120,10 @@ export function ReviewCard({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => setShareModalOpen(true)}>
+              <Share className="mr-2 h-4 w-4" />
+              Share
+            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onEdit(id)}>
               <Edit className="mr-2 h-4 w-4" />
               Edit
@@ -188,6 +194,20 @@ export function ReviewCard({
           )}
         </div>
       </CardContent>
+      
+      <ShareModal
+        open={shareModalOpen}
+        onOpenChange={setShareModalOpen}
+        type="review"
+        data={{
+          id,
+          title: media_name,
+          rating,
+          review_text,
+          user,
+          poster: undefined, // We'd need to pass this as a prop
+        }}
+      />
     </Card>
   );
 }

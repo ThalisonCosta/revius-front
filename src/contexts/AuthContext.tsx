@@ -53,6 +53,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           checkSubscription();
         }, 1000);
       }
+      
+      // Also check on token refresh to catch subscription changes
+      if (event === 'TOKEN_REFRESHED' && session?.user) {
+        checkSubscription();
+      }
     });
 
     return () => subscription.unsubscribe();

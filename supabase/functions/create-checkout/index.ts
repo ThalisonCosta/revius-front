@@ -19,7 +19,8 @@ serve(async (req) => {
 
   const supabaseClient = createClient(
     Deno.env.get("SUPABASE_URL") ?? "",
-    Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    { auth: { persistSession: false } }
   );
 
   try {
@@ -97,6 +98,15 @@ serve(async (req) => {
         tier: tier
       }
     });
+
+    // Store Stripe customer ID in user record for webhook processing
+    if (customerId) {
+      await supabaseClient.from("users").update({
+        stripe_customer_id: customerId,
+        updated_at: new Date().toISOString(),
+      }).eq('id', user.id);
+      logStep("Updated user with Stripe customer ID", { userId: user.id, customerId });
+    }
 
     logStep("Checkout session created", { sessionId: session.id, url: session.url });
 

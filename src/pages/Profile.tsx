@@ -19,6 +19,7 @@ import { EditReviewModal } from '@/components/EditReviewModal';
 import { FollowersModal } from '@/components/FollowersModal';
 import { ListDetailsModal } from '@/components/ListDetailsModal';
 import { ConfirmDeleteModal } from '@/components/ConfirmDeleteModal';
+import { ShareModal } from '@/components/ShareModal';
 import UpgradeButton from '@/components/UpgradeButton';
 import ManageSubscriptionButton from '@/components/ManageSubscriptionButton';
 import { 
@@ -39,13 +40,15 @@ import {
   Trash2,
   Bell,
   Eye,
-  Lock
+  Lock,
+  Share
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserLists } from '@/hooks/useUserLists';
 import { useUserReviews } from '@/hooks/useUserReviews';
 import { useUserFollows } from '@/hooks/useUserFollows';
 import { useSystemLists } from '@/hooks/useSystemLists';
+import { useSubscriptionSync } from '@/hooks/useSubscriptionSync';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -74,6 +77,7 @@ const Profile = () => {
   const { reviews, loading: reviewsLoading, updateReview, deleteReview } = useUserReviews();
   const { followers, following, loading: followsLoading, followUser, unfollowUser, removeFollower, isFollowing } = useUserFollows();
   useSystemLists(); // Initialize system lists (now optimized)
+  const { forceSyncSubscription } = useSubscriptionSync();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [stats, setStats] = useState<UserStats>({
     lists_count: 0,
@@ -110,6 +114,7 @@ const Profile = () => {
     profile_visibility: 'public',
     show_activity: true
   });
+  const [shareModalOpen, setShareModalOpen] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -352,14 +357,22 @@ const Profile = () => {
                   )}
                 </div>
 
-                <Button
-                  onClick={() => setEditing(!editing)}
-                  variant="outline"
-                  className="mt-4"
-                >
-                  <Edit className="h-4 w-4 mr-2" />
-                  {editing ? 'Cancel' : 'Edit Profile'}
-                </Button>
+                <div className="flex gap-2 mt-4">
+                  <Button
+                    onClick={() => setEditing(!editing)}
+                    variant="outline"
+                  >
+                    <Edit className="h-4 w-4 mr-2" />
+                    {editing ? 'Cancel' : 'Edit Profile'}
+                  </Button>
+                  <Button
+                    onClick={() => setShareModalOpen(true)}
+                    variant="outline"
+                  >
+                    <Share className="h-4 w-4 mr-2" />
+                    Share Profile
+                  </Button>
+                </div>
               </CardHeader>
             </Card>
 
@@ -473,7 +486,16 @@ const Profile = () => {
                           <UpgradeButton />
                         )}
                         {profile.subscription_tier !== 'free' && profile.subscription_tier && (
-                          <ManageSubscriptionButton />
+                          <div className="flex gap-2">
+                            <ManageSubscriptionButton />
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={forceSyncSubscription}
+                            >
+                              Sync Status
+                            </Button>
+                          </div>
                         )}
                       </div>
                     </CardContent>
@@ -769,6 +791,19 @@ const Profile = () => {
           onConfirm={confirmDelete}
           title={`Delete ${deleteConfirmModal.type === 'list' ? 'List' : 'Review'}`}
           description={`Are you sure you want to delete "${deleteConfirmModal.title}"? This action cannot be undone.`}
+        />
+
+        <ShareModal
+          open={shareModalOpen}
+          onOpenChange={setShareModalOpen}
+          type="profile"
+          data={{
+            id: profile?.id || '',
+            username: profile?.username || '',
+            bio: profile?.bio,
+            avatar_url: (profile as any)?.avatar_url,
+            stats
+          }}
         />
       </div>
     </div>

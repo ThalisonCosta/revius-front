@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { List, MoreVertical, Edit, Trash2, Eye, EyeOff, Calendar } from "lucide-react";
+import { ShareModal } from "@/components/ShareModal";
+import { List, MoreVertical, Edit, Trash2, Eye, EyeOff, Calendar, Share } from "lucide-react";
 
 interface ListCardProps {
   id: string;
@@ -27,6 +29,7 @@ export function ListCard({
   onDelete,
   onClick,
 }: ListCardProps) {
+  const [shareModalOpen, setShareModalOpen] = useState(false);
   return (
     <Card 
       className="border-border shadow-card hover:shadow-primary/10 transition-smooth cursor-pointer" 
@@ -58,6 +61,10 @@ export function ListCard({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setShareModalOpen(true)}>
+                <Share className="mr-2 h-4 w-4" />
+                Share
+              </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onEdit(id)}>
                 <Edit className="mr-2 h-4 w-4" />
                 Edit
@@ -86,6 +93,18 @@ export function ListCard({
           )}
         </div>
       </CardContent>
+      
+      <ShareModal
+        open={shareModalOpen}
+        onOpenChange={setShareModalOpen}
+        type="list"
+        data={{
+          id,
+          name,
+          description,
+          items_count,
+        }}
+      />
     </Card>
   );
 }
