@@ -42,85 +42,37 @@ export default function Anime() {
   // Debounce search query for 3 seconds
   const debouncedSearchQuery = useDebounce(searchQuery, 3000);
 
-  // Fetch data from Jikan API with recommendations and improved content discovery
+  // Fetch data from Jikan API with correct endpoints for pagination and popularity
   const fetchData = async (type: "anime" | "manga", query: string = "", page: number = 1, loadMore: boolean = false) => {
     setLoading(true);
     try {
       let url = "";
-      let processedData: JikanItem[] = [];
       
       if (query.trim()) {
-        // Search for specific anime/manga
+        // For search, use direct endpoint with query
         url = `https://api.jikan.moe/v4/${type}?q=${encodeURIComponent(query)}&page=${page}&limit=24&sfw=true`;
-        const response = await fetch(url);
-        const data = await response.json();
-        processedData = data.data || [];
       } else {
-        // For initial load, prioritize recommendations and popular content
-        const strategies = [
-          `https://api.jikan.moe/v4/recommendations/${type}?page=${Math.min(page, 10)}`, // Recommendations API
-          `https://api.jikan.moe/v4/top/${type}?filter=bypopularity&limit=24&page=${page}`,
-          `https://api.jikan.moe/v4/top/${type}?filter=byscore&limit=24&page=${page}`,
-          ...(type === "anime" ? [`https://api.jikan.moe/v4/seasons/now?limit=24&page=${page}`] : [])
-        ];
-        
-        // Use recommendations for first page, then rotate strategies
-        const strategyIndex = page === 1 ? 0 : ((page - 1) % (strategies.length - 1)) + 1;
-        url = strategies[strategyIndex];
-        
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        if (url.includes('recommendations')) {
-          // Process recommendations API response
-          if (data.data && Array.isArray(data.data)) {
-            const allEntries = data.data.flatMap((rec: any) => {
-              const entries = rec.entry || [];
-              return entries.map((entry: any) => ({
-                mal_id: entry.mal_id,
-                title: entry.title,
-                images: entry.images,
-                year: entry.year || new Date().getFullYear(),
-                score: entry.score || 8.0,
-                genres: entry.genres || [{ name: type === "anime" ? "Anime" : "Manga" }],
-                status: entry.status || "Unknown",
-                type: entry.type || (type === "anime" ? "TV" : "Manga"),
-                synopsis: entry.synopsis || `Recommended ${type} title.`
-              }));
-            });
-            
-            // Remove duplicates based on mal_id
-            const seenIds = new Set();
-            processedData = allEntries.filter((item: JikanItem) => {
-              if (seenIds.has(item.mal_id)) {
-                return false;
-              }
-              seenIds.add(item.mal_id);
-              return true;
-            }).slice(0, 24); // Limit to 24 items after deduplication
-          }
-        } else {
-          // Process regular API response
-          const rawData = data.data || [];
-          
-          // Remove duplicates based on mal_id as a safeguard
-          const seenIds = new Set();
-          processedData = rawData.filter((item: JikanItem) => {
-            if (seenIds.has(item.mal_id)) {
-              return false;
-            }
-            seenIds.add(item.mal_id);
-            return true;
-          });
-        }
-        
-        // Sort by score/popularity (highest first)
-        processedData = processedData.sort((a: JikanItem, b: JikanItem) => {
-          const scoreA = a.score || 0;
-          const scoreB = b.score || 0;
-          return scoreB - scoreA;
-        });
+        // For initial load, use top endpoint with popularity filter for proper pagination
+        url = `https://api.jikan.moe/v4/top/${type}?filter=bypopularity&page=${page}&limit=24`;
       }
+      
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      // Process API response
+      let processedData = data.data || [];
+      
+      // Remove duplicates based on mal_id as a safeguard
+      const seenIds = new Set();
+      processedData = processedData.filter((item: JikanItem) => {
+        if (seenIds.has(item.mal_id)) {
+          return false;
+        }
+        seenIds.add(item.mal_id);
+        return true;
+      });
+      
+      // No need to sort manually - API already returns sorted data
       
       if (type === "anime") {
         if (loadMore) {
