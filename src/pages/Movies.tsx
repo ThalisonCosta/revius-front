@@ -233,10 +233,22 @@ export default function Movies() {
         {/* Movies Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {movies
-            .filter((movie) => !shouldHideContent(movie))
+            .filter((movie) => !shouldHideContent({
+              title: movie.Title,
+              rating: movie.imdbRating,
+              genres: movie.Genre?.split(", ")
+            }))
             .map((movie) => {
-              const isAdult = isAdultContent(movie);
-              const shouldBlur = shouldBlurContent(movie);
+              const isAdult = isAdultContent({
+                title: movie.Title,
+                rating: movie.imdbRating,
+                genres: movie.Genre?.split(", ")
+              });
+              const shouldBlur = shouldBlurContent({
+                title: movie.Title,
+                rating: movie.imdbRating,
+                genres: movie.Genre?.split(", ")
+              });
               
               if (isAdult && shouldBlur) {
                 return (

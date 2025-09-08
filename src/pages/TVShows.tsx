@@ -230,10 +230,22 @@ export default function TVShows() {
         {/* Shows Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {shows
-            .filter((show) => !shouldHideContent(show))
+            .filter((show) => !shouldHideContent({
+              title: show.name,
+              rating: typeof show.rating?.average === 'number' ? `${show.rating.average}` : undefined,
+              genres: show.genres
+            }))
             .map((show) => {
-              const isAdult = isAdultContent(show);
-              const shouldBlur = shouldBlurContent(show);
+              const isAdult = isAdultContent({
+                title: show.name,
+                rating: typeof show.rating?.average === 'number' ? `${show.rating.average}` : undefined,
+                genres: show.genres
+              });
+              const shouldBlur = shouldBlurContent({
+                title: show.name,
+                rating: typeof show.rating?.average === 'number' ? `${show.rating.average}` : undefined,
+                genres: show.genres
+              });
               
               if (isAdult && shouldBlur) {
                 return (

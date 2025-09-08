@@ -289,7 +289,7 @@ export default function Novelas() {
                     year={getYear(novela)}
                     rating={undefined} // Novelas don't have ratings in our data
                     genre={novela.genre}
-                    type="novela"
+                    type="tv"
                     synopsis={novela.synopsis}
                     isAdult={true}
                     isBlurred={true}
@@ -306,7 +306,7 @@ export default function Novelas() {
                   year={getYear(novela)}
                   rating={undefined} // Novelas don't have ratings in our data
                   genre={novela.genre}
-                  type="novela"
+                  type="tv"
                   synopsis={novela.synopsis}
                   externalUrl={novela.wikipediaUrl}
                   customBadge={customBadge}
