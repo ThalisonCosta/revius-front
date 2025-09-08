@@ -20,6 +20,8 @@ import { FollowersModal } from '@/components/FollowersModal';
 import { ListDetailsModal } from '@/components/ListDetailsModal';
 import { ConfirmDeleteModal } from '@/components/ConfirmDeleteModal';
 import { ShareModal } from '@/components/ShareModal';
+import { ImportListModal } from '@/components/ImportListModal';
+import { MediaSelectionModal } from '@/components/MediaSelectionModal';
 import UpgradeButton from '@/components/UpgradeButton';
 import ManageSubscriptionButton from '@/components/ManageSubscriptionButton';
 import { 
@@ -41,7 +43,8 @@ import {
   Bell,
   Eye,
   Lock,
-  Share
+  Share,
+  Download
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserLists } from '@/hooks/useUserLists';
@@ -49,6 +52,7 @@ import { useUserReviews } from '@/hooks/useUserReviews';
 import { useUserFollows } from '@/hooks/useUserFollows';
 import { useSystemLists } from '@/hooks/useSystemLists';
 import { useSubscriptionSync } from '@/hooks/useSubscriptionSync';
+import { useListImporter } from '@/hooks/useListImporter';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -78,6 +82,15 @@ const Profile = () => {
   const { followers, following, loading: followsLoading, followUser, unfollowUser, removeFollower, isFollowing } = useUserFollows();
   useSystemLists(); // Initialize system lists (now optimized)
   const { forceSyncSubscription } = useSubscriptionSync();
+  const { 
+    isImporting, 
+    progress, 
+    currentMediaMatch, 
+    importFromLetterboxd, 
+    handleMediaSelection, 
+    searchForMedia, 
+    cancelImport 
+  } = useListImporter();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [stats, setStats] = useState<UserStats>({
     lists_count: 0,
@@ -115,6 +128,7 @@ const Profile = () => {
     show_activity: true
   });
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [importModalOpen, setImportModalOpen] = useState(false);
 
   useEffect(() => {
     if (!user) {
@@ -250,6 +264,15 @@ const Profile = () => {
     const list = lists.find(l => l.id === listId);
     if (list) {
       setListDetailsModal({ open: true, list });
+    }
+  };
+
+  const handleImportList = async (url: string, platform: string) => {
+    if (platform === 'letterboxd') {
+      await importFromLetterboxd(url);
+      setImportModalOpen(false);
+    } else {
+      throw new Error(`Platform ${platform} is not supported yet`);
     }
   };
 
@@ -500,13 +523,22 @@ const Profile = () => {
               <TabsContent value="lists" className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold">Your Lists</h3>
-                  <Dialog open={newListOpen} onOpenChange={setNewListOpen}>
-                    <DialogTrigger asChild>
-                      <Button>
-                        <Plus className="h-4 w-4 mr-2" />
-                        Create List
-                      </Button>
-                    </DialogTrigger>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      onClick={() => setImportModalOpen(true)}
+                      disabled={isImporting}
+                    >
+                      <Download className="h-4 w-4 mr-2" />
+                      Import List
+                    </Button>
+                    <Dialog open={newListOpen} onOpenChange={setNewListOpen}>
+                      <DialogTrigger asChild>
+                        <Button>
+                          <Plus className="h-4 w-4 mr-2" />
+                          Create List
+                        </Button>
+                      </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Create New List</DialogTitle>
@@ -553,6 +585,7 @@ const Profile = () => {
                       </div>
                     </DialogContent>
                   </Dialog>
+                  </div>
                 </div>
 
                 {listsLoading ? (
@@ -798,6 +831,24 @@ const Profile = () => {
             avatar_url: (profile as any)?.avatar_url,
             stats
           }}
+        />
+
+        <ImportListModal
+          open={importModalOpen}
+          onOpenChange={setImportModalOpen}
+          onImport={handleImportList}
+          isImporting={isImporting}
+          importProgress={progress.percentage}
+          importStatus={progress.status}
+        />
+
+        <MediaSelectionModal
+          open={!!currentMediaMatch}
+          onOpenChange={() => handleMediaSelection(null)}
+          mediaMatch={currentMediaMatch}
+          onSelect={handleMediaSelection}
+          onSkip={() => handleMediaSelection(null)}
+          onSearchMore={searchForMedia}
         />
       </div>
     </div>

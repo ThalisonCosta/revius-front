@@ -65,7 +65,7 @@ export function useUserLists() {
     }
   };
 
-  const createList = async (listData: CreateListData) => {
+  const createList = async (listData: CreateListData & { imported_from?: string }) => {
     if (!user) return;
 
     try {
@@ -86,7 +86,7 @@ export function useUserLists() {
       
       toast({
         title: "Success",
-        description: "List created successfully!",
+        description: `List created successfully${listData.imported_from ? ` from ${listData.imported_from}` : ''}!`,
         variant: "success",
       });
 
