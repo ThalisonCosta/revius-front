@@ -123,7 +123,14 @@ export function ImportListModal({
               </div>
               
               {importStatus && (
-                <p className="text-sm text-muted-foreground">{importStatus}</p>
+                <div className="space-y-1">
+                  <p className="text-sm text-muted-foreground">{importStatus}</p>
+                  {importStatus.includes('Processing') && (
+                    <p className="text-xs text-muted-foreground">
+                      Matching with external APIs (TMDB, OMDB, Jikan)...
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           )}

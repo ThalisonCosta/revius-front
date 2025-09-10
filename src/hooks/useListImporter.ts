@@ -153,9 +153,13 @@ export function useListImporter() {
       // Success! The edge function already created the list and items
       updateProgress(1, 1, 'Import completed!');
       
+      const matchInfo = data.matchedCount !== undefined ? 
+        ` (${data.matchedCount}/${data.moviesCount} matched with APIs - ${data.matchPercentage}%)` : 
+        '';
+      
       toast({
         title: "Import Successful!",
-        description: data.message || `Successfully imported "${data.listName}" with ${data.moviesCount} movies`,
+        description: data.message || `Successfully imported "${data.listName}" with ${data.moviesCount} movies${matchInfo}`,
       });
 
       setIsImporting(false);

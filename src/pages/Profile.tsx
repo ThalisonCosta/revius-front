@@ -76,7 +76,7 @@ interface UserStats {
 const Profile = () => {
   const { user, updateProfile } = useAuth();
   const { toast } = useToast();
-  const { lists, loading: listsLoading, createList, updateList, deleteList } = useUserLists();
+  const { lists, loading: listsLoading, createList, updateList, deleteList, refetch } = useUserLists();
   const { reviews, loading: reviewsLoading, updateReview, deleteReview } = useUserReviews();
   const { followers, following, loading: followsLoading, followUser, unfollowUser, removeFollower, isFollowing } = useUserFollows();
   useSystemLists(); // Initialize system lists (now optimized)
@@ -270,8 +270,11 @@ const Profile = () => {
     if (platform === 'letterboxd') {
       try {
         await importFromLetterboxd(url);
-        // Refresh lists after successful import
-        await fetchStats();
+        // Refresh lists and stats after successful import
+        await Promise.all([
+          fetchStats(),
+          refetch() // This will refresh the lists to show the newly imported list
+        ]);
         setImportModalOpen(false);
       } catch (error) {
         console.error('Import error:', error);

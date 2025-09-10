@@ -36,21 +36,31 @@ export function useUserLists() {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
+      // Buscar listas e contar itens separadamente para garantir precisão
+      const { data: listsData, error: listsError } = await supabase
         .from('user_lists')
-        .select(`
-          *,
-          user_list_items(count)
-        `)
+        .select('*')
         .eq('user_id', user.id)
         .order('updated_at', { ascending: false });
 
-      if (error) throw error;
+      if (listsError) throw listsError;
 
-      const listsWithCount = data.map(list => ({
-        ...list,
-        items_count: Array.isArray(list.user_list_items) ? list.user_list_items.length : ((list.user_list_items as any)?.[0]?.count || 0)
-      }));
+      // Buscar contagem de itens para cada lista
+      const listsWithCount = await Promise.all(
+        listsData.map(async (list) => {
+          const { count, error: countError } = await supabase
+            .from('user_list_items')
+            .select('*', { count: 'exact', head: true })
+            .eq('list_id', list.id);
+
+          if (countError) {
+            console.warn(`Error counting items for list ${list.id}:`, countError);
+            return { ...list, items_count: 0 };
+          }
+
+          return { ...list, items_count: count || 0 };
+        })
+      );
 
       setLists(listsWithCount);
     } catch (error) {
