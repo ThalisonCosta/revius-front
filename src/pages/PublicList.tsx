@@ -16,7 +16,7 @@ import {
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { ShareModal } from '@/components/ShareModal';
-import { MediaCard } from '@/components/MediaCard';
+import { EnhancedMediaCard } from '@/components/EnhancedMediaCard';
 
 interface ListItem {
   id: string;
@@ -26,6 +26,8 @@ interface ListItem {
   media_thumbnail?: string;
   media_synopsis?: string;
   position?: number;
+  external_id?: string;
+  api_source?: string;
 }
 
 interface UserList {
@@ -230,13 +232,16 @@ const PublicList = () => {
           {list.items && list.items.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
               {list.items.map((item) => (
-                <MediaCard
+                <EnhancedMediaCard
                   key={item.id}
                   id={item.media_id}
                   title={item.media_title || 'Título não disponível'}
                   type={(item.media_type as "movie" | "tv" | "novela" | "anime" | "manga" | "game") || 'movie'}
                   poster={item.media_thumbnail}
                   synopsis={item.media_synopsis}
+                  externalId={item.external_id || undefined}
+                  apiSource={item.api_source || undefined}
+                  showEnhancedDetails={!!(item.external_id && item.api_source)}
                 />
               ))}
             </div>

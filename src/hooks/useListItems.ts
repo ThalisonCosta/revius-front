@@ -14,6 +14,8 @@ interface ListItem {
   media_synopsis: string | null;
   position: number | null;
   created_at: string | null;
+  external_id: string | null;
+  api_source: string | null;
 }
 
 export function useListItems(listId: string) {
@@ -52,6 +54,8 @@ export function useListItems(listId: string) {
         media_synopsis: item.media_synopsis,
         position: item.position,
         created_at: item.created_at,
+        external_id: item.external_id,
+        api_source: item.api_source,
       }));
       setItems(mappedItems);
     } catch (error) {
@@ -72,6 +76,8 @@ export function useListItems(listId: string) {
     type: string;
     year?: number;
     synopsis?: string;
+    external_id?: string;
+    api_source?: string;
   }) => {
     if (!listId || !user) return;
 
@@ -91,7 +97,9 @@ export function useListItems(listId: string) {
           media_type: mediaData.type,
           media_year: mediaData.year || null,
           media_synopsis: mediaData.synopsis || null,
-          position: maxPosition + 1
+          position: maxPosition + 1,
+          external_id: mediaData.external_id || null,
+          api_source: mediaData.api_source || 'manual'
         })
         .select('*')
         .single();
@@ -109,6 +117,8 @@ export function useListItems(listId: string) {
         media_synopsis: data.media_synopsis,
         position: data.position,
         created_at: data.created_at,
+        external_id: data.external_id,
+        api_source: data.api_source,
       };
       setItems(prev => [...prev, newItem]);
       

@@ -22,6 +22,7 @@ interface MatchedMedia {
   rating?: number;
   synopsis?: string;
   externalUrl?: string;
+  externalId: string; // The original ID from the external API
 }
 
 interface ExternalList {
@@ -107,7 +108,8 @@ async function searchTMDB(title: string, year?: number): Promise<MatchedMedia[]>
               poster: movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : undefined,
               rating: movie.vote_average,
               synopsis: movie.overview,
-              externalUrl: `https://www.themoviedb.org/movie/${movie.id}`
+              externalUrl: `https://www.themoviedb.org/movie/${movie.id}`,
+              externalId: movie.id.toString()
             });
           }
         }
@@ -136,7 +138,8 @@ async function searchTMDB(title: string, year?: number): Promise<MatchedMedia[]>
               poster: show.poster_path ? `https://image.tmdb.org/t/p/w500${show.poster_path}` : undefined,
               rating: show.vote_average,
               synopsis: show.overview,
-              externalUrl: `https://www.themoviedb.org/tv/${show.id}`
+              externalUrl: `https://www.themoviedb.org/tv/${show.id}`,
+              externalId: show.id.toString()
             });
           }
         }
@@ -177,7 +180,8 @@ async function searchOMDB(title: string, year?: number): Promise<MatchedMedia[]>
               poster: movie.Poster !== "N/A" ? movie.Poster : undefined,
               rating: undefined, // OMDB search não retorna rating
               synopsis: undefined,
-              externalUrl: `https://www.imdb.com/title/${movie.imdbID}/`
+              externalUrl: `https://www.imdb.com/title/${movie.imdbID}/`,
+              externalId: movie.imdbID
             });
           }
         }
@@ -206,7 +210,8 @@ async function searchOMDB(title: string, year?: number): Promise<MatchedMedia[]>
               poster: show.Poster !== "N/A" ? show.Poster : undefined,
               rating: undefined,
               synopsis: undefined,
-              externalUrl: `https://www.imdb.com/title/${show.imdbID}/`
+              externalUrl: `https://www.imdb.com/title/${show.imdbID}/`,
+              externalId: show.imdbID
             });
           }
         }
@@ -247,7 +252,8 @@ async function searchJikan(title: string, year?: number): Promise<MatchedMedia[]
               poster: anime.images?.jpg?.image_url,
               rating: anime.score,
               synopsis: anime.synopsis,
-              externalUrl: `https://myanimelist.net/anime/${anime.mal_id}/`
+              externalUrl: `https://myanimelist.net/anime/${anime.mal_id}/`,
+              externalId: anime.mal_id.toString()
             });
           }
         }
@@ -279,7 +285,8 @@ async function searchJikan(title: string, year?: number): Promise<MatchedMedia[]
               poster: manga.images?.jpg?.image_url,
               rating: manga.score,
               synopsis: manga.synopsis,
-              externalUrl: `https://myanimelist.net/manga/${manga.mal_id}/`
+              externalUrl: `https://myanimelist.net/manga/${manga.mal_id}/`,
+              externalId: manga.mal_id.toString()
             });
           }
         }
@@ -315,7 +322,8 @@ async function searchNovelas(title: string, year?: number): Promise<MatchedMedia
           poster: novela.imageUrl,
           rating: undefined, // Novelas não têm rating no sistema atual
           synopsis: novela.synopsis,
-          externalUrl: novela.wikipediaUrl
+          externalUrl: novela.wikipediaUrl,
+          externalId: novela.id
         });
       }
     }
@@ -576,13 +584,10 @@ async function createListInDatabase(
         media_type: string;
         media_year?: number | null;
         media_thumbnail?: string | null;
-        external_poster_url?: string | null;
-        external_rating?: number | null;
-        external_synopsis?: string | null;
-        external_url?: string | null;
-        api_source: string;
         user_id: string;
         position: number;
+        external_id?: string | null;
+        api_source?: string | null;
       }> = [];
       let matchedCount = 0;
 
@@ -605,7 +610,7 @@ async function createListInDatabase(
             console.log(`No matches found for "${movie.title}"`);
           }
           
-          // Adicionar item à lista com dados completos das APIs externas
+          // Adicionar item à lista com dados básicos incluindo external_id
           if (selectedMatch) {
             listItems.push({
               list_id: createdList.id,
@@ -614,13 +619,10 @@ async function createListInDatabase(
               media_type: selectedMatch.mediaType,
               media_year: selectedMatch.year,
               media_thumbnail: selectedMatch.poster || null,
-              external_poster_url: selectedMatch.poster || null,
-              external_rating: selectedMatch.rating || null,
-              external_synopsis: selectedMatch.synopsis || null,
-              external_url: selectedMatch.externalUrl || null,
-              api_source: selectedMatch.apiSource,
               user_id: userId,
-              position: i + 1
+              position: i + 1,
+              external_id: selectedMatch.externalId,
+              api_source: selectedMatch.apiSource
             });
           } else {
             // Fallback para dados básicos se não encontrar correspondência
@@ -631,13 +633,10 @@ async function createListInDatabase(
               media_type: 'movie', // Default para filmes
               media_year: movie.year,
               media_thumbnail: null,
-              external_poster_url: null,
-              external_rating: null,
-              external_synopsis: null,
-              external_url: null,
-              api_source: 'manual',
               user_id: userId,
-              position: i + 1
+              position: i + 1,
+              external_id: movie.externalId || null,
+              api_source: 'manual'
             });
           }
           
@@ -656,13 +655,10 @@ async function createListInDatabase(
             media_type: 'movie',
             media_year: movie.year,
             media_thumbnail: null,
-            external_poster_url: null,
-            external_rating: null,
-            external_synopsis: null,
-            external_url: null,
-            api_source: 'manual',
             user_id: userId,
-            position: i + 1
+            position: i + 1,
+            external_id: movie.externalId || null,
+            api_source: 'manual'
           });
         }
       }
