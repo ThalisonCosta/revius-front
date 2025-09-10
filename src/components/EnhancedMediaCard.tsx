@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Star, BookOpen, Film, Tv, Drama, Gamepad2, Clock, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useMediaDetails } from "@/hooks/useMediaDetails";
 
 interface EnhancedMediaCardProps {
@@ -54,7 +54,7 @@ export function EnhancedMediaCard({
   const mediaId = id || `${type}-${title.replace(/\s+/g, '-').toLowerCase()}`;
   
   // Use enhanced details if available, fallback to basic data
-  const displayData = {
+  const displayData = useMemo(() => ({
     title: details?.title || title,
     poster: details?.poster_path || poster,
     year: details?.release_date ? new Date(details.release_date).getFullYear() : year,
@@ -64,7 +64,7 @@ export function EnhancedMediaCard({
     runtime: details?.runtime,
     cast: details?.cast?.slice(0, 3).map(c => c.name) || [],
     externalUrl: details?.external_urls?.tmdb || details?.external_urls?.imdb || details?.external_urls?.mal
-  };
+  }), [details, title, poster, year, synopsis]);
 
   const handleNavigateToDetails = useCallback((e?: React.MouseEvent) => {
     if (e) e.stopPropagation();

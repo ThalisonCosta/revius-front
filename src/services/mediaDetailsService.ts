@@ -167,14 +167,19 @@ export class MediaDetailsService {
       episodes: data.number_of_episodes,
       genres: data.genres || [],
       production_companies: data.production_companies || [],
-      cast: data.credits?.cast?.slice(0, 10).map((actor: any) => ({
+      cast: data.credits?.cast?.slice(0, 10).map((actor: {
+        id: number;
+        name: string;
+        character: string;
+        profile_path?: string;
+      }) => ({
         id: actor.id,
         name: actor.name,
         character: actor.character,
         profile_path: actor.profile_path ? `https://image.tmdb.org/t/p/w185${actor.profile_path}` : undefined
       })) || [],
-      director: data.credits?.crew?.find((person: any) => person.job === 'Director')?.name,
-      creators: data.created_by?.map((creator: any) => creator.name) || [],
+      director: data.credits?.crew?.find((person: { job: string; name: string }) => person.job === 'Director')?.name,
+      creators: data.created_by?.map((creator: { name: string }) => creator.name) || [],
       external_urls: {
         tmdb: `https://www.themoviedb.org/${mediaType}/${cleanId}`,
         imdb: data.external_ids?.imdb_id ? `https://www.imdb.com/title/${data.external_ids.imdb_id}` : undefined,
@@ -264,11 +269,11 @@ export class MediaDetailsService {
       release_date: data.aired?.from || data.published?.from,
       runtime: data.duration ? parseInt(data.duration.replace(/\D/g, '')) : undefined,
       episodes: data.episodes || data.chapters,
-      genres: data.genres?.map((genre: any) => ({
+      genres: data.genres?.map((genre: { mal_id: number; name: string }) => ({
         id: genre.mal_id,
         name: genre.name
       })) || [],
-      studios: data.studios?.map((studio: any) => ({
+      studios: data.studios?.map((studio: { name: string }) => ({
         name: studio.name
       })) || [],
       source: data.source,
