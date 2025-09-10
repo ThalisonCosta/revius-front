@@ -1,0 +1,1 @@
+- nunca menciona claude AI nas mensagens de commit ou nenhum qualquer outro tipo de IA ou autor que não seja eu mesmo

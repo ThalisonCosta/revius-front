@@ -569,7 +569,21 @@ async function createListInDatabase(
 
     // Process movies and match with APIs
     if (listData.movies.length > 0) {
-      const listItems: any[] = [];
+      const listItems: Array<{
+        list_id: string;
+        media_id: string;
+        media_title: string;
+        media_type: string;
+        media_year?: number | null;
+        media_thumbnail?: string | null;
+        external_poster_url?: string | null;
+        external_rating?: number | null;
+        external_synopsis?: string | null;
+        external_url?: string | null;
+        api_source: string;
+        user_id: string;
+        position: number;
+      }> = [];
       let matchedCount = 0;
 
       for (let i = 0; i < listData.movies.length; i++) {
@@ -591,7 +605,7 @@ async function createListInDatabase(
             console.log(`No matches found for "${movie.title}"`);
           }
           
-          // Adicionar item à lista com dados básicos (sem campos extras para evitar erro de coluna)
+          // Adicionar item à lista com dados completos das APIs externas
           if (selectedMatch) {
             listItems.push({
               list_id: createdList.id,
@@ -599,6 +613,12 @@ async function createListInDatabase(
               media_title: selectedMatch.title,
               media_type: selectedMatch.mediaType,
               media_year: selectedMatch.year,
+              media_thumbnail: selectedMatch.poster || null,
+              external_poster_url: selectedMatch.poster || null,
+              external_rating: selectedMatch.rating || null,
+              external_synopsis: selectedMatch.synopsis || null,
+              external_url: selectedMatch.externalUrl || null,
+              api_source: selectedMatch.apiSource,
               user_id: userId,
               position: i + 1
             });
@@ -610,6 +630,12 @@ async function createListInDatabase(
               media_title: movie.title,
               media_type: 'movie', // Default para filmes
               media_year: movie.year,
+              media_thumbnail: null,
+              external_poster_url: null,
+              external_rating: null,
+              external_synopsis: null,
+              external_url: null,
+              api_source: 'manual',
               user_id: userId,
               position: i + 1
             });
@@ -622,13 +648,19 @@ async function createListInDatabase(
           
         } catch (error) {
           console.error(`Error processing movie "${movie.title}":`, error);
-          // Adicionar com dados básicos em caso de erro (sem campos extras)
+          // Adicionar com dados básicos em caso de erro
           listItems.push({
             list_id: createdList.id,
             media_id: movie.externalId || `external-${movie.title.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${movie.year || 'unknown'}`,
             media_title: movie.title,
             media_type: 'movie',
             media_year: movie.year,
+            media_thumbnail: null,
+            external_poster_url: null,
+            external_rating: null,
+            external_synopsis: null,
+            external_url: null,
+            api_source: 'manual',
             user_id: userId,
             position: i + 1
           });
