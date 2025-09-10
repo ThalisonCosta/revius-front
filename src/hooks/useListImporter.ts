@@ -128,75 +128,22 @@ export function useListImporter() {
     }
   }, [searchContent]);
 
+  // Legacy function for backward compatibility - now just calls the new function
+  const importFromLetterboxd = useCallback(async (url: string) => {
+    return importFromExternalService(url, 'letterboxd');
+  }, [importFromExternalService]);
+
+  // Simplified processing for manual media matching (if needed in the future)
   const processNextMedia = useCallback(async () => {
     if (!pendingImport || !user) return;
     
-    const { mediaItems, processedItems, currentIndex, listName, listDescription } = pendingImport;
+    const { mediaItems, processedItems, currentIndex } = pendingImport;
     
     if (currentIndex >= mediaItems.length) {
-      // All media processed, create the list
-      try {
-        updateProgress(currentIndex, mediaItems.length, 'Creating list...');
-        
-        // Create the list in the database
-        const { data: listData, error: listError } = await supabase
-          .from('user_lists')
-          .insert({
-            name: listName,
-            description: listDescription || `Imported from Letterboxd`,
-            is_public: true,
-            user_id: user.id,
-          })
-          .select()
-          .single();
-
-        if (listError) throw listError;
-
-        // Add all processed items to the list
-        if (processedItems.length > 0) {
-          const listItems = processedItems.map((item) => ({
-            list_id: listData.id,
-            media_id: item.originalId || item.id,
-            media_title: item.title,
-            media_type: item.type,
-            media_year: item.year,
-            user_id: user.id,
-          }));
-
-          const { error: itemsError } = await supabase
-            .from('user_list_items')
-            .insert(listItems);
-
-          if (itemsError) throw itemsError;
-        }
-
-        // Success!
-        updateProgress(mediaItems.length, mediaItems.length, 'Import completed!');
-        
-        toast({
-          title: "Import Successful!",
-          description: `Created "${listName}" with ${processedItems.length} out of ${mediaItems.length} movies`,
-        });
-
-        // Clean up
-        setPendingImport(null);
-        setIsImporting(false);
-        
-        // Return the created list data for caller to handle refresh
-        return listData;
-        
-      } catch (error) {
-        console.error('Error creating imported list:', error);
-        toast({
-          title: "Import Failed",
-          description: "Failed to create the imported list",
-          variant: "destructive",
-        });
-        
-        setPendingImport(null);
-        setIsImporting(false);
-      }
-      
+      // All media processed
+      updateProgress(mediaItems.length, mediaItems.length, 'Processing completed!');
+      setPendingImport(null);
+      setIsImporting(false);
       return;
     }
 
@@ -233,7 +180,7 @@ export function useListImporter() {
         matches
       });
     }
-  }, [pendingImport, user, searchForMedia, updateProgress, toast]);
+  }, [pendingImport, user, searchForMedia, updateProgress]);
 
   const handleMediaSelection = useCallback((selectedMedia: SearchResult | null) => {
     if (!pendingImport) return;
@@ -252,62 +199,58 @@ export function useListImporter() {
     setTimeout(processNextMedia, 100);
   }, [pendingImport, processNextMedia]);
 
-  const importFromLetterboxd = useCallback(async (url: string) => {
+  const importFromExternalService = useCallback(async (url: string, service: string = 'letterboxd') => {
     if (!user) {
       throw new Error('User must be logged in to import lists');
     }
 
     setIsImporting(true);
-    updateProgress(0, 0, 'Fetching list data...');
+    updateProgress(0, 0, 'Processing list import...');
 
     try {
-      // Call Supabase function to scrape Letterboxd
-      const { data, error } = await supabase.functions.invoke('import-letterboxd-list', {
-        body: { url }
+      // Call the new generic edge function that handles everything
+      const { data, error } = await supabase.functions.invoke('import-external-list', {
+        body: { url, service }
       });
 
       if (error) {
-        throw new Error(error.message || 'Failed to fetch list from Letterboxd');
+        throw new Error(error.message || `Failed to import list from ${service}`);
       }
 
-      const { listName, listDescription, movies } = data;
-
-      if (!movies || movies.length === 0) {
-        throw new Error('No movies found in the list or the list might be private');
+      if (!data.success) {
+        throw new Error(data.error || 'Import failed');
       }
 
-      // Start the import process
-      setPendingImport({
-        listName,
-        listDescription,
-        mediaItems: movies,
-        processedItems: [],
-        currentIndex: 0
+      // Success! The edge function already created the list and items
+      updateProgress(1, 1, 'Import completed!');
+      
+      toast({
+        title: "Import Successful!",
+        description: data.message || `Successfully imported "${data.listName}" with ${data.moviesCount} movies`,
       });
 
-      updateProgress(0, movies.length, 'Starting import...');
+      setIsImporting(false);
       
-      // Start processing
-      setTimeout(processNextMedia, 500);
-      
-      // Return a promise that resolves when import is complete
-      return new Promise((resolve, reject) => {
-        const checkProgress = () => {
-          if (!isImporting && !pendingImport) {
-            resolve(undefined);
-          } else {
-            setTimeout(checkProgress, 100);
-          }
-        };
-        setTimeout(checkProgress, 100);
-      });
+      return {
+        success: true,
+        listId: data.listId,
+        listName: data.listName,
+        moviesCount: data.moviesCount
+      };
       
     } catch (error) {
       console.error('Import error:', error);
       setIsImporting(false);
+      
+      toast({
+        title: "Import Failed",
+        description: error.message || 'Failed to import the list',
+        variant: "destructive",
+      });
+      
       throw error;
     }
-  }, [user, updateProgress, processNextMedia, isImporting, pendingImport]);
+  }, [user, updateProgress, toast]);
 
   const cancelImport = useCallback(() => {
     setPendingImport(null);
@@ -320,7 +263,8 @@ export function useListImporter() {
     isImporting,
     progress,
     currentMediaMatch,
-    importFromLetterboxd,
+    importFromLetterboxd, // Keep for backward compatibility
+    importFromExternalService, // New generic function
     handleMediaSelection,
     searchForMedia,
     cancelImport
