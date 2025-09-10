@@ -5,13 +5,15 @@ ALTER TABLE public.user_list_items
   ADD COLUMN IF NOT EXISTS media_year integer;
 
 -- Allow owners to delete their own lists
-CREATE POLICY IF NOT EXISTS "lists delete own"
+DROP POLICY IF EXISTS "lists delete own" ON public.user_lists;
+CREATE POLICY "lists delete own"
 ON public.user_lists
 FOR DELETE
 USING (user_id = auth.uid());
 
 -- Allow public read of user profiles when profile_public is true (or self)
-CREATE POLICY IF NOT EXISTS "users public profile read"
+DROP POLICY IF EXISTS "users public profile read" ON public.users;
+CREATE POLICY "users public profile read"
 ON public.users
 FOR SELECT
 USING (

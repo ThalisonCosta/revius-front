@@ -1,2 +1,2 @@
 -- Remover a política mais restritiva que está causando problemas
-DROP POLICY "users self or admin" ON public.users;
+DROP POLICY IF EXISTS "users self or admin" ON public.users;
