@@ -49,7 +49,7 @@ export function useUserLists() {
 
       const listsWithCount = data.map(list => ({
         ...list,
-        items_count: list.user_list_items?.length || 0
+        items_count: Array.isArray(list.user_list_items) ? list.user_list_items.length : ((list.user_list_items as any)?.[0]?.count || 0)
       }));
 
       setLists(listsWithCount);

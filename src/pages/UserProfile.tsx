@@ -25,7 +25,6 @@ import { useToast } from '@/hooks/use-toast';
 interface UserProfile {
   id: string;
   username: string;
-  email: string | null;
   bio: string | null;
   location: string | null;
   avatar_url: string | null;
@@ -110,7 +109,7 @@ const UserProfile = () => {
   const fetchProfile = async () => {
     const { data, error } = await supabase
       .from('users')
-      .select('*')
+      .select('id, username, avatar_url, is_verified, bio, location, created_at, updated_at, subscription_tier')
       .eq('id', userId)
       .single();
 

@@ -59,7 +59,6 @@ import { useToast } from '@/hooks/use-toast';
 interface UserProfile {
   id: string;
   username: string;
-  email: string | null;
   bio: string | null;
   location: string | null;
   subscription_tier: 'free' | 'pro' | 'enterprise' | null;
@@ -162,7 +161,7 @@ const Profile = () => {
 
     const { data, error } = await supabase
       .from('users')
-      .select('*')
+      .select('id, username, avatar_url, is_verified, bio, location, created_at, updated_at, subscription_tier')
       .eq('id', user.id)
       .single();
 
@@ -269,8 +268,15 @@ const Profile = () => {
 
   const handleImportList = async (url: string, platform: string) => {
     if (platform === 'letterboxd') {
-      await importFromLetterboxd(url);
-      setImportModalOpen(false);
+      try {
+        await importFromLetterboxd(url);
+        // Refresh lists after successful import
+        await fetchStats();
+        setImportModalOpen(false);
+      } catch (error) {
+        console.error('Import error:', error);
+        throw error;
+      }
     } else {
       throw new Error(`Platform ${platform} is not supported yet`);
     }
@@ -354,12 +360,6 @@ const Profile = () => {
                 )}
                 
                 <div className="flex flex-col gap-2 mt-4 text-sm text-muted-foreground">
-                  {profile.email && (
-                    <div className="flex items-center gap-2">
-                      <Mail className="h-4 w-4" />
-                      {profile.email}
-                    </div>
-                  )}
                   {profile.location && (
                     <div className="flex items-center gap-2">
                       <MapPin className="h-4 w-4" />

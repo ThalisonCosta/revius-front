@@ -114,7 +114,12 @@ export const ListDetailsModal = ({
                              className="font-medium line-clamp-2 cursor-pointer hover:text-primary"
                              onClick={() => {
                                const mediaType = item.media_type as "movie" | "tv" | "anime";
-                               const url = `/media/${mediaType}/${item.media_id}?title=${encodeURIComponent(item.media_title)}&year=${item.media_year || ''}`;
+                               const params = new URLSearchParams();
+                               params.set('title', item.media_title);
+                               if (item.media_year) params.set('year', item.media_year.toString());
+                               if (item.media_thumbnail) params.set('poster', item.media_thumbnail);
+                               if (item.media_synopsis) params.set('synopsis', item.media_synopsis);
+                               const url = `/media/${mediaType}/${item.media_id}?${params.toString()}`;
                                window.open(url, '_blank');
                              }}
                            >

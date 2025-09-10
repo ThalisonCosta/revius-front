@@ -182,6 +182,9 @@ export function useListImporter() {
         setPendingImport(null);
         setIsImporting(false);
         
+        // Return the created list data for caller to handle refresh
+        return listData;
+        
       } catch (error) {
         console.error('Error creating imported list:', error);
         toast({
@@ -287,12 +290,24 @@ export function useListImporter() {
       // Start processing
       setTimeout(processNextMedia, 500);
       
+      // Return a promise that resolves when import is complete
+      return new Promise((resolve, reject) => {
+        const checkProgress = () => {
+          if (!isImporting && !pendingImport) {
+            resolve(undefined);
+          } else {
+            setTimeout(checkProgress, 100);
+          }
+        };
+        setTimeout(checkProgress, 100);
+      });
+      
     } catch (error) {
       console.error('Import error:', error);
       setIsImporting(false);
       throw error;
     }
-  }, [user, updateProgress, processNextMedia]);
+  }, [user, updateProgress, processNextMedia, isImporting, pendingImport]);
 
   const cancelImport = useCallback(() => {
     setPendingImport(null);

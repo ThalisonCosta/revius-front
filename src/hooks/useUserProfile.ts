@@ -5,7 +5,6 @@ import { useAuth } from '@/contexts/AuthContext';
 interface UserProfile {
   id: string;
   username: string;
-  email: string | null;
   bio: string | null;
   location: string | null;
   avatar_url: string | null;
@@ -35,7 +34,7 @@ export function useUserProfile() {
     try {
       const { data, error } = await supabase
         .from('users')
-        .select('*')
+        .select('id, username, avatar_url, is_verified, bio, location, created_at, updated_at, subscription_tier')
         .eq('id', user.id)
         .single();
 

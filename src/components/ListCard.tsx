@@ -56,20 +56,34 @@ export function ListCard({
           </Badge>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="h-8 w-8 p-0"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <MoreVertical className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setShareModalOpen(true)}>
+              <DropdownMenuItem onClick={(e) => {
+                e.stopPropagation();
+                setShareModalOpen(true);
+              }}>
                 <Share className="mr-2 h-4 w-4" />
                 Share
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onEdit(id)}>
+              <DropdownMenuItem onClick={(e) => {
+                e.stopPropagation();
+                onEdit(id);
+              }}>
                 <Edit className="mr-2 h-4 w-4" />
                 Edit
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => onDelete(id)} className="text-destructive">
+              <DropdownMenuItem onClick={(e) => {
+                e.stopPropagation();
+                onDelete(id);
+              }} className="text-destructive">
                 <Trash2 className="mr-2 h-4 w-4" />
                 Delete
               </DropdownMenuItem>
