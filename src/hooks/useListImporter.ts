@@ -128,6 +128,59 @@ export function useListImporter() {
     }
   }, [searchContent]);
 
+  const importFromExternalService = useCallback(async (url: string, service: string = 'letterboxd') => {
+    if (!user) {
+      throw new Error('User must be logged in to import lists');
+    }
+
+    setIsImporting(true);
+    updateProgress(0, 0, 'Processing list import...');
+
+    try {
+      // Call the new generic edge function that handles everything
+      const { data, error } = await supabase.functions.invoke('import-external-list', {
+        body: { url, service }
+      });
+
+      if (error) {
+        throw new Error(error.message || `Failed to import list from ${service}`);
+      }
+
+      if (!data.success) {
+        throw new Error(data.error || 'Import failed');
+      }
+
+      // Success! The edge function already created the list and items
+      updateProgress(1, 1, 'Import completed!');
+      
+      toast({
+        title: "Import Successful!",
+        description: data.message || `Successfully imported "${data.listName}" with ${data.moviesCount} movies`,
+      });
+
+      setIsImporting(false);
+      
+      return {
+        success: true,
+        listId: data.listId,
+        listName: data.listName,
+        moviesCount: data.moviesCount
+      };
+      
+    } catch (error) {
+      console.error('Import error:', error);
+      setIsImporting(false);
+      
+      toast({
+        title: "Import Failed",
+        description: error.message || 'Failed to import the list',
+        variant: "destructive",
+      });
+      
+      throw error;
+    }
+  }, [user, updateProgress, toast]);
+
   // Legacy function for backward compatibility - now just calls the new function
   const importFromLetterboxd = useCallback(async (url: string) => {
     return importFromExternalService(url, 'letterboxd');
@@ -198,59 +251,6 @@ export function useListImporter() {
     // Continue processing
     setTimeout(processNextMedia, 100);
   }, [pendingImport, processNextMedia]);
-
-  const importFromExternalService = useCallback(async (url: string, service: string = 'letterboxd') => {
-    if (!user) {
-      throw new Error('User must be logged in to import lists');
-    }
-
-    setIsImporting(true);
-    updateProgress(0, 0, 'Processing list import...');
-
-    try {
-      // Call the new generic edge function that handles everything
-      const { data, error } = await supabase.functions.invoke('import-external-list', {
-        body: { url, service }
-      });
-
-      if (error) {
-        throw new Error(error.message || `Failed to import list from ${service}`);
-      }
-
-      if (!data.success) {
-        throw new Error(data.error || 'Import failed');
-      }
-
-      // Success! The edge function already created the list and items
-      updateProgress(1, 1, 'Import completed!');
-      
-      toast({
-        title: "Import Successful!",
-        description: data.message || `Successfully imported "${data.listName}" with ${data.moviesCount} movies`,
-      });
-
-      setIsImporting(false);
-      
-      return {
-        success: true,
-        listId: data.listId,
-        listName: data.listName,
-        moviesCount: data.moviesCount
-      };
-      
-    } catch (error) {
-      console.error('Import error:', error);
-      setIsImporting(false);
-      
-      toast({
-        title: "Import Failed",
-        description: error.message || 'Failed to import the list',
-        variant: "destructive",
-      });
-      
-      throw error;
-    }
-  }, [user, updateProgress, toast]);
 
   const cancelImport = useCallback(() => {
     setPendingImport(null);
