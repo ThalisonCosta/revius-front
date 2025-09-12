@@ -56,6 +56,8 @@ import { useListImporter } from '@/hooks/useListImporter';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
+const IsImportEnabled = import.meta.env.VITE_ENABLE_IMPORT_FEATURE === 'true';
+
 interface UserProfile {
   id: string;
   username: string;
@@ -327,7 +329,6 @@ const Profile = () => {
       </div>
     );
   }
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -527,14 +528,16 @@ const Profile = () => {
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold">Your Lists</h3>
                   <div className="flex gap-2">
-                    <Button
+                    {IsImportEnabled ? (
+                      <Button
                       variant="outline"
                       onClick={() => setImportModalOpen(true)}
                       disabled={isImporting}
-                    >
+                      >
                       <Download className="h-4 w-4 mr-2" />
                       Import List
                     </Button>
+                    ) : null}
                     <Dialog open={newListOpen} onOpenChange={setNewListOpen}>
                       <DialogTrigger asChild>
                         <Button>
