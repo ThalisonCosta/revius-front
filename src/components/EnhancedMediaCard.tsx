@@ -1,7 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Star, BookOpen, Film, Tv, Drama, Gamepad2, Clock, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Star, BookOpen, Film, Tv, Drama, Gamepad2, Clock, Calendar, AlertTriangle, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useMemo } from "react";
@@ -18,6 +19,10 @@ interface EnhancedMediaCardProps {
   externalId?: string;
   apiSource?: string;
   showEnhancedDetails?: boolean; // Whether to fetch and show enhanced details
+  isManualEntry?: boolean; // Whether this item needs manual correction
+  listId?: string; // List ID for correction functionality
+  itemId?: string; // Item ID for correction functionality
+  onCorrectionRequest?: (title: string, year?: number, listId?: string, itemId?: string) => void;
 }
 
 const typeIcons = {
@@ -39,16 +44,23 @@ export function EnhancedMediaCard({
   synopsis,
   externalId,
   apiSource,
-  showEnhancedDetails = true
+  showEnhancedDetails = true,
+  isManualEntry = false,
+  listId,
+  itemId,
+  onCorrectionRequest
 }: EnhancedMediaCardProps) {
   const TypeIcon = typeIcons[type] || Film;
   const navigate = useNavigate();
   
+  // Determine if this is actually a manual entry (no external ID or API source is 'manual')
+  const isActuallyManualEntry = isManualEntry || !externalId || apiSource === 'manual';
+  
   // Fetch enhanced details if external ID and API source are available
   const { details, loading } = useMediaDetails(
-    showEnhancedDetails ? externalId : null, 
-    showEnhancedDetails ? apiSource : null,
-    { enabled: showEnhancedDetails && !!externalId && !!apiSource }
+    showEnhancedDetails && !isActuallyManualEntry ? externalId : null, 
+    showEnhancedDetails && !isActuallyManualEntry ? apiSource : null,
+    { enabled: showEnhancedDetails && !isActuallyManualEntry && !!externalId && !!apiSource }
   );
   
   const mediaId = id || `${type}-${title.replace(/\s+/g, '-').toLowerCase()}`;
@@ -94,11 +106,19 @@ export function EnhancedMediaCard({
     return `${mins}min`;
   };
 
+  const handleCorrectionClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onCorrectionRequest && listId && itemId) {
+      onCorrectionRequest(title, year, listId, itemId);
+    }
+  }, [onCorrectionRequest, title, year, listId, itemId]);
+
   return (
     <Card 
       className={cn(
         "group relative overflow-hidden transition-smooth hover:shadow-card hover:scale-[1.02] cursor-pointer",
         "bg-card/50 border-border/50 hover:border-primary/20",
+        isActuallyManualEntry && "border-amber-200 dark:border-amber-800",
         className
       )}
       onClick={handleNavigateToDetails}
@@ -131,11 +151,17 @@ export function EnhancedMediaCard({
             </div>
           )}
 
-          {/* Type badge */}
-          <div className="absolute top-2 left-2">
+          {/* Type badge and manual entry warning */}
+          <div className="absolute top-2 left-2 space-y-1">
             <Badge variant="secondary" className="text-xs capitalize bg-primary/20 text-primary border-primary/30">
               {type}
             </Badge>
+            {isActuallyManualEntry && (
+              <Badge variant="destructive" className="text-xs flex items-center gap-1 bg-amber-500/20 text-amber-700 dark:text-amber-300 border-amber-500/30">
+                <AlertTriangle className="h-3 w-3" />
+                Needs Review
+              </Badge>
+            )}
           </div>
 
           {/* Runtime badge */}
@@ -202,6 +228,21 @@ export function EnhancedMediaCard({
                     +{displayData.genres.length - 3}
                   </Badge>
                 )}
+              </div>
+            )}
+
+            {/* Manual correction button */}
+            {isActuallyManualEntry && onCorrectionRequest && listId && itemId && (
+              <div className="mt-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={handleCorrectionClick}
+                  className="w-full text-xs h-7 gap-1 border-amber-500/30 hover:bg-amber-500/10"
+                >
+                  <Settings className="h-3 w-3" />
+                  Correct Item
+                </Button>
               </div>
             )}
           </div>

@@ -23,6 +23,25 @@ export interface MediaMatch {
   matches: SearchResult[];
 }
 
+export interface FailedItem {
+  title: string;
+  year?: number;
+  reason: string;
+  position: number;
+}
+
+export interface ImportResult {
+  success: boolean;
+  listId?: string;
+  listName?: string;
+  moviesCount?: number;
+  matchedCount?: number;
+  failedCount?: number;
+  matchPercentage?: number;
+  failedItems?: FailedItem[];
+  message?: string;
+}
+
 export function useListImporter() {
   const [isImporting, setIsImporting] = useState(false);
   const [progress, setProgress] = useState<ImportProgress>({
@@ -128,7 +147,7 @@ export function useListImporter() {
     }
   }, [searchContent]);
 
-  const importFromExternalService = useCallback(async (url: string, service: string = 'letterboxd') => {
+  const importFromExternalService = useCallback(async (url: string, service: string = 'letterboxd'): Promise<ImportResult> => {
     if (!user) {
       throw new Error('User must be logged in to import lists');
     }
@@ -153,23 +172,34 @@ export function useListImporter() {
       // Success! The edge function already created the list and items
       updateProgress(1, 1, 'Import completed!');
       
-      const matchInfo = data.matchedCount !== undefined ? 
-        ` (${data.matchedCount}/${data.moviesCount} matched with APIs - ${data.matchPercentage}%)` : 
-        '';
-      
-      toast({
-        title: "Import Successful!",
-        description: data.message || `Successfully imported "${data.listName}" with ${data.moviesCount} movies${matchInfo}`,
-      });
-
-      setIsImporting(false);
-      
-      return {
+      const result: ImportResult = {
         success: true,
         listId: data.listId,
         listName: data.listName,
-        moviesCount: data.moviesCount
+        moviesCount: data.moviesCount,
+        matchedCount: data.matchedCount,
+        failedCount: data.failedCount,
+        matchPercentage: data.matchPercentage,
+        failedItems: data.failedItems,
+        message: data.message
       };
+
+      // Show appropriate toast based on results
+      if (data.failedCount && data.failedCount > 0) {
+        toast({
+          title: "Import Completed with Warnings",
+          description: `${data.matchedCount}/${data.moviesCount} items matched. ${data.failedCount} need manual review.`,
+          variant: "default",
+        });
+      } else {
+        toast({
+          title: "Import Successful!",
+          description: `Successfully imported "${data.listName}" with ${data.moviesCount} movies (${data.matchPercentage}% matched)`,
+        });
+      }
+
+      setIsImporting(false);
+      return result;
       
     } catch (error) {
       console.error('Import error:', error);
@@ -256,6 +286,48 @@ export function useListImporter() {
     setTimeout(processNextMedia, 100);
   }, [pendingImport, processNextMedia]);
 
+  const updateListItem = useCallback(async (listId: string, itemId: string, updatedMedia: SearchResult) => {
+    if (!user) {
+      throw new Error('User must be logged in to update items');
+    }
+
+    try {
+      const { error } = await supabase
+        .from('user_list_items')
+        .update({
+          media_id: updatedMedia.id,
+          media_title: updatedMedia.title,
+          media_type: updatedMedia.type,
+          media_year: updatedMedia.year,
+          media_thumbnail: updatedMedia.poster,
+          external_id: updatedMedia.originalId || null,
+          api_source: updatedMedia.platform || null
+        })
+        .eq('id', itemId)
+        .eq('list_id', listId)
+        .eq('user_id', user.id);
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      toast({
+        title: "Item Updated",
+        description: `"${updatedMedia.title}" has been updated successfully`,
+      });
+
+      return true;
+    } catch (error) {
+      console.error('Error updating list item:', error);
+      toast({
+        title: "Update Failed",
+        description: error.message || 'Failed to update the item',
+        variant: "destructive",
+      });
+      return false;
+    }
+  }, [user, toast]);
+
   const cancelImport = useCallback(() => {
     setPendingImport(null);
     setCurrentMediaMatch(null);
@@ -271,6 +343,7 @@ export function useListImporter() {
     importFromExternalService, // New generic function
     handleMediaSelection,
     searchForMedia,
+    updateListItem,
     cancelImport
   };
 }

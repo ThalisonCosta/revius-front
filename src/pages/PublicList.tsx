@@ -5,18 +5,23 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
   List as ListIcon, 
   Calendar, 
   ArrowLeft,
   Share2,
   Eye,
-  EyeOff
+  EyeOff,
+  AlertTriangle,
+  CheckCircle
 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 import { ShareModal } from '@/components/ShareModal';
 import { EnhancedMediaCard } from '@/components/EnhancedMediaCard';
+import { ManualMediaSearchModal } from '@/components/ManualMediaSearchModal';
 
 interface ListItem {
   id: string;
@@ -48,9 +53,17 @@ interface UserList {
 const PublicList = () => {
   const { id } = useParams<{ id: string }>();
   const { toast } = useToast();
+  const { user } = useAuth();
   const [list, setList] = useState<UserList | null>(null);
   const [loading, setLoading] = useState(true);
   const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [correctionModalOpen, setCorrectionModalOpen] = useState(false);
+  const [currentCorrectionItem, setCurrentCorrectionItem] = useState<{
+    title: string;
+    year?: number;
+    listId: string;
+    itemId: string;
+  } | null>(null);
 
   useEffect(() => {
     if (id) {
@@ -109,6 +122,51 @@ const PublicList = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCorrectionRequest = (title: string, year?: number, listId?: string, itemId?: string) => {
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "You must be logged in to edit items",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!listId || !itemId || !list) {
+      return;
+    }
+
+    // Check if user owns this list
+    if (list.user_id !== user.id) {
+      toast({
+        title: "Permission Denied",
+        description: "You can only edit your own lists",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setCurrentCorrectionItem({
+      title,
+      year,
+      listId,
+      itemId
+    });
+    setCorrectionModalOpen(true);
+  };
+
+  const handleCorrectionSuccess = () => {
+    // Refresh the list to show updated data
+    fetchList();
+    setCorrectionModalOpen(false);
+    setCurrentCorrectionItem(null);
+  };
+
+  const handleCorrectionSkip = () => {
+    setCorrectionModalOpen(false);
+    setCurrentCorrectionItem(null);
   };
 
   if (loading) {
@@ -228,22 +286,73 @@ const PublicList = () => {
             </CardHeader>
           </Card>
 
+          {/* Import Statistics Alert */}
+          {list.items && list.items.length > 0 && user && list.user_id === user.id && (
+            (() => {
+              const manualItems = list.items.filter(item => !item.external_id || item.api_source === 'manual');
+              const matchedItems = list.items.length - manualItems.length;
+              const matchPercentage = Math.round((matchedItems / list.items.length) * 100);
+              
+              if (manualItems.length > 0) {
+                return (
+                  <Alert className="mb-6 border-amber-200 dark:border-amber-800">
+                    <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
+                    <AlertDescription className="flex items-center justify-between">
+                      <div>
+                        <strong>{manualItems.length} items</strong> from this imported list need manual review. 
+                        <span className="text-muted-foreground ml-1">
+                          ({matchedItems}/{list.items.length} matched automatically - {matchPercentage}%)
+                        </span>
+                      </div>
+                      <Badge variant="outline" className="ml-2 text-amber-600 dark:text-amber-400 border-amber-500/30">
+                        Review Needed
+                      </Badge>
+                    </AlertDescription>
+                  </Alert>
+                );
+              } else {
+                return (
+                  <Alert className="mb-6 border-green-200 dark:border-green-800">
+                    <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
+                    <AlertDescription className="flex items-center justify-between">
+                      <div>
+                        All <strong>{list.items.length} items</strong> were successfully matched with external APIs.
+                      </div>
+                      <Badge variant="outline" className="ml-2 text-green-600 dark:text-green-400 border-green-500/30">
+                        Complete
+                      </Badge>
+                    </AlertDescription>
+                  </Alert>
+                );
+              }
+            })()
+          )}
+
           {/* List Items */}
           {list.items && list.items.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-              {list.items.map((item) => (
-                <EnhancedMediaCard
-                  key={item.id}
-                  id={item.media_id}
-                  title={item.media_title || 'Título não disponível'}
-                  type={(item.media_type as "movie" | "tv" | "novela" | "anime" | "manga" | "game") || 'movie'}
-                  poster={item.media_thumbnail}
-                  synopsis={item.media_synopsis}
-                  externalId={item.external_id || undefined}
-                  apiSource={item.api_source || undefined}
-                  showEnhancedDetails={!!(item.external_id && item.api_source)}
-                />
-              ))}
+              {list.items.map((item) => {
+                const isManualEntry = !item.external_id || item.api_source === 'manual';
+                const isUserOwnedList = user && list.user_id === user.id;
+                
+                return (
+                  <EnhancedMediaCard
+                    key={item.id}
+                    id={item.media_id}
+                    title={item.media_title || 'Título não disponível'}
+                    type={(item.media_type as "movie" | "tv" | "novela" | "anime" | "manga" | "game") || 'movie'}
+                    poster={item.media_thumbnail}
+                    synopsis={item.media_synopsis}
+                    externalId={item.external_id || undefined}
+                    apiSource={item.api_source || undefined}
+                    showEnhancedDetails={!!(item.external_id && item.api_source && item.api_source !== 'manual')}
+                    isManualEntry={isManualEntry}
+                    listId={id}
+                    itemId={item.id}
+                    onCorrectionRequest={isUserOwnedList ? handleCorrectionRequest : undefined}
+                  />
+                );
+              })}
             </div>
           ) : (
             <Card className="border-dashed border-border">
@@ -269,6 +378,20 @@ const PublicList = () => {
           username: list.user?.username
         }}
       />
+
+      {/* Manual Media Search Modal */}
+      {currentCorrectionItem && (
+        <ManualMediaSearchModal
+          open={correctionModalOpen}
+          onOpenChange={setCorrectionModalOpen}
+          onSelect={handleCorrectionSuccess}
+          onSkip={handleCorrectionSkip}
+          originalTitle={currentCorrectionItem.title}
+          originalYear={currentCorrectionItem.year}
+          listId={currentCorrectionItem.listId}
+          itemId={currentCorrectionItem.itemId}
+        />
+      )}
     </div>
   );
 };

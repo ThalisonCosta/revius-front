@@ -48,11 +48,11 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserLists } from '@/hooks/useUserLists';
+import { useListImporter, type ImportResult } from '@/hooks/useListImporter';
 import { useUserReviews } from '@/hooks/useUserReviews';
 import { useUserFollows } from '@/hooks/useUserFollows';
 import { useSystemLists } from '@/hooks/useSystemLists';
 import { useSubscriptionSync } from '@/hooks/useSubscriptionSync';
-import { useListImporter } from '@/hooks/useListImporter';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -87,7 +87,7 @@ const Profile = () => {
     isImporting, 
     progress, 
     currentMediaMatch, 
-    importFromLetterboxd, 
+    importFromExternalService, 
     handleMediaSelection, 
     searchForMedia, 
     cancelImport 
@@ -269,21 +269,39 @@ const Profile = () => {
   };
 
   const handleImportList = async (url: string, platform: string) => {
-    if (platform === 'letterboxd') {
-      try {
-        await importFromLetterboxd(url);
-        // Refresh lists and stats after successful import
-        await Promise.all([
-          fetchStats(),
-          refetch() // This will refresh the lists to show the newly imported list
-        ]);
-        setImportModalOpen(false);
-      } catch (error) {
-        console.error('Import error:', error);
-        throw error;
+    try {
+      const result: ImportResult = await importFromExternalService(url, platform);
+      
+      // Refresh lists and stats after successful import
+      await Promise.all([
+        fetchStats(),
+        refetch() // This will refresh the lists to show the newly imported list
+      ]);
+      
+      setImportModalOpen(false);
+      
+      // Show additional toast with link to list if there were failed items
+      if (result.failedCount && result.failedCount > 0 && result.listId) {
+        setTimeout(() => {
+          toast({
+            title: "Review Required",
+            description: `${result.failedCount} items need manual review. Click to review them.`,
+            action: (
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => window.open(`/list/${result.listId}`, '_blank')}
+              >
+                Review List
+              </Button>
+            ),
+          });
+        }, 2000);
       }
-    } else {
-      throw new Error(`Platform ${platform} is not supported yet`);
+      
+    } catch (error) {
+      console.error('Import error:', error);
+      throw error;
     }
   };
 

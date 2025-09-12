@@ -37,6 +37,13 @@ interface ImportRequest {
   service?: string;
 }
 
+interface FailedItem {
+  title: string;
+  year?: number;
+  reason: string;
+  position: number;
+}
+
 // API Keys - In production, these should be environment variables
 const TMDB_API_KEY = "YOUR_TMDB_API_KEY"; // Será necessário configurar
 const OMDB_API_KEY = "47861d5a";
@@ -556,7 +563,7 @@ async function createListInDatabase(
   listData: ExternalList, 
   userId: string, 
   supabaseClient: ReturnType<typeof createClient>
-): Promise<{ success: boolean; listId?: string; error?: string; matchedCount?: number; totalCount?: number }> {
+): Promise<{ success: boolean; listId?: string; error?: string; matchedCount?: number; totalCount?: number; failedItems?: FailedItem[] }> {
   try {
     // Create the list in the database
     const { data: createdList, error: listError } = await supabaseClient
@@ -590,6 +597,7 @@ async function createListInDatabase(
         api_source?: string | null;
       }> = [];
       let matchedCount = 0;
+      const failedItems: FailedItem[] = [];
 
       for (let i = 0; i < listData.movies.length; i++) {
         const movie = listData.movies[i];
@@ -608,6 +616,12 @@ async function createListInDatabase(
             console.log(`Found match for "${movie.title}": ${selectedMatch.title} (${selectedMatch.apiSource})`);
           } else {
             console.log(`No matches found for "${movie.title}"`);
+            failedItems.push({
+              title: movie.title,
+              year: movie.year,
+              reason: 'No matches found in external APIs',
+              position: i + 1
+            });
           }
           
           // Adicionar item à lista com dados básicos incluindo external_id
@@ -647,6 +661,12 @@ async function createListInDatabase(
           
         } catch (error) {
           console.error(`Error processing movie "${movie.title}":`, error);
+          failedItems.push({
+            title: movie.title,
+            year: movie.year,
+            reason: `API error: ${error.message}`,
+            position: i + 1
+          });
           // Adicionar com dados básicos em caso de erro
           listItems.push({
             list_id: createdList.id,
@@ -680,7 +700,8 @@ async function createListInDatabase(
         success: true, 
         listId: createdList.id, 
         matchedCount, 
-        totalCount: listData.movies.length 
+        totalCount: listData.movies.length,
+        failedItems: failedItems.length > 0 ? failedItems : undefined
       };
     }
 
@@ -804,6 +825,7 @@ serve(async (req) => {
     const matchedCount = dbResult.matchedCount || 0;
     const totalCount = dbResult.totalCount || listData.movies.length;
     const matchPercentage = totalCount > 0 ? Math.round((matchedCount / totalCount) * 100) : 0;
+    const failedCount = dbResult.failedItems?.length || 0;
     
     return new Response(
       JSON.stringify({
@@ -813,9 +835,13 @@ serve(async (req) => {
         listId: dbResult.listId,
         moviesCount: listData.movies.length,
         matchedCount: matchedCount,
+        failedCount: failedCount,
         matchPercentage: matchPercentage,
         service: listData.service,
-        message: `Successfully imported "${listData.listName}" with ${listData.movies.length} movies (${matchedCount} matched with APIs - ${matchPercentage}%)`
+        failedItems: dbResult.failedItems,
+        message: failedCount > 0 
+          ? `Successfully imported "${listData.listName}" with ${listData.movies.length} movies (${matchedCount} matched with APIs, ${failedCount} need manual review)`
+          : `Successfully imported "${listData.listName}" with ${listData.movies.length} movies (${matchedCount} matched with APIs - ${matchPercentage}%)`
       }),
       { 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
